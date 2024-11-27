@@ -1,1 +1,1 @@
-# Sustainify
+# sustainify
