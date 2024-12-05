@@ -21,6 +21,7 @@
 		AC0004222CF7200A009EDDFD /* Ali.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0004212CF7200A009EDDFD /* Ali.storyboard */; };
 		AC0004242CF72169009EDDFD /* Abdullah.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0004232CF72169009EDDFD /* Abdullah.storyboard */; };
 		AC0004262CF72184009EDDFD /* Mohamed AlAlawi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0004252CF72184009EDDFD /* Mohamed AlAlawi.storyboard */; };
+		AC14EC002D01DB2C00B99A87 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14EBFF2D01DB2C00B99A87 /* structs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		AC0004212CF7200A009EDDFD /* Ali.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ali.storyboard; sourceTree = "<group>"; };
 		AC0004232CF72169009EDDFD /* Abdullah.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Abdullah.storyboard; sourceTree = "<group>"; };
 		AC0004252CF72184009EDDFD /* Mohamed AlAlawi.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Mohamed AlAlawi.storyboard"; sourceTree = "<group>"; };
+		AC14EBFF2D01DB2C00B99A87 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				AC0004212CF7200A009EDDFD /* Ali.storyboard */,
 				AC0004232CF72169009EDDFD /* Abdullah.storyboard */,
 				AC0004252CF72184009EDDFD /* Mohamed AlAlawi.storyboard */,
+				AC14EBFF2D01DB2C00B99A87 /* structs.swift */,
 				AC0003ED2CF71F0C009EDDFD /* AppDelegate.swift */,
 				AC0003EF2CF71F0C009EDDFD /* SceneDelegate.swift */,
 				AC0003F12CF71F0C009EDDFD /* ViewController.swift */,
@@ -278,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC14EC002D01DB2C00B99A87 /* structs.swift in Sources */,
 				AC0003F22CF71F0C009EDDFD /* ViewController.swift in Sources */,
 				AC0003EE2CF71F0C009EDDFD /* AppDelegate.swift in Sources */,
 				AC0003F02CF71F0C009EDDFD /* SceneDelegate.swift in Sources */,
