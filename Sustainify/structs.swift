@@ -7,20 +7,53 @@
 
 import Foundation
 
-//var myDict = ["Food": false, "Drink": false, "Makeup": false, "Toiletries": false, "Clothing": false, "Other": false, "Electronics": false]
-
-struct ecoTagApplied {
-    var applied: Bool
-    var name: String
-    var weight: Int
-    
+enum CategoryName {
+    case Food
+    case Drink
+    case Makeup
+    case Toiletries
+    case Clothing
+    case Other
+    case Electronics
 }
 
+enum TagName {
+    case co2Em
+    case o2Saved
+    case recyMat
+}
+
+//enum Barcode {
+//    case upc(Int, Int, Int, Int)
+//}
+
+//make sure the fetch/save functions validate this data
+struct upcBarcode {
+    var numberSystem: Int
+    var manufacturer: Int
+    var product: Int
+    var check: Int
+}
+
+//make sure the fetch/save functions validate this data
+struct ecoTag {
+    var applied: Bool
+    var name: TagName
+    var weight: Int
+}
+
+//make sure the fetch/save functions validate this data
 struct nonAppProd {
     var name: String
     var company: String
-    var categories: [String: Bool] = [:]
+    var categories: [CategoryName: Bool] = [:]
+    var ecoTags: [ecoTag]
+    //var barcode: upcBarcode
     
-    //create init function with guard to only allow select categories
+    init(name: String, company: String, categories: [CategoryName : Bool], ecoTags: [ecoTag]) {
+        self.name = name
+        self.company = company
+        self.categories = categories
+        self.ecoTags = ecoTags
+    }
 }
-
