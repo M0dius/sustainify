@@ -43,14 +43,6 @@
             </objects>
             <point key="canvasLocation" x="-1271" y="211"/>
         </scene>
-        <!--Ali-->
-        <scene sceneID="fLq-5x-mKG">
-            <objects>
-                <viewControllerPlaceholder id="CWN-Tf-5Em" userLabel="Ali" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Thm-zG-vbr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1273" y="615"/>
-        </scene>
         <!--Orders-->
         <scene sceneID="Z82-qh-QfH">
             <objects>

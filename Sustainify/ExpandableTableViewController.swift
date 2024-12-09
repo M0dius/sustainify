@@ -53,7 +53,7 @@ class ExpandableTableViewController: UITableViewController {
             currentIndex += 1
             
             if item.isExpanded && currentIndex == indexPath.row {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ecoScoreDetailCell", for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ecoScoreDetailsCell", for: indexPath)
                 cell.textLabel?.text = item.details
                 return cell
             }
@@ -78,5 +78,34 @@ class ExpandableTableViewController: UITableViewController {
                 currentIndex += 1
             }
         }
+    }
+}
+
+import Foundation
+
+class Review {
+    var username: String
+    var rating: Int
+    var comment: String
+
+    init(username: String, rating: Int, comment: String) {
+        self.username = username
+        self.rating = rating
+        self.comment = comment
+    }
+}
+
+
+class Product {
+    var name: String
+    var description: String
+    var price: Double
+    var reviews: [Review]  // Associated reviews
+
+    init(name: String, description: String, price: Double, reviews: [Review] = []) {
+        self.name = name
+        self.description = description
+        self.price = price
+        self.reviews = reviews
     }
 }
