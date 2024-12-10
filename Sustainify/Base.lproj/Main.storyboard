@@ -38,10 +38,23 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="3NN-Ch-hjG" kind="relationship" relationship="rootViewController" id="e3a-i6-9Yt"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLU-dI-dc0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1271" y="211"/>
+        </scene>
+        <!--ProductDetails-->
+        <scene sceneID="VWs-nA-hXO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Bader" referencedIdentifier="ProductDetails" id="3NN-Ch-hjG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="76f-PN-hZw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="asC-tE-cWS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1273" y="644"/>
         </scene>
         <!--Orders-->
         <scene sceneID="Z82-qh-QfH">
