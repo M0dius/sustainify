@@ -10,7 +10,6 @@
 		AC0004052CF71F0F009EDDFD /* SustainifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0004042CF71F0F009EDDFD /* SustainifyTests.swift */; };
 		AC00040F2CF71F0F009EDDFD /* SustainifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */; };
 		AC0004112CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */; };
-		AC360C4C2D09B00200957DA7 /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C372D09B00100957DA7 /* Bader.storyboard */; };
 		AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C382D09B00100957DA7 /* ViewController.swift */; };
 		AC360C4E2D09B00200957DA7 /* settingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3A2D09B00100957DA7 /* settingsTableViewController.swift */; };
 		AC360C4F2D09B00200957DA7 /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3B2D09B00100957DA7 /* ToDoTableViewController.swift */; };
@@ -28,6 +27,8 @@
 		AC360C5B2D09B00200957DA7 /* Mohamed Ashoor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C492D09B00200957DA7 /* Mohamed Ashoor.storyboard */; };
 		AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */; };
 		AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C4B2D09B00200957DA7 /* Ali.storyboard */; };
+		AC7C2FF42D09B1080097608D /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC7C2FF32D09B1080097608D /* Bader.storyboard */; };
+		AC7C2FF72D09B12B0097608D /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C2FF62D09B12B0097608D /* ProductDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +55,6 @@
 		AC00040A2CF71F0F009EDDFD /* SustainifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SustainifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITests.swift; sourceTree = "<group>"; };
 		AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AC360C372D09B00100957DA7 /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
 		AC360C382D09B00100957DA7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AC360C3A2D09B00100957DA7 /* settingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsTableViewController.swift; sourceTree = "<group>"; };
 		AC360C3B2D09B00100957DA7 /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +72,8 @@
 		AC360C492D09B00200957DA7 /* Mohamed Ashoor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed Ashoor.storyboard"; sourceTree = "<group>"; };
 		AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC360C4B2D09B00200957DA7 /* Ali.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ali.storyboard; sourceTree = "<group>"; };
+		AC7C2FF32D09B1080097608D /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Bader.storyboard; path = ../../sustainify/Sustainify/Bader.storyboard; sourceTree = "<group>"; };
+		AC7C2FF62D09B12B0097608D /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductDetailsViewController.swift; path = ../../../sustainify/Sustainify/ProductDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,13 +124,14 @@
 		AC0003EC2CF71F0C009EDDFD /* Sustainify */ = {
 			isa = PBXGroup;
 			children = (
+				AC7C2FF52D09B1160097608D /* BaderControllers */,
 				AC360C412D09B00200957DA7 /* Abdullah.storyboard */,
+				AC7C2FF32D09B1080097608D /* Bader.storyboard */,
 				AC360C392D09B00100957DA7 /* AbdullahControllers */,
 				AC360C432D09B00200957DA7 /* AbdullahDelegates */,
 				AC360C4B2D09B00200957DA7 /* Ali.storyboard */,
 				AC360C472D09B00200957DA7 /* AppDelegate.swift */,
 				AC360C462D09B00200957DA7 /* Assets.xcassets */,
-				AC360C372D09B00100957DA7 /* Bader.storyboard */,
 				AC360C482D09B00200957DA7 /* Info.plist */,
 				AC360C422D09B00200957DA7 /* LaunchScreen.storyboard */,
 				AC360C452D09B00200957DA7 /* Main.storyboard */,
@@ -183,6 +186,14 @@
 				AC360C442D09B00200957DA7 /* ToDoListDelegate.swift */,
 			);
 			path = AbdullahDelegates;
+			sourceTree = "<group>";
+		};
+		AC7C2FF52D09B1160097608D /* BaderControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AC7C2FF62D09B12B0097608D /* ProductDetailsViewController.swift */,
+			);
+			path = BaderControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,9 +304,9 @@
 				AC360C542D09B00200957DA7 /* Abdullah.storyboard in Resources */,
 				AC360C572D09B00200957DA7 /* Main.storyboard in Resources */,
 				AC360C552D09B00200957DA7 /* LaunchScreen.storyboard in Resources */,
-				AC360C4C2D09B00200957DA7 /* Bader.storyboard in Resources */,
 				AC360C582D09B00200957DA7 /* Assets.xcassets in Resources */,
 				AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */,
+				AC7C2FF42D09B1080097608D /* Bader.storyboard in Resources */,
 				AC360C532D09B00200957DA7 /* Mohamed AlAlawi.storyboard in Resources */,
 				AC360C5A2D09B00200957DA7 /* Info.plist in Resources */,
 				AC360C5B2D09B00200957DA7 /* Mohamed Ashoor.storyboard in Resources */,
@@ -326,6 +337,7 @@
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
 				AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */,
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,
+				AC7C2FF72D09B12B0097608D /* ProductDetailsViewController.swift in Sources */,
 				AC360C4E2D09B00200957DA7 /* settingsTableViewController.swift in Sources */,
 				AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */,
 				AC360C4F2D09B00200957DA7 /* ToDoTableViewController.swift in Sources */,
