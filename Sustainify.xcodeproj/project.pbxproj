@@ -20,8 +20,8 @@
 		AC0004222CF7200A009EDDFD /* Ali.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0004212CF7200A009EDDFD /* Ali.storyboard */; };
 		AC0004242CF72169009EDDFD /* Abdullah.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0004232CF72169009EDDFD /* Abdullah.storyboard */; };
 		AC0004262CF72184009EDDFD /* Mohamed AlAlawi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0004252CF72184009EDDFD /* Mohamed AlAlawi.storyboard */; };
+		AC7C2FF22D0995860097608D /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C2FF12D0995860097608D /* ProductDetailsViewController.swift */; };
 		ACF8794E2D07462100C46152 /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF8794D2D07462100C46152 /* Bader.storyboard */; };
-		ACF879502D07462A00C46152 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF8794F2D07462A00C46152 /* ExpandableTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +59,8 @@
 		AC0004212CF7200A009EDDFD /* Ali.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ali.storyboard; sourceTree = "<group>"; };
 		AC0004232CF72169009EDDFD /* Abdullah.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Abdullah.storyboard; sourceTree = "<group>"; };
 		AC0004252CF72184009EDDFD /* Mohamed AlAlawi.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Mohamed AlAlawi.storyboard"; sourceTree = "<group>"; };
+		AC7C2FF12D0995860097608D /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		ACF8794D2D07462100C46152 /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
-		ACF8794F2D07462A00C46152 /* ExpandableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,11 +119,11 @@
 				ACF8794D2D07462100C46152 /* Bader.storyboard */,
 				AC0003EF2CF71F0C009EDDFD /* SceneDelegate.swift */,
 				AC0003F12CF71F0C009EDDFD /* ViewController.swift */,
-				ACF8794F2D07462A00C46152 /* ExpandableTableViewController.swift */,
 				AC0003F32CF71F0C009EDDFD /* Main.storyboard */,
 				AC0003F62CF71F0E009EDDFD /* Assets.xcassets */,
 				AC0003F82CF71F0E009EDDFD /* LaunchScreen.storyboard */,
 				AC0003FB2CF71F0E009EDDFD /* Info.plist */,
+				AC7C2FF12D0995860097608D /* ProductDetailsViewController.swift */,
 			);
 			path = Sustainify;
 			sourceTree = "<group>";
@@ -282,8 +282,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC0003F22CF71F0C009EDDFD /* ViewController.swift in Sources */,
-				ACF879502D07462A00C46152 /* ExpandableTableViewController.swift in Sources */,
 				AC0003EE2CF71F0C009EDDFD /* AppDelegate.swift in Sources */,
+				AC7C2FF22D0995860097608D /* ProductDetailsViewController.swift in Sources */,
 				AC0003F02CF71F0C009EDDFD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
