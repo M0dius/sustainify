@@ -27,8 +27,8 @@
 		AC360C5B2D09B00200957DA7 /* Mohamed Ashoor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C492D09B00200957DA7 /* Mohamed Ashoor.storyboard */; };
 		AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */; };
 		AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C4B2D09B00200957DA7 /* Ali.storyboard */; };
-		AC7C2FF42D09B1080097608D /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC7C2FF32D09B1080097608D /* Bader.storyboard */; };
-		AC7C2FF72D09B12B0097608D /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C2FF62D09B12B0097608D /* ProductDetailsViewController.swift */; };
+		AC7C2FFA2D09B6820097608D /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C2FF92D09B6820097608D /* ProductDetailsViewController.swift */; };
+		AC7C2FFC2D09B69A0097608D /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC7C2FFB2D09B69A0097608D /* Bader.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +72,8 @@
 		AC360C492D09B00200957DA7 /* Mohamed Ashoor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed Ashoor.storyboard"; sourceTree = "<group>"; };
 		AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC360C4B2D09B00200957DA7 /* Ali.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ali.storyboard; sourceTree = "<group>"; };
-		AC7C2FF32D09B1080097608D /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Bader.storyboard; path = ../../sustainify/Sustainify/Bader.storyboard; sourceTree = "<group>"; };
-		AC7C2FF62D09B12B0097608D /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductDetailsViewController.swift; path = ../../../sustainify/Sustainify/ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		AC7C2FF92D09B6820097608D /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		AC7C2FFB2D09B69A0097608D /* Bader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,9 +124,9 @@
 		AC0003EC2CF71F0C009EDDFD /* Sustainify */ = {
 			isa = PBXGroup;
 			children = (
-				AC7C2FF52D09B1160097608D /* BaderControllers */,
+				AC7C2FFB2D09B69A0097608D /* Bader.storyboard */,
+				AC7C2FF82D09B6470097608D /* BaderControllers */,
 				AC360C412D09B00200957DA7 /* Abdullah.storyboard */,
-				AC7C2FF32D09B1080097608D /* Bader.storyboard */,
 				AC360C392D09B00100957DA7 /* AbdullahControllers */,
 				AC360C432D09B00200957DA7 /* AbdullahDelegates */,
 				AC360C4B2D09B00200957DA7 /* Ali.storyboard */,
@@ -188,10 +188,10 @@
 			path = AbdullahDelegates;
 			sourceTree = "<group>";
 		};
-		AC7C2FF52D09B1160097608D /* BaderControllers */ = {
+		AC7C2FF82D09B6470097608D /* BaderControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC7C2FF62D09B12B0097608D /* ProductDetailsViewController.swift */,
+				AC7C2FF92D09B6820097608D /* ProductDetailsViewController.swift */,
 			);
 			path = BaderControllers;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 				AC360C552D09B00200957DA7 /* LaunchScreen.storyboard in Resources */,
 				AC360C582D09B00200957DA7 /* Assets.xcassets in Resources */,
 				AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */,
-				AC7C2FF42D09B1080097608D /* Bader.storyboard in Resources */,
+				AC7C2FFC2D09B69A0097608D /* Bader.storyboard in Resources */,
 				AC360C532D09B00200957DA7 /* Mohamed AlAlawi.storyboard in Resources */,
 				AC360C5A2D09B00200957DA7 /* Info.plist in Resources */,
 				AC360C5B2D09B00200957DA7 /* Mohamed Ashoor.storyboard in Resources */,
@@ -337,7 +337,7 @@
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
 				AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */,
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,
-				AC7C2FF72D09B12B0097608D /* ProductDetailsViewController.swift in Sources */,
+				AC7C2FFA2D09B6820097608D /* ProductDetailsViewController.swift in Sources */,
 				AC360C4E2D09B00200957DA7 /* settingsTableViewController.swift in Sources */,
 				AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */,
 				AC360C4F2D09B00200957DA7 /* ToDoTableViewController.swift in Sources */,
