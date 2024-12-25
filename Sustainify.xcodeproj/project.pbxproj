@@ -11,26 +11,53 @@
 		AC00040F2CF71F0F009EDDFD /* SustainifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */; };
 		AC0004112CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */; };
 		AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C382D09B00100957DA7 /* ViewController.swift */; };
-		AC360C4E2D09B00200957DA7 /* settingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3A2D09B00100957DA7 /* settingsTableViewController.swift */; };
-		AC360C4F2D09B00200957DA7 /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3B2D09B00100957DA7 /* ToDoTableViewController.swift */; };
-		AC360C502D09B00200957DA7 /* ToDoDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3C2D09B00100957DA7 /* ToDoDetailTableViewController.swift */; };
 		AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3E2D09B00100957DA7 /* PIT_structs.swift */; };
 		AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */; };
 		AC360C532D09B00200957DA7 /* Mohamed AlAlawi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C402D09B00100957DA7 /* Mohamed AlAlawi.storyboard */; };
 		AC360C542D09B00200957DA7 /* Abdullah.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C412D09B00200957DA7 /* Abdullah.storyboard */; };
 		AC360C552D09B00200957DA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C422D09B00200957DA7 /* LaunchScreen.storyboard */; };
-		AC360C562D09B00200957DA7 /* ToDoListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C442D09B00200957DA7 /* ToDoListDelegate.swift */; };
 		AC360C572D09B00200957DA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C452D09B00200957DA7 /* Main.storyboard */; };
 		AC360C582D09B00200957DA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC360C462D09B00200957DA7 /* Assets.xcassets */; };
 		AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C472D09B00200957DA7 /* AppDelegate.swift */; };
-		AC360C5A2D09B00200957DA7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC360C482D09B00200957DA7 /* Info.plist */; };
 		AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */; };
 		AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C4B2D09B00200957DA7 /* Ali.storyboard */; };
 		AC69000F2D09BC5300FB9718 /* Mohamed Ashoor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */; };
-		AC6900122D09BC8800FB9718 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6900102D09BC8800FB9718 /* AddUserViewController.swift */; };
-		AC6900132D09BC8800FB9718 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6900112D09BC8800FB9718 /* UserListViewController.swift */; };
-		AC7C2FFA2D09B6820097608D /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C2FF92D09B6820097608D /* ProductDetailsViewController.swift */; };
-		AC7C2FFC2D09B69A0097608D /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC7C2FFB2D09B69A0097608D /* Bader.storyboard */; };
+		ACB79BA52D1C841800E3FBBB /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BA42D1C841800E3FBBB /* Bader.storyboard */; };
+		ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */; };
+		ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */; };
+		ACB79BAE2D1C843100E3FBBB /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA82D1C843100E3FBBB /* ReviewTableViewCell.swift */; };
+		ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA92D1C843100E3FBBB /* ReviewCollectionViewCell.swift */; };
+		ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BAA2D1C843100E3FBBB /* Tag.swift */; };
+		ACB79BB12D1C843100E3FBBB /* AddReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BAB2D1C843100E3FBBB /* AddReviewViewController.swift */; };
+		ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB22D1C85A100E3FBBB /* EcoTagModel.swift */; };
+		ACB79BBC2D1C85A200E3FBBB /* ProductListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB32D1C85A100E3FBBB /* ProductListController.swift */; };
+		ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB42D1C85A100E3FBBB /* EditProductController.swift */; };
+		ACB79BBE2D1C85A200E3FBBB /* AddProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB52D1C85A100E3FBBB /* AddProductController.swift */; };
+		ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB62D1C85A100E3FBBB /* Product.swift */; };
+		ACB79BC02D1C85A200E3FBBB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB72D1C85A100E3FBBB /* User.swift */; };
+		ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB82D1C85A200E3FBBB /* UserListControllers.swift */; };
+		ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB92D1C85A200E3FBBB /* AddingUserControllers.swift */; };
+		ACB79BC32D1C85A200E3FBBB /* EditUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BBA2D1C85A200E3FBBB /* EditUserController.swift */; };
+		ACB79BCC2D1C877C00E3FBBB /* CustomAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BC42D1C877C00E3FBBB /* CustomAssets.xcassets */; };
+		ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BC52D1C877C00E3FBBB /* DataManager.swift */; };
+		ACB79BCE2D1C877C00E3FBBB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BC62D1C877C00E3FBBB /* HomeViewController.swift */; };
+		ACB79BCF2D1C877C00E3FBBB /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BC72D1C877C00E3FBBB /* ProductsViewController.swift */; };
+		ACB79BD02D1C877C00E3FBBB /* StoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BC82D1C877C00E3FBBB /* StoreDetailsViewController.swift */; };
+		ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BC92D1C877C00E3FBBB /* StoreInfoTableViewCell.swift */; };
+		ACB79BD22D1C877C00E3FBBB /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BCA2D1C877C00E3FBBB /* StoreTableViewCell.swift */; };
+		ACB79BD82D1C8B6600E3FBBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BD72D1C8B6600E3FBBB /* GoogleService-Info.plist */; };
+		ACB79BD92D1C8B6600E3FBBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BD72D1C8B6600E3FBBB /* GoogleService-Info.plist */; };
+		ACB79BDA2D1C8B6600E3FBBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BD72D1C8B6600E3FBBB /* GoogleService-Info.plist */; };
+		ACB79BDD2D1C8B8B00E3FBBB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ACB79BDC2D1C8B8B00E3FBBB /* FirebaseAuth */; };
+		ACB79BDF2D1C8B8B00E3FBBB /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = ACB79BDE2D1C8B8B00E3FBBB /* FirebaseCore */; };
+		ACB79BE12D1C8B8B00E3FBBB /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = ACB79BE02D1C8B8B00E3FBBB /* FirebaseDatabase */; };
+		ACB79BE32D1C8B8B00E3FBBB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ACB79BE22D1C8B8B00E3FBBB /* FirebaseFirestore */; };
+		ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */; };
+		ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */; };
+		ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */; };
+		ACB79BEC2D1C8CA400E3FBBB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */; };
+		ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */; };
+		ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,15 +85,11 @@
 		AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITests.swift; sourceTree = "<group>"; };
 		AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AC360C382D09B00100957DA7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AC360C3A2D09B00100957DA7 /* settingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsTableViewController.swift; sourceTree = "<group>"; };
-		AC360C3B2D09B00100957DA7 /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
-		AC360C3C2D09B00100957DA7 /* ToDoDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoDetailTableViewController.swift; sourceTree = "<group>"; };
 		AC360C3E2D09B00100957DA7 /* PIT_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIT_structs.swift; sourceTree = "<group>"; };
 		AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo_structs.swift; sourceTree = "<group>"; };
 		AC360C402D09B00100957DA7 /* Mohamed AlAlawi.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed AlAlawi.storyboard"; sourceTree = "<group>"; };
 		AC360C412D09B00200957DA7 /* Abdullah.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Abdullah.storyboard; sourceTree = "<group>"; };
 		AC360C422D09B00200957DA7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AC360C442D09B00200957DA7 /* ToDoListDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListDelegate.swift; sourceTree = "<group>"; };
 		AC360C452D09B00200957DA7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC360C462D09B00200957DA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC360C472D09B00200957DA7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,10 +97,36 @@
 		AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC360C4B2D09B00200957DA7 /* Ali.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ali.storyboard; sourceTree = "<group>"; };
 		AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed Ashoor.storyboard"; sourceTree = "<group>"; };
-		AC6900102D09BC8800FB9718 /* AddUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserViewController.swift; sourceTree = "<group>"; };
-		AC6900112D09BC8800FB9718 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
-		AC7C2FF92D09B6820097608D /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
-		AC7C2FFB2D09B69A0097608D /* Bader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
+		ACB79BA42D1C841800E3FBBB /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
+		ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewController.swift; sourceTree = "<group>"; };
+		ACB79BA82D1C843100E3FBBB /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		ACB79BA92D1C843100E3FBBB /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		ACB79BAA2D1C843100E3FBBB /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		ACB79BAB2D1C843100E3FBBB /* AddReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReviewViewController.swift; sourceTree = "<group>"; };
+		ACB79BB22D1C85A100E3FBBB /* EcoTagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoTagModel.swift; sourceTree = "<group>"; };
+		ACB79BB32D1C85A100E3FBBB /* ProductListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListController.swift; sourceTree = "<group>"; };
+		ACB79BB42D1C85A100E3FBBB /* EditProductController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductController.swift; sourceTree = "<group>"; };
+		ACB79BB52D1C85A100E3FBBB /* AddProductController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductController.swift; sourceTree = "<group>"; };
+		ACB79BB62D1C85A100E3FBBB /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		ACB79BB72D1C85A100E3FBBB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ACB79BB82D1C85A200E3FBBB /* UserListControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListControllers.swift; sourceTree = "<group>"; };
+		ACB79BB92D1C85A200E3FBBB /* AddingUserControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingUserControllers.swift; sourceTree = "<group>"; };
+		ACB79BBA2D1C85A200E3FBBB /* EditUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserController.swift; sourceTree = "<group>"; };
+		ACB79BC42D1C877C00E3FBBB /* CustomAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CustomAssets.xcassets; sourceTree = "<group>"; };
+		ACB79BC52D1C877C00E3FBBB /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		ACB79BC62D1C877C00E3FBBB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		ACB79BC72D1C877C00E3FBBB /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
+		ACB79BC82D1C877C00E3FBBB /* StoreDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailsViewController.swift; sourceTree = "<group>"; };
+		ACB79BC92D1C877C00E3FBBB /* StoreInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreInfoTableViewCell.swift; sourceTree = "<group>"; };
+		ACB79BCA2D1C877C00E3FBBB /* StoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
+		ACB79BD72D1C8B6600E3FBBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
+		ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsTableViewController.swift; sourceTree = "<group>"; };
+		ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoDetailTableViewController.swift; sourceTree = "<group>"; };
+		ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +134,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACB79BE12D1C8B8B00E3FBBB /* FirebaseDatabase in Frameworks */,
+				ACB79BE32D1C8B8B00E3FBBB /* FirebaseFirestore in Frameworks */,
+				ACB79BDF2D1C8B8B00E3FBBB /* FirebaseCore in Frameworks */,
+				ACB79BDD2D1C8B8B00E3FBBB /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +181,7 @@
 		AC0003EC2CF71F0C009EDDFD /* Sustainify */ = {
 			isa = PBXGroup;
 			children = (
+				ACB79BCB2D1C877C00E3FBBB /* AliControllers */,
 				AC69000D2D09BC0600FB9718 /* AlAlawiDelegates */,
 				AC69000C2D09BBF300FB9718 /* AlAlawiControllers */,
 				AC69000B2D09BBCB00FB9718 /* AshoorControllers */,
@@ -136,7 +190,7 @@
 				AC360C392D09B00100957DA7 /* AbdullahControllers */,
 				AC7C2FF82D09B6470097608D /* BaderControllers */,
 				AC360C412D09B00200957DA7 /* Abdullah.storyboard */,
-				AC7C2FFB2D09B69A0097608D /* Bader.storyboard */,
+				ACB79BA42D1C841800E3FBBB /* Bader.storyboard */,
 				AC360C4B2D09B00200957DA7 /* Ali.storyboard */,
 				AC360C422D09B00200957DA7 /* LaunchScreen.storyboard */,
 				AC360C452D09B00200957DA7 /* Main.storyboard */,
@@ -147,6 +201,7 @@
 				AC360C382D09B00100957DA7 /* ViewController.swift */,
 				AC360C462D09B00200957DA7 /* Assets.xcassets */,
 				AC360C482D09B00200957DA7 /* Info.plist */,
+				ACB79BD72D1C8B6600E3FBBB /* GoogleService-Info.plist */,
 			);
 			path = Sustainify;
 			sourceTree = "<group>";
@@ -171,9 +226,11 @@
 		AC360C392D09B00100957DA7 /* AbdullahControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC360C3A2D09B00100957DA7 /* settingsTableViewController.swift */,
-				AC360C3B2D09B00100957DA7 /* ToDoTableViewController.swift */,
-				AC360C3C2D09B00100957DA7 /* ToDoDetailTableViewController.swift */,
+				ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */,
+				ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */,
+				ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */,
+				ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */,
+				ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */,
 			);
 			path = AbdullahControllers;
 			sourceTree = "<group>";
@@ -190,7 +247,7 @@
 		AC360C432D09B00200957DA7 /* AbdullahDelegates */ = {
 			isa = PBXGroup;
 			children = (
-				AC360C442D09B00200957DA7 /* ToDoListDelegate.swift */,
+				ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */,
 			);
 			path = AbdullahDelegates;
 			sourceTree = "<group>";
@@ -198,8 +255,15 @@
 		AC69000B2D09BBCB00FB9718 /* AshoorControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC6900102D09BC8800FB9718 /* AddUserViewController.swift */,
-				AC6900112D09BC8800FB9718 /* UserListViewController.swift */,
+				ACB79BB92D1C85A200E3FBBB /* AddingUserControllers.swift */,
+				ACB79BB52D1C85A100E3FBBB /* AddProductController.swift */,
+				ACB79BB22D1C85A100E3FBBB /* EcoTagModel.swift */,
+				ACB79BB42D1C85A100E3FBBB /* EditProductController.swift */,
+				ACB79BBA2D1C85A200E3FBBB /* EditUserController.swift */,
+				ACB79BB62D1C85A100E3FBBB /* Product.swift */,
+				ACB79BB32D1C85A100E3FBBB /* ProductListController.swift */,
+				ACB79BB72D1C85A100E3FBBB /* User.swift */,
+				ACB79BB82D1C85A200E3FBBB /* UserListControllers.swift */,
 			);
 			path = AshoorControllers;
 			sourceTree = "<group>";
@@ -221,10 +285,30 @@
 		AC7C2FF82D09B6470097608D /* BaderControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC7C2FF92D09B6820097608D /* ProductDetailsViewController.swift */,
+				ACB79BAB2D1C843100E3FBBB /* AddReviewViewController.swift */,
+				ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */,
+				ACB79BA92D1C843100E3FBBB /* ReviewCollectionViewCell.swift */,
+				ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */,
+				ACB79BA82D1C843100E3FBBB /* ReviewTableViewCell.swift */,
+				ACB79BAA2D1C843100E3FBBB /* Tag.swift */,
 			);
 			path = BaderControllers;
 			sourceTree = "<group>";
+		};
+		ACB79BCB2D1C877C00E3FBBB /* AliControllers */ = {
+			isa = PBXGroup;
+			children = (
+				ACB79BC42D1C877C00E3FBBB /* CustomAssets.xcassets */,
+				ACB79BC52D1C877C00E3FBBB /* DataManager.swift */,
+				ACB79BC62D1C877C00E3FBBB /* HomeViewController.swift */,
+				ACB79BC72D1C877C00E3FBBB /* ProductsViewController.swift */,
+				ACB79BC82D1C877C00E3FBBB /* StoreDetailsViewController.swift */,
+				ACB79BC92D1C877C00E3FBBB /* StoreInfoTableViewCell.swift */,
+				ACB79BCA2D1C877C00E3FBBB /* StoreTableViewCell.swift */,
+			);
+			name = AliControllers;
+			path = Sustainify/AliControllers;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -242,6 +326,12 @@
 			dependencies = (
 			);
 			name = Sustainify;
+			packageProductDependencies = (
+				ACB79BDC2D1C8B8B00E3FBBB /* FirebaseAuth */,
+				ACB79BDE2D1C8B8B00E3FBBB /* FirebaseCore */,
+				ACB79BE02D1C8B8B00E3FBBB /* FirebaseDatabase */,
+				ACB79BE22D1C8B8B00E3FBBB /* FirebaseFirestore */,
+			);
 			productName = Sustainify;
 			productReference = AC0003EA2CF71F0C009EDDFD /* Sustainify.app */;
 			productType = "com.apple.product-type.application";
@@ -315,6 +405,9 @@
 				Base,
 			);
 			mainGroup = AC0003E12CF71F0C009EDDFD;
+			packageReferences = (
+				ACB79BDB2D1C8B8B00E3FBBB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = AC0003EB2CF71F0C009EDDFD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -336,10 +429,11 @@
 				AC360C552D09B00200957DA7 /* LaunchScreen.storyboard in Resources */,
 				AC360C582D09B00200957DA7 /* Assets.xcassets in Resources */,
 				AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */,
-				AC7C2FFC2D09B69A0097608D /* Bader.storyboard in Resources */,
+				ACB79BA52D1C841800E3FBBB /* Bader.storyboard in Resources */,
+				ACB79BCC2D1C877C00E3FBBB /* CustomAssets.xcassets in Resources */,
+				ACB79BD82D1C8B6600E3FBBB /* GoogleService-Info.plist in Resources */,
 				AC360C532D09B00200957DA7 /* Mohamed AlAlawi.storyboard in Resources */,
 				AC69000F2D09BC5300FB9718 /* Mohamed Ashoor.storyboard in Resources */,
-				AC360C5A2D09B00200957DA7 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +441,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACB79BD92D1C8B6600E3FBBB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACB79BDA2D1C8B6600E3FBBB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,18 +460,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC6900122D09BC8800FB9718 /* AddUserViewController.swift in Sources */,
+				ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */,
+				ACB79BBE2D1C85A200E3FBBB /* AddProductController.swift in Sources */,
+				ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */,
+				ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */,
+				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
+				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
+				ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */,
+				ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */,
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
+				ACB79BCF2D1C877C00E3FBBB /* ProductsViewController.swift in Sources */,
+				ACB79BB12D1C843100E3FBBB /* AddReviewViewController.swift in Sources */,
 				AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */,
+				ACB79BD22D1C877C00E3FBBB /* StoreTableViewCell.swift in Sources */,
+				ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */,
+				ACB79BAE2D1C843100E3FBBB /* ReviewTableViewCell.swift in Sources */,
+				ACB79BBC2D1C85A200E3FBBB /* ProductListController.swift in Sources */,
+				ACB79BCE2D1C877C00E3FBBB /* HomeViewController.swift in Sources */,
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,
-				AC7C2FFA2D09B6820097608D /* ProductDetailsViewController.swift in Sources */,
-				AC6900132D09BC8800FB9718 /* UserListViewController.swift in Sources */,
-				AC360C4E2D09B00200957DA7 /* settingsTableViewController.swift in Sources */,
+				ACB79BC32D1C85A200E3FBBB /* EditUserController.swift in Sources */,
 				AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */,
-				AC360C4F2D09B00200957DA7 /* ToDoTableViewController.swift in Sources */,
-				AC360C502D09B00200957DA7 /* ToDoDetailTableViewController.swift in Sources */,
+				ACB79BEC2D1C8CA400E3FBBB /* SettingsViewController.swift in Sources */,
 				AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */,
-				AC360C562D09B00200957DA7 /* ToDoListDelegate.swift in Sources */,
+				ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */,
+				ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */,
+				ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */,
+				ACB79BD02D1C877C00E3FBBB /* StoreDetailsViewController.swift in Sources */,
+				ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */,
+				ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */,
+				ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */,
+				ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */,
+				ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */,
+				ACB79BC02D1C85A200E3FBBB /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +816,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ACB79BDB2D1C8B8B00E3FBBB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ACB79BDC2D1C8B8B00E3FBBB /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACB79BDB2D1C8B8B00E3FBBB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		ACB79BDE2D1C8B8B00E3FBBB /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACB79BDB2D1C8B8B00E3FBBB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		ACB79BE02D1C8B8B00E3FBBB /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACB79BDB2D1C8B8B00E3FBBB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		ACB79BE22D1C8B8B00E3FBBB /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACB79BDB2D1C8B8B00E3FBBB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AC0003E22CF71F0C009EDDFD /* Project object */;
 }

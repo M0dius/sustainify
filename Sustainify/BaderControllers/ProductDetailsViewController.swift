@@ -7,81 +7,90 @@
 
 import UIKit
 
-class ProductDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProductDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate /*UICollectionViewDataSource, UICollectionViewDelegateFlowLayout*/ {
+
+    @IBOutlet weak var descriptionLabel: UILabel!
     
-    struct CellData {
-        let title: String
-        let details: String
-        var isExpanded: Bool
-    }
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var quantityStepper: UIStepper!
+    @IBOutlet weak var quantityLabel: UILabel!
     
-    var data = [
-        CellData(title: "Cell 1", details: "Details for Cell 1", isExpanded: false),
-        CellData(title: "Cell 2", details: "Details for Cell 2", isExpanded: false)
-    ]
+    @IBOutlet weak var reviewsCollectionView: UICollectionView!
+    
+
+    var expandedStates: [Bool] = []
+    var tags: [Tag] = [] // This will hold the tags for the product
+    var selectedQuantity: Int = 0 // Variable to store the quantity
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Initialize quantity
+        quantityLabel.text = "0"
+        
+        // Define tags
+        let ecoTag = Tag(name: "Eco Score", description: "This product has an eco score based on sustainability.")
+        let tag1 = Tag(name: "Organic", description: "This product is made from organic ingredients.")
+        let tag2 = Tag(name: "Fair Trade", description: "This product is certified fair trade.")
+        
+        // Add tags to the product
+        tags = [ecoTag, tag1, tag2]  // Add more or fewer tags as needed
+
+        // Initialize the expandedStates array based on the number of tags
+        expandedStates = Array(repeating: false, count: tags.count)
+
+        // Set table view delegate and data source
+        tableView.delegate = self
+        tableView.dataSource = self
+
+        // Register a custom cell class if necessary
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TagCell")
+
+        // Allow table view to calculate row height automatically
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
+        
+        // Set the description label text
+        //let product = Product(name: "Sample Product", discription: "this product has been proven to be effective in eliminating curses of grade 1 and even special grade", tags: tags); descriptionLabel.text = product.discription
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+
+    @IBAction func quantityStepper(_ sender: UIStepper) {
+        // Update label with value
+        quantityLabel.text = Int(sender.value).description
     }
-    
+
+    @IBAction func addToCartButtonClicked(_ sender: UIButton) {
+        if let quantity = Int(quantityLabel.text ?? "0") {
+            selectedQuantity = quantity
+            print("Quantity added to cart: \(selectedQuantity)")
+        }
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return data.reduce(0) { $0 + ($1.isExpanded ? 2 : 1) }
+        return tags.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var currentIndex = 0
-        for item in data {
-            if currentIndex == indexPath.row {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ecoScoreCell", for: indexPath)
-                cell.textLabel?.text = item.title
-                return cell
-            }
-            currentIndex += 1
-            
-            if item.isExpanded && currentIndex == indexPath.row {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ecoScoreDetailsCell", for: indexPath)
-                cell.textLabel?.text = item.details
-                return cell
-            }
-            if item.isExpanded {
-                currentIndex += 1
-            }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath)
+        let tag = tags[indexPath.row]
+        cell.textLabel?.text = tag.name
+        cell.textLabel?.numberOfLines = 0  // Enable multiline
+
+        if expandedStates[indexPath.row] {
+            cell.detailTextLabel?.text = tag.description
+            cell.detailTextLabel?.numberOfLines = 0  // Enable multiline
+        } else {
+            cell.detailTextLabel?.text = nil
         }
-        return UITableViewCell()
+
+        return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var currentIndex = 0
-        for (index, item) in data.enumerated() {
-            if currentIndex == indexPath.row {
-                data[index].isExpanded.toggle()
-                tableView.reloadData()
-                return
-            }
-            currentIndex += 1
-            
-            if item.isExpanded {
-                currentIndex += 1
-            }
-        }
+        // Toggle the expanded state of the selected cell
+        expandedStates[indexPath.row].toggle()
+
+        // Reload the affected row
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
