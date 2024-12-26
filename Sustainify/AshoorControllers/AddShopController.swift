@@ -2,15 +2,21 @@ import UIKit
 
 class AddShopController: UITableViewController {
 
-    // Outlets for the text fields
+    // Existing Outlets
     @IBOutlet weak var tName: UITextField!
     @IBOutlet weak var tCRNumber: UITextField!
     @IBOutlet weak var tBuilding: UITextField!
     @IBOutlet weak var tRoad: UITextField!
     @IBOutlet weak var tBlock: UITextField!
     @IBOutlet weak var addShopButton: UIButton!
+    
+    // New Outlets
+    @IBOutlet weak var openingTimeValueLabel: UILabel!
+    @IBOutlet weak var closingTimeValueLabel: UILabel!
 
     var newShop: Shop?
+    var openingTime: Date? // New
+    var closingTime: Date? // New
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,16 +24,16 @@ class AddShopController: UITableViewController {
 
     @IBAction func addShopButtonTapped(_ sender: UIButton) {
         if isFormValid() {
-            // Create new shop
             let newShop = Shop(
                 name: tName.text!,
                 crNumber: Int(tCRNumber.text!) ?? 0,
                 building: Int(tBuilding.text!) ?? 0,
                 road: Int(tRoad.text!) ?? 0,
-                block: Int(tBlock.text!) ?? 0
+                block: Int(tBlock.text!) ?? 0,
+                openingTime: openingTime,
+                closingTime: closingTime
             )
             
-            // Add the new shop to the shop list (assuming ShopListController is the root controller)
             if let navigationController = navigationController,
                let shopListController = navigationController.viewControllers.first as? ShopListController {
                 shopListController.shops.append(newShop)
@@ -40,6 +46,34 @@ class AddShopController: UITableViewController {
         }
     }
 
+    @IBAction func selectTime(_ sender: UITapGestureRecognizer) {
+        // Identify which cell was tapped
+        let cellTag = sender.view?.tag // Retrieve the tag value
+        let alert = UIAlertController(title: "Select Time", message: nil, preferredStyle: .actionSheet)
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .time
+        datePicker.preferredDatePickerStyle = .wheels
+        alert.view.addSubview(datePicker)
+        
+        datePicker.frame = CGRect(x: 10, y: 10, width: alert.view.bounds.width - 40, height: 150)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            if cellTag == 1 { // Opening Time Cell
+                self.openingTime = datePicker.date
+                self.openingTimeValueLabel.text = formatter.string(from: datePicker.date)
+            } else if cellTag == 2 { // Closing Time Cell
+                self.closingTime = datePicker.date
+                self.closingTimeValueLabel.text = formatter.string(from: datePicker.date)
+            }
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+
+
     func isFormValid() -> Bool {
         return !(tName.text?.isEmpty ?? true) &&
                !(tCRNumber.text?.isEmpty ?? true) &&
@@ -51,7 +85,7 @@ class AddShopController: UITableViewController {
                !(tBlock.text?.isEmpty ?? true) &&
                Int(tBlock.text!) != nil
     }
-    
+
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

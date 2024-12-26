@@ -15,9 +15,18 @@ class ShopListController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCell", for: indexPath)
         let shop = shops[indexPath.row]
+        
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        
+        let openingTime = shop.openingTime != nil ? formatter.string(from: shop.openingTime!) : "N/A"
+        let closingTime = shop.closingTime != nil ? formatter.string(from: shop.closingTime!) : "N/A"
+        
         cell.textLabel?.text = shop.name
-        cell.detailTextLabel?.text = "CR: \(shop.crNumber), Building: \(shop.building), Road: \(shop.road), Block: \(shop.block)"
-        // Set the accessory type to disclosure indicator
+        cell.detailTextLabel?.text = """
+        CR: \(shop.crNumber), Building: \(shop.building), Road: \(shop.road), Block: \(shop.block)
+        Operating Hours: \(openingTime) - \(closingTime)
+        """
         cell.accessoryType = .disclosureIndicator
         return cell
     }

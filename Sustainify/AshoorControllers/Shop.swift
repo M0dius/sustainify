@@ -6,4 +6,6 @@ struct Shop {
     var building: Int
     var road: Int
     var block: Int
+    var openingTime: Date? // New
+    var closingTime: Date? // New
 }
