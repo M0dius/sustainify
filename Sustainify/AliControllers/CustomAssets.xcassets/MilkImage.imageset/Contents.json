@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Lactaid 2% Reduced Fat Milk, 96 oz - Walmart_com.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

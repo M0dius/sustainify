@@ -1,17 +1,21 @@
+//
+//  DropdownItemCell.swift
+//  Sustainify
+//
+
 import UIKit
 
+/// A custom cell for the dropdown list:
+/// - An image on the left
+/// - A bold item name in the middle
+/// - A bold price on the right
 class DropdownItemCell: UITableViewCell {
     
-    // MARK: - UI Elements
-    
     private let itemImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        // Round corners if you like:
-        // imageView.layer.cornerRadius = 6
-        // imageView.clipsToBounds = true
-        return imageView
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
     }()
     
     private let nameLabel: UILabel = {
@@ -29,8 +33,6 @@ class DropdownItemCell: UITableViewCell {
         return label
     }()
     
-    // MARK: - Initializers
-    
     override init(style: UITableViewCell.CellStyle,
                   reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,34 +44,49 @@ class DropdownItemCell: UITableViewCell {
         setupViews()
     }
     
-    // MARK: - Setup Layout
-    
     private func setupViews() {
         contentView.addSubview(itemImageView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(priceLabel)
         
         NSLayoutConstraint.activate([
-            // Item image, pinned left
-            itemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            itemImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            // Image on the left
+            itemImageView.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: 8
+            ),
+            itemImageView.centerYAnchor.constraint(
+                equalTo: contentView.centerYAnchor
+            ),
             itemImageView.widthAnchor.constraint(equalToConstant: 40),
             itemImageView.heightAnchor.constraint(equalToConstant: 40),
             
-            // Name label, to the right of the image
-            nameLabel.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: 8),
-            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            // Name label in the middle
+            nameLabel.leadingAnchor.constraint(
+                equalTo: itemImageView.trailingAnchor,
+                constant: 8
+            ),
+            nameLabel.centerYAnchor.constraint(
+                equalTo: contentView.centerYAnchor
+            ),
             
-            // Price label, pinned right
-            priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            priceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            // Price label on the right
+            priceLabel.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -16
+            ),
+            priceLabel.centerYAnchor.constraint(
+                equalTo: contentView.centerYAnchor
+            ),
             
-            // Make nameLabel not overlap priceLabel
-            nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: priceLabel.leadingAnchor, constant: -8)
+            // Prevent overlap
+            nameLabel.trailingAnchor.constraint(
+                lessThanOrEqualTo: priceLabel.leadingAnchor,
+                constant: -8
+            )
         ])
     }
     
-    // MARK: - Public Configure Method
     func configure(itemImage: UIImage?, itemName: String, itemPrice: String) {
         itemImageView.image = itemImage
         nameLabel.text = itemName

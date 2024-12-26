@@ -1,10 +1,15 @@
+//
+//  StoreDetailsViewController.swift
+//  Sustainify
+//
+
 import UIKit
 
 class StoreDetailsViewController: UIViewController,
                                  UITableViewDataSource,
                                  UITableViewDelegate,
                                  UISearchBarDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     // The store passed from HomeViewController
@@ -16,7 +21,6 @@ class StoreDetailsViewController: UIViewController,
     private var isDropdownVisible = false
     
     // We'll show all store items in the dropdown (no filtering).
-    // If you want real prices & images, see the note below about item model data.
     private var dropdownItems: [String] = []
     
     // MARK: - View Life Cycle
@@ -48,7 +52,7 @@ class StoreDetailsViewController: UIViewController,
             dropdownItems = []
             isDropdownVisible = false
         } else {
-            // Show all store items, ignoring the actual text
+            // Show all store items, ignoring actual text
             dropdownItems = store.items
             isDropdownVisible = !dropdownItems.isEmpty
         }
@@ -64,20 +68,20 @@ class StoreDetailsViewController: UIViewController,
         searchBar.resignFirstResponder()
     }
     
-    // MARK: - Main TableView (Store Info + Best Selling Items)
+    // MARK: - Main TableView (2 rows: Store Info & Best Selling)
     func setupMainTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
         
-        // Store info cell
+        // Row 0: store info
         tableView.register(
             StoreInfoTableViewCell.self,
             forCellReuseIdentifier: "storeInfoCell"
         )
         
-        // Best selling items cell
+        // Row 1: best-selling items
         tableView.register(
             BestSellingItemsTableViewCell.self,
             forCellReuseIdentifier: "bestSellingCell"
@@ -90,7 +94,7 @@ class StoreDetailsViewController: UIViewController,
         dropdownTableView.dataSource = self
         dropdownTableView.delegate = self
         
-        // Register our custom cell for the dropdown
+        // Register our custom dropdown cell
         dropdownTableView.register(
             DropdownItemCell.self,
             forCellReuseIdentifier: "dropdownCell"
@@ -101,11 +105,12 @@ class StoreDetailsViewController: UIViewController,
         dropdownTableView.layer.borderWidth = 1
         dropdownTableView.layer.borderColor = UIColor.lightGray.cgColor
         dropdownTableView.layer.cornerRadius = 5
-        dropdownTableView.rowHeight = 60 // so we have enough space for image
+        dropdownTableView.rowHeight = 60 // enough space for image
         
         view.addSubview(dropdownTableView)
         
         NSLayoutConstraint.activate([
+            // Position the dropdown near the top
             dropdownTableView.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: 10
@@ -124,13 +129,14 @@ class StoreDetailsViewController: UIViewController,
         ])
     }
     
-    // MARK: - TableView DataSource
+    // MARK: - TableView Data Source
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
+        
         if tableView == dropdownTableView {
             return dropdownItems.count
         } else {
-            // Main table → 2 rows
+            // Main table has 2 rows
             return 2
         }
     }
@@ -139,20 +145,14 @@ class StoreDetailsViewController: UIViewController,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == dropdownTableView {
-            // We are in the dropdown
+            // Dropdown cells
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: "dropdownCell",
                 for: indexPath
             ) as! DropdownItemCell
             
-            // For now, store.items is an array of strings
             let itemName = dropdownItems[indexPath.row]
-            
-            // If you had real images & prices, you'd do something like:
-            // let itemImage = UIImage(named: "someImageName")
-            // let itemPrice = "$4.99"
-            
-            // For now, let's just use a placeholder image & price
+            // Placeholder image & price
             let placeholderImage = UIImage(named: "PlaceholderImage")
             let placeholderPrice = "$9.99"
             
@@ -161,29 +161,33 @@ class StoreDetailsViewController: UIViewController,
                 itemName: itemName,
                 itemPrice: placeholderPrice
             )
-            
             return cell
             
         } else {
-            // We are in the main table
+            // Main table cells
             switch indexPath.row {
             case 0:
+                // Store info cell
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: "storeInfoCell",
                     for: indexPath
                 ) as! StoreInfoTableViewCell
-                
                 if let store = store {
                     cell.configure(with: store)
                 }
                 return cell
                 
             case 1:
+                // Best selling items cell
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: "bestSellingCell",
                     for: indexPath
                 ) as! BestSellingItemsTableViewCell
-                cell.configure()
+                
+                // Pass the store's best selling items
+                if let store = store {
+                    cell.configure(with: store.bestSellingItems)
+                }
                 return cell
                 
             default:
@@ -206,16 +210,20 @@ class StoreDetailsViewController: UIViewController,
             searchBar.resignFirstResponder()
             
             // Navigate to another storyboard
-            let otherStoryboard = UIStoryboard(name: "Bader", bundle: nil)
-            let someVC = otherStoryboard.instantiateViewController(withIdentifier: "SomeViewControllerID")
+            let otherStoryboard = UIStoryboard(
+                name: "Bader",
+                bundle: nil
+            )
+            let someVC = otherStoryboard.instantiateViewController(
+                withIdentifier: "SomeViewControllerID"
+            )
             
-            // Pass the selected product if you want:
+            // Optionally pass data:
             // (someVC as? SomeViewControllerClass)?.selectedItemName = selectedProduct
             
             navigationController?.pushViewController(someVC, animated: true)
             
         } else {
-            // Main table row tapped
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }

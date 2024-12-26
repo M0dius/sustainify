@@ -1,3 +1,8 @@
+//
+//  StoreInfoTableViewCell.swift
+//  Sustainify
+//
+
 import UIKit
 
 class StoreInfoTableViewCell: UITableViewCell {
@@ -13,7 +18,7 @@ class StoreInfoTableViewCell: UITableViewCell {
     
     let storeTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 32) // Larger font size
+        label.font = UIFont.boldSystemFont(ofSize: 32)
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -35,13 +40,15 @@ class StoreInfoTableViewCell: UITableViewCell {
         return line
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle,
+                  reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupViews()
     }
     
     private func setupViews() {
@@ -51,35 +58,77 @@ class StoreInfoTableViewCell: UITableViewCell {
         contentView.addSubview(separatorLine)
         
         NSLayoutConstraint.activate([
-            // Store Image
-            storeImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            storeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            storeImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            // Image across the top
+            storeImageView.topAnchor.constraint(
+                equalTo: contentView.topAnchor,
+                constant: 10
+            ),
+            storeImageView.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: 16
+            ),
+            storeImageView.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -16
+            ),
             storeImageView.heightAnchor.constraint(equalToConstant: 200),
             
-            // Separator Line
-            separatorLine.topAnchor.constraint(equalTo: storeImageView.bottomAnchor, constant: 10),
-            separatorLine.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            // Separator line below
+            separatorLine.topAnchor.constraint(
+                equalTo: storeImageView.bottomAnchor,
+                constant: 10
+            ),
+            separatorLine.bottomAnchor.constraint(
+                equalTo: contentView.bottomAnchor,
+                constant: -10
+            ),
             separatorLine.widthAnchor.constraint(equalToConstant: 1),
-            separatorLine.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            separatorLine.centerXAnchor.constraint(
+                equalTo: contentView.centerXAnchor
+            ),
             
-            // Store Title
-            storeTitleLabel.topAnchor.constraint(equalTo: storeImageView.bottomAnchor, constant: 10),
-            storeTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            storeTitleLabel.trailingAnchor.constraint(equalTo: separatorLine.leadingAnchor, constant: -10),
-            storeTitleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10),
+            // Title left of line
+            storeTitleLabel.topAnchor.constraint(
+                equalTo: storeImageView.bottomAnchor,
+                constant: 10
+            ),
+            storeTitleLabel.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: 16
+            ),
+            storeTitleLabel.trailingAnchor.constraint(
+                equalTo: separatorLine.leadingAnchor,
+                constant: -10
+            ),
+            storeTitleLabel.bottomAnchor.constraint(
+                lessThanOrEqualTo: contentView.bottomAnchor,
+                constant: -10
+            ),
             
-            // Store Timings
-            storeTimingsLabel.topAnchor.constraint(equalTo: storeImageView.bottomAnchor, constant: 10),
-            storeTimingsLabel.leadingAnchor.constraint(equalTo: separatorLine.trailingAnchor, constant: 10),
-            storeTimingsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            storeTimingsLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10)
+            // Timings right of line
+            storeTimingsLabel.topAnchor.constraint(
+                equalTo: storeImageView.bottomAnchor,
+                constant: 10
+            ),
+            storeTimingsLabel.leadingAnchor.constraint(
+                equalTo: separatorLine.trailingAnchor,
+                constant: 10
+            ),
+            storeTimingsLabel.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -16
+            ),
+            storeTimingsLabel.bottomAnchor.constraint(
+                lessThanOrEqualTo: contentView.bottomAnchor,
+                constant: -10
+            )
         ])
     }
     
     func configure(with store: Store) {
         storeImageView.image = UIImage(named: store.imageName)
         storeTitleLabel.text = store.name
+        
         storeTimingsLabel.text = """
         Opens: \(store.openingTime)
         Closes: \(store.closingTime)
