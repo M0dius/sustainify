@@ -10,9 +10,12 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtUsername: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
     
+    private var isLoggingIn = false
+    private var isSeguePerformed = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +24,7 @@ class LoginViewController: UIViewController {
     @IBAction func btnLogin(_ sender: UIButton) {
         guard let username = txtUsername.text, let password = txtPassword.text,
               !username.isEmpty && !password.isEmpty else {
-                  
+                      
             // Alert for missing fields
             let alert = UIAlertController(
                 title: "Missing login field",
@@ -33,37 +36,51 @@ class LoginViewController: UIViewController {
             return
         }
         
+        // Prevent multiple login attempts
+        guard !isLoggingIn else { return }
+        isLoggingIn = true
+
         FirebaseAuth.Auth.auth().signIn(withEmail: username, password: password) { (result, error) in
-            guard error == nil else {
-                // Display error message from Firebase in the alert
-                let alert = UIAlertController(
-                    title: "Invalid credentials",
-                    message: "Invalid credentials, Please try again. Error: \(error?.localizedDescription ?? "Unknown error")",
-                    preferredStyle: .alert
-                )
+            DispatchQueue.main.async {
+                self.isLoggingIn = false // Reset the flag
                 
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                if let error = error {
+                    // Display error message from Firebase in the alert
+                    let alert = UIAlertController(
+                        title: "Invalid credentials",
+                        message: "Invalid credentials, Please try again. Error: \(error.localizedDescription)",
+                        preferredStyle: .alert
+                    )
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    self.present(alert, animated: true)
+                    return
+                }
                 
-                self.present(alert, animated: true)
-                
-                return
+                // Trigger segue manually
+                if !self.isSeguePerformed {
+                    self.isSeguePerformed = true // Prevent duplicate segues
+                    self.performSegue(withIdentifier: "test", sender: sender)
+                }
             }
-            
-            // If no error, perform segue
-            self.performSegue(withIdentifier: "test", sender: sender)
         }
     }
 
 
     @IBAction func signout(_ sender: UIButton) {
-        do{
+        do {
             try FirebaseAuth.Auth.auth().signOut()
             navigationController?.popToRootViewController(animated: true)
-        }catch{
+        } catch {
             print("Error signing out")
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isSeguePerformed = false // Allow segue to be triggered again
+    }
+
     /*
     // MARK: - Navigation
 

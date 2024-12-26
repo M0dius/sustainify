@@ -55,9 +55,10 @@
 		ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */; };
 		ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */; };
 		ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */; };
-		ACB79BEC2D1C8CA400E3FBBB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */; };
 		ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */; };
 		ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */; };
+		ACCF18522D1DC2EB00FCD1CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */; };
+		ACCF18542D1DD98500FCD1CE /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF18532D1DD98500FCD1CE /* AboutUsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,9 +125,10 @@
 		ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
 		ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsTableViewController.swift; sourceTree = "<group>"; };
-		ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoDetailTableViewController.swift; sourceTree = "<group>"; };
 		ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListDelegate.swift; sourceTree = "<group>"; };
+		ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		ACCF18532D1DD98500FCD1CE /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,11 +228,12 @@
 		AC360C392D09B00100957DA7 /* AbdullahControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */,
 				ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */,
 				ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */,
-				ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */,
 				ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */,
 				ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */,
+				ACCF18532D1DD98500FCD1CE /* AboutUsViewController.swift */,
 			);
 			path = AbdullahControllers;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACCF18522D1DC2EB00FCD1CE /* SignUpViewController.swift in Sources */,
 				ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */,
 				ACB79BBE2D1C85A200E3FBBB /* AddProductController.swift in Sources */,
 				ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */,
@@ -480,7 +484,6 @@
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,
 				ACB79BC32D1C85A200E3FBBB /* EditUserController.swift in Sources */,
 				AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */,
-				ACB79BEC2D1C8CA400E3FBBB /* SettingsViewController.swift in Sources */,
 				AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */,
 				ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */,
 				ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */,
@@ -491,6 +494,7 @@
 				ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */,
 				ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */,
 				ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */,
+				ACCF18542D1DD98500FCD1CE /* AboutUsViewController.swift in Sources */,
 				ACB79BC02D1C85A200E3FBBB /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
