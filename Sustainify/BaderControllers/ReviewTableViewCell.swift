@@ -40,7 +40,7 @@ class ReviewTableViewCell: UITableViewCell {
     
     func configure(with review: Review) {
         titleLabel.text = review.title
-        reviewLabel.text = review.reviewText
+        reviewLabel.text = review.content
         updateStars(rating: review.rating)
     }
 
