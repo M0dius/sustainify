@@ -45,7 +45,7 @@ class AllItemsTableViewCell: UITableViewCell,
         
         // Category stack
         categoryStack.axis = .horizontal
-        categoryStack.spacing = 8    // small gap between each button
+        categoryStack.spacing = -30    // small gap between each button
         categoryStack.alignment = .center
         categoryStack.distribution = .equalSpacing
         categoryStack.translatesAutoresizingMaskIntoConstraints = false

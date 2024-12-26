@@ -366,7 +366,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TIP-m9-wpZ">
-                                <rect key="frame" x="0.0" y="103" width="393" height="530.33333333333337"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="270.33333333333331"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aVd-4r-fY3">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
@@ -391,20 +391,20 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="bQg-nK-VTk">
-                                        <rect key="frame" x="0.0" y="60" width="393" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="60" width="393" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AmB-zL-l7U">
-                                                <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="34.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="80"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="ratingLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-4" translatesAutoresizingMaskIntoConstraints="NO" id="Zvh-Qj-2d8">
-                                                <rect key="frame" x="52.666666666666657" y="0.0" width="340.33333333333337" height="34.333333333333336"/>
+                                                <rect key="frame" x="52.666666666666657" y="0.0" width="340.33333333333337" height="80"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9y-Bh-l1g">
-                                                        <rect key="frame" x="0.0" y="0.0" width="71.333333333333329" height="34.333333333333336"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="71.333333333333329" height="80"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                         <connections>
@@ -412,7 +412,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heO-Nn-uWc">
-                                                        <rect key="frame" x="67.333333333333343" y="0.0" width="71.333333333333343" height="34.333333333333336"/>
+                                                        <rect key="frame" x="67.333333333333343" y="0.0" width="71.333333333333343" height="80"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                         <connections>
@@ -420,7 +420,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BL5-sU-Hy8">
-                                                        <rect key="frame" x="134.66666666666669" y="0.0" width="71" height="34.333333333333336"/>
+                                                        <rect key="frame" x="134.66666666666669" y="0.0" width="71" height="80"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                         <connections>
@@ -428,7 +428,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9AS-XO-7uP">
-                                                        <rect key="frame" x="201.66666666666669" y="0.0" width="71.333333333333314" height="34.333333333333336"/>
+                                                        <rect key="frame" x="201.66666666666669" y="0.0" width="71.333333333333314" height="80"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                         <connections>
@@ -436,7 +436,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5w-Uv-zbA">
-                                                        <rect key="frame" x="269" y="0.0" width="71.333333333333314" height="34.333333333333336"/>
+                                                        <rect key="frame" x="269" y="0.0" width="71.333333333333314" height="80"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                         <connections>
@@ -451,7 +451,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="SRe-vD-hlj">
-                                        <rect key="frame" x="0.0" y="94.333333333333371" width="393" height="380"/>
+                                        <rect key="frame" x="0.0" y="140" width="393" height="74.333333333333314"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDP-Ro-mxJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="20.333333333333332"/>
@@ -461,7 +461,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write review" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="grP-94-oqX">
-                                                <rect key="frame" x="0.0" y="40.333333333333314" width="393" height="339.66666666666669"/>
+                                                <rect key="frame" x="0.0" y="40.333333333333314" width="393" height="34"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="reviewTextField"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -472,7 +472,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wd-4Q-SCk">
-                                        <rect key="frame" x="0.0" y="474.33333333333337" width="393" height="56"/>
+                                        <rect key="frame" x="0.0" y="214.33333333333331" width="393" height="56"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <accessibility key="accessibilityConfiguration" identifier="postReviewButton"/>
                                         <constraints>
@@ -552,7 +552,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ucQ-oy-Jfe">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aUA-Db-IIq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BaderProductDetails" automaticallyAdjustsScrollViewInsets="NO" id="aUA-Db-IIq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1OA-z6-27k">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
