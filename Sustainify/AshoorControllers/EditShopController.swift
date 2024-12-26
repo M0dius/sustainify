@@ -21,7 +21,7 @@ class EditShopController: UITableViewController {
         }
     }
 
-    @IBAction func saveButtonTapped(_ sender: UIButton) {
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if isFormValid() {
             // Create updated shop
             let updatedShop = Shop(
@@ -43,6 +43,7 @@ class EditShopController: UITableViewController {
             showAlert(title: "Error", message: "Please ensure all fields are filled out correctly.")
         }
     }
+    
 
     func isFormValid() -> Bool {
         return !(tName.text?.isEmpty ?? true) &&

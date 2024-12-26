@@ -3094,6 +3094,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="gYk-KQ-dha" kind="show" identifier="toEditShop" id="qt1-R0-dNB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -3110,6 +3113,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="h5a-O9-16K">
                             <connections>
                                 <action selector="addShopButtonTapped:" destination="aUa-kf-CDg" id="oFu-sI-CWN"/>
+                                <segue destination="Dkh-2c-COD" kind="show" identifier="toAddShop" id="d89-bh-yRX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -3185,10 +3189,22 @@
                             <outlet property="delegate" destination="gYk-KQ-dha" id="5HH-zb-tqU"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="gc7-28-hj8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="l2X-h0-tUr">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="gYk-KQ-dha" id="u9O-qj-CxD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tDescription" destination="YfZ-iC-G8S" id="l7c-Wo-Xjj"/>
+                        <outlet property="tLocation" destination="TI2-XB-dwb" id="NIq-un-aIa"/>
+                        <outlet property="tName" destination="5Qb-Bw-fFi" id="FZ0-gd-To2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQL-GU-YHC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1917" y="5700"/>
+            <point key="canvasLocation" x="1917" y="5639"/>
         </scene>
         <!--Add Shop Controller-->
         <scene sceneID="Q3n-wL-s5N">
@@ -3257,6 +3273,18 @@
                             <outlet property="delegate" destination="Dkh-2c-COD" id="dzN-6j-X8v"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="YOu-ND-OQ6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Kdh-Dv-hr8">
+                            <connections>
+                                <action selector="addShopButtonTapped:" destination="Dkh-2c-COD" id="iaL-dG-KjS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tDescription" destination="gjE-Dy-YoH" id="Geq-sN-M82"/>
+                        <outlet property="tLocation" destination="d8K-JS-93c" id="3RB-hv-QKh"/>
+                        <outlet property="tName" destination="6i4-sD-iPU" id="Veu-cZ-P2c"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sf9-9e-Xcl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -14,7 +14,8 @@ class AddShopController: UITableViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func addShopButtonTapped(_ sender: UIButton) {
+
+    @IBAction func addShopButtonTapped(_ sender: UIBarButtonItem) {
         if isFormValid() {
             // Create new shop
             let newShop = Shop(
@@ -35,7 +36,7 @@ class AddShopController: UITableViewController {
             showAlert(title: "Error", message: "Please fill in all the fields with valid data.")
         }
     }
-
+    
     func segueToShopList() {
         performSegue(withIdentifier: "unwindToShopList", sender: self)
     }
