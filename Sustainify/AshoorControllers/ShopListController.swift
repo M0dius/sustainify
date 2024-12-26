@@ -16,7 +16,7 @@ class ShopListController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCell", for: indexPath)
         let shop = shops[indexPath.row]
         cell.textLabel?.text = shop.name
-        cell.detailTextLabel?.text = shop.location
+        cell.detailTextLabel?.text = "CR: \(shop.crNumber), Building: \(shop.building), Road: \(shop.road), Block: \(shop.block)"
         // Set the accessory type to disclosure indicator
         cell.accessoryType = .disclosureIndicator
         return cell
