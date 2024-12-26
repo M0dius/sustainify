@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 struct Product {
     var name: String
@@ -7,5 +8,6 @@ struct Product {
     var description: String
     var ecoScore: Int
     var categories: [String]
-    var ecoTags: [EcoTagModel]  // New property for Eco-Tags
+    var ecoTags: [EcoTagModel]
+    var image: UIImage?  // New property for the product image
 }

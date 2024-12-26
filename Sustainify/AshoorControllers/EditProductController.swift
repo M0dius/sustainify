@@ -1,6 +1,6 @@
 import UIKit
 
-class EditProductController: UITableViewController {
+class EditProductController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let categories = ["Food", "Drinks", "Makeup", "Toiletries", "Clothing", "Electronic", "Others"]
     var selectedCategories = [String]()
@@ -23,7 +23,8 @@ class EditProductController: UITableViewController {
     @IBOutlet weak var textFieldWaterSaved: UITextField!
     @IBOutlet weak var switchRecycledMaterial: UISwitch!
     @IBOutlet weak var textFieldRecycledMaterial: UITextField!
-
+    @IBOutlet weak var imgphoto: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +34,7 @@ class EditProductController: UITableViewController {
             tPrice.text = String(product.price)
             tDescription.text = product.description
             tEcoScore.text = String(product.ecoScore)
+            imgphoto.image = product.image
             selectedCategories = product.categories
             ecoTags = product.ecoTags
 
@@ -54,7 +56,12 @@ class EditProductController: UITableViewController {
 
         setupCategorySelection()
     }
+    
+    @IBAction func btnEditPhoto(_ sender: Any) {
+        showPhotoAlert(sender: sender)
+    }
 
+    // Setup category selection buttons programmatically
     func setupCategorySelection() {
         for category in categories {
             let button = UIButton(type: .system)
@@ -83,6 +90,50 @@ class EditProductController: UITableViewController {
             self.scrollView.contentSize = CGSize(width: self.stackView.frame.width, height: self.stackView.frame.height)
         }
         scrollView.isScrollEnabled = true
+    }
+    
+    func showPhotoAlert(sender: Any){
+        let alert = UIAlertController(title: "Take Photo From: ", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction (UIAlertAction(title: "Camera", style: .default, handler: { action in
+            self.getPhoto(type: .camera)
+        }))
+        
+        alert.addAction (UIAlertAction(title: "Photo Library", style: .default, handler: { action in
+            self.getPhoto(type: .photoLibrary)
+        }))
+        
+        alert.addAction (UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        // For iPad: Provide location information for the popover
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = (sender as! UIView).bounds
+            popoverController.permittedArrowDirections = .any
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func getPhoto(type : UIImagePickerController.SourceType){
+        let picker = UIImagePickerController()
+        picker.sourceType = type
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        dismiss(animated: true, completion: nil)
+        guard let image = info[.editedImage] as? UIImage else {
+            print("Image not found")
+            return
+        }
+        imgphoto.image = image
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 
     @objc func categoryButtonTapped(_ sender: UIButton) {
@@ -121,7 +172,8 @@ class EditProductController: UITableViewController {
                 description: tDescription.text!,
                 ecoScore: Int(tEcoScore.text!) ?? 0,
                 categories: selectedCategories,
-                ecoTags: ecoTags
+                ecoTags: ecoTags,
+                image: imgphoto.image  // Include the updated image
             )
             
             if let navigationController = navigationController,

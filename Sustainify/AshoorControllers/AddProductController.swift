@@ -1,6 +1,6 @@
 import UIKit
 
-class AddProductController: UITableViewController, UIImagePickerControllerDelegate, UINavigationBarDelegate, UINavigationControllerDelegate {
+class AddProductController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let categories = ["Food", "Drinks", "Makeup", "Toiletries", "Clothing", "Electronic", "Others"]
     var selectedCategories = [String]()
@@ -23,15 +23,16 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
     @IBOutlet weak var textFieldWaterSaved: UITextField!
     @IBOutlet weak var switchRecycledMaterial: UISwitch!
     @IBOutlet weak var textFieldRecycledMaterial: UITextField!
-
     @IBOutlet weak var imgphoto: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCategorySelection()
         setupEcoTags()
     }
+
     @IBAction func btnTakePhoto(_ sender: Any) {
-        showPhotoAlert()
+        showPhotoAlert(sender: sender)
     }
     
     // Setup category selection buttons programmatically
@@ -63,22 +64,30 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
         ecoTags = EcoTag.allCases.map { EcoTagModel(tag: $0, value: nil) }
     }
     
-    func showPhotoAlert(){
+    func showPhotoAlert(sender: Any){
         let alert = UIAlertController(title: "Take Photo From: ", message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction (UIAlertAction(title: "Camera", style: .default, handler: {action in
+        alert.addAction (UIAlertAction(title: "Camera", style: .default, handler: { action in
             self.getPhoto(type: .camera)
         }))
         
-        alert.addAction (UIAlertAction (title: "Photo Library", style: .default, handler: {action in
+        alert.addAction (UIAlertAction(title: "Photo Library", style: .default, handler: { action in
             self.getPhoto(type: .photoLibrary)
         }))
         
         alert.addAction (UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present (alert, animated: true, completion: nil)
+
+        // For iPad: Provide location information for the popover
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = (sender as! UIView).bounds
+            popoverController.permittedArrowDirections = .any
+        }
+        
+        present(alert, animated: true, completion: nil)
     }
     
-    func getPhoto(type : UIImagePickerController.SourceType){
+    func getPhoto(type: UIImagePickerController.SourceType){
         let picker = UIImagePickerController()
         picker.sourceType = type
         picker.allowsEditing = true
@@ -86,20 +95,17 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
         present(picker, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        dismiss (animated: true, completion: nil)
-        guard let image = info[.editedImage] as? UIImage else{
-            print("image not found")
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        dismiss(animated: true, completion: nil)
+        guard let image = info[.editedImage] as? UIImage else {
+            print("Image not found")
             return
         }
-        
         imgphoto.image = image
-        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss (animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     @objc func categoryButtonTapped(_ sender: UIButton) {
@@ -138,7 +144,8 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
                 description: tDescription.text!,
                 ecoScore: Int(tEcoScore.text!) ?? 0,
                 categories: selectedCategories,
-                ecoTags: ecoTags
+                ecoTags: ecoTags,
+                image: imgphoto.image  // Include the image when creating the new product
             )
             
             if let navigationController = navigationController,
