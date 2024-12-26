@@ -298,13 +298,13 @@
 		ACB79BCB2D1C877C00E3FBBB /* AliControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ACB79BC42D1C877C00E3FBBB /* CustomAssets.xcassets */,
-				ACB79BC52D1C877C00E3FBBB /* DataManager.swift */,
 				ACB79BC62D1C877C00E3FBBB /* HomeViewController.swift */,
+				ACB79BC52D1C877C00E3FBBB /* DataManager.swift */,
 				ACB79BC72D1C877C00E3FBBB /* ProductsViewController.swift */,
+				ACB79BCA2D1C877C00E3FBBB /* StoreTableViewCell.swift */,
+				ACB79BC42D1C877C00E3FBBB /* CustomAssets.xcassets */,
 				ACB79BC82D1C877C00E3FBBB /* StoreDetailsViewController.swift */,
 				ACB79BC92D1C877C00E3FBBB /* StoreInfoTableViewCell.swift */,
-				ACB79BCA2D1C877C00E3FBBB /* StoreTableViewCell.swift */,
 			);
 			name = AliControllers;
 			path = Sustainify/AliControllers;
