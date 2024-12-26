@@ -10,6 +10,7 @@
 		AC0004052CF71F0F009EDDFD /* SustainifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0004042CF71F0F009EDDFD /* SustainifyTests.swift */; };
 		AC00040F2CF71F0F009EDDFD /* SustainifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */; };
 		AC0004112CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */; };
+		AC1500922D1DA9DF0069E341 /* BestSellingItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1500912D1DA9DF0069E341 /* BestSellingItemsTableViewCell.swift */; };
 		AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C382D09B00100957DA7 /* ViewController.swift */; };
 		AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3E2D09B00100957DA7 /* PIT_structs.swift */; };
 		AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */; };
@@ -84,6 +85,7 @@
 		AC00040A2CF71F0F009EDDFD /* SustainifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SustainifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITests.swift; sourceTree = "<group>"; };
 		AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AC1500912D1DA9DF0069E341 /* BestSellingItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellingItemsTableViewCell.swift; sourceTree = "<group>"; };
 		AC360C382D09B00100957DA7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AC360C3E2D09B00100957DA7 /* PIT_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIT_structs.swift; sourceTree = "<group>"; };
 		AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo_structs.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				ACB79BC42D1C877C00E3FBBB /* CustomAssets.xcassets */,
 				ACB79BC82D1C877C00E3FBBB /* StoreDetailsViewController.swift */,
 				ACB79BC92D1C877C00E3FBBB /* StoreInfoTableViewCell.swift */,
+				AC1500912D1DA9DF0069E341 /* BestSellingItemsTableViewCell.swift */,
 			);
 			name = AliControllers;
 			path = Sustainify/AliControllers;
@@ -467,6 +470,7 @@
 				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
 				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
 				ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */,
+				AC1500922D1DA9DF0069E341 /* BestSellingItemsTableViewCell.swift in Sources */,
 				ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */,
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
 				ACB79BCF2D1C877C00E3FBBB /* ProductsViewController.swift in Sources */,
