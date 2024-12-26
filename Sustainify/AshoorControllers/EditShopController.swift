@@ -1,40 +1,42 @@
 import UIKit
 
-class EditStoreController: UITableViewController {
+class EditShopController: UITableViewController {
 
     @IBOutlet weak var tName: UITextField!
     @IBOutlet weak var tLocation: UITextField!
     @IBOutlet weak var tDescription: UITextField!
     @IBOutlet weak var saveButton: UIButton!
-
-    var storeToEdit: Store?
-    var storeIndex: Int?
-    var updatedStore: Store?
+    
+    var shopToEdit: Shop?
+    var shopIndex: Int?
+    var updatedShop: Shop?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let store = storeToEdit {
-            tName.text = store.name
-            tLocation.text = store.location
-            tDescription.text = store.description
+        if let shop = shopToEdit {
+            tName.text = shop.name
+            tLocation.text = shop.location
+            tDescription.text = shop.description
         }
     }
 
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         if isFormValid() {
-            let updatedStore = Store(
+            // Create updated shop
+            let updatedShop = Shop(
                 name: tName.text!,
                 location: tLocation.text!,
                 description: tDescription.text!
             )
-
+            
+            // Update the shop in the shop list (assuming ShopListController is the root controller)
             if let navigationController = navigationController,
-               let storeListController = navigationController.viewControllers.first as? StoreListController,
-               let storeIndex = storeIndex {
-                storeListController.stores[storeIndex] = updatedStore
-                storeListController.tableView.reloadData()
-                showAlert(title: "Success", message: "Store details have been updated successfully.")
+               let shopListController = navigationController.viewControllers.first as? ShopListController,
+               let shopIndex = shopIndex {
+                shopListController.shops[shopIndex] = updatedShop
+                shopListController.tableView.reloadData()
+                showAlert(title: "Success", message: "Shop details have been updated successfully.")
                 navigationController.popViewController(animated: true)
             }
         } else {
@@ -47,7 +49,7 @@ class EditStoreController: UITableViewController {
                !(tLocation.text?.isEmpty ?? true) &&
                !(tDescription.text?.isEmpty ?? true)
     }
-
+    
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

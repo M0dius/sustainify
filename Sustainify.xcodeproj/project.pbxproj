@@ -13,10 +13,6 @@
 		AC08B6542D1D22D00034A7F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC08B6532D1D22D00034A7F3 /* GoogleService-Info.plist */; };
 		AC08B6552D1D22D00034A7F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC08B6532D1D22D00034A7F3 /* GoogleService-Info.plist */; };
 		AC08B6562D1D22D00034A7F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC08B6532D1D22D00034A7F3 /* GoogleService-Info.plist */; };
-		AC08B6582D1D72190034A7F3 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08B6572D1D72190034A7F3 /* Store.swift */; };
-		AC08B65A2D1D72A90034A7F3 /* StoreListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08B6592D1D72A90034A7F3 /* StoreListController.swift */; };
-		AC08B65C2D1D7A2A0034A7F3 /* AddStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08B65B2D1D7A2A0034A7F3 /* AddStoreController.swift */; };
-		AC08B65E2D1D7A750034A7F3 /* EditStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08B65D2D1D7A750034A7F3 /* EditStoreController.swift */; };
 		AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C382D09B00100957DA7 /* ViewController.swift */; };
 		AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3E2D09B00100957DA7 /* PIT_structs.swift */; };
 		AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */; };
@@ -29,6 +25,10 @@
 		AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */; };
 		AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C4B2D09B00200957DA7 /* Ali.storyboard */; };
 		AC69000F2D09BC5300FB9718 /* Mohamed Ashoor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */; };
+		AC8F6CD02D1DA251008B4763 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F6CCF2D1DA251008B4763 /* Shop.swift */; };
+		AC8F6CD22D1DA262008B4763 /* ShopListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F6CD12D1DA262008B4763 /* ShopListController.swift */; };
+		AC8F6CD42D1DA275008B4763 /* AddShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F6CD32D1DA275008B4763 /* AddShopController.swift */; };
+		AC8F6CD62D1DA2B9008B4763 /* EditShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F6CD52D1DA2B9008B4763 /* EditShopController.swift */; };
 		ACB79BA52D1C841800E3FBBB /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BA42D1C841800E3FBBB /* Bader.storyboard */; };
 		ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */; };
 		ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */; };
@@ -89,10 +89,6 @@
 		AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITests.swift; sourceTree = "<group>"; };
 		AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AC08B6532D1D22D00034A7F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		AC08B6572D1D72190034A7F3 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		AC08B6592D1D72A90034A7F3 /* StoreListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListController.swift; sourceTree = "<group>"; };
-		AC08B65B2D1D7A2A0034A7F3 /* AddStoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoreController.swift; sourceTree = "<group>"; };
-		AC08B65D2D1D7A750034A7F3 /* EditStoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStoreController.swift; sourceTree = "<group>"; };
 		AC360C382D09B00100957DA7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AC360C3E2D09B00100957DA7 /* PIT_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIT_structs.swift; sourceTree = "<group>"; };
 		AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo_structs.swift; sourceTree = "<group>"; };
@@ -106,6 +102,10 @@
 		AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC360C4B2D09B00200957DA7 /* Ali.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ali.storyboard; sourceTree = "<group>"; };
 		AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed Ashoor.storyboard"; sourceTree = "<group>"; };
+		AC8F6CCF2D1DA251008B4763 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		AC8F6CD12D1DA262008B4763 /* ShopListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListController.swift; sourceTree = "<group>"; };
+		AC8F6CD32D1DA275008B4763 /* AddShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopController.swift; sourceTree = "<group>"; };
+		AC8F6CD52D1DA2B9008B4763 /* EditShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShopController.swift; sourceTree = "<group>"; };
 		ACB79BA42D1C841800E3FBBB /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
 		ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewController.swift; sourceTree = "<group>"; };
@@ -272,10 +272,10 @@
 				ACB79BB22D1C85A100E3FBBB /* EcoTagModel.swift */,
 				ACB79BB52D1C85A100E3FBBB /* AddProductController.swift */,
 				ACB79BB42D1C85A100E3FBBB /* EditProductController.swift */,
-				AC08B6572D1D72190034A7F3 /* Store.swift */,
-				AC08B6592D1D72A90034A7F3 /* StoreListController.swift */,
-				AC08B65B2D1D7A2A0034A7F3 /* AddStoreController.swift */,
-				AC08B65D2D1D7A750034A7F3 /* EditStoreController.swift */,
+				AC8F6CCF2D1DA251008B4763 /* Shop.swift */,
+				AC8F6CD12D1DA262008B4763 /* ShopListController.swift */,
+				AC8F6CD32D1DA275008B4763 /* AddShopController.swift */,
+				AC8F6CD52D1DA2B9008B4763 /* EditShopController.swift */,
 			);
 			path = AshoorControllers;
 			sourceTree = "<group>";
@@ -475,11 +475,10 @@
 				ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */,
 				ACB79BBE2D1C85A200E3FBBB /* AddProductController.swift in Sources */,
 				ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */,
-				AC08B65E2D1D7A750034A7F3 /* EditStoreController.swift in Sources */,
+				AC8F6CD02D1DA251008B4763 /* Shop.swift in Sources */,
 				ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */,
 				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
 				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
-				AC08B6582D1D72190034A7F3 /* Store.swift in Sources */,
 				ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */,
 				ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */,
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
@@ -491,17 +490,18 @@
 				ACB79BAE2D1C843100E3FBBB /* ReviewTableViewCell.swift in Sources */,
 				ACB79BBC2D1C85A200E3FBBB /* ProductListController.swift in Sources */,
 				ACB79BCE2D1C877C00E3FBBB /* HomeViewController.swift in Sources */,
+				AC8F6CD42D1DA275008B4763 /* AddShopController.swift in Sources */,
+				AC8F6CD62D1DA2B9008B4763 /* EditShopController.swift in Sources */,
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,
-				AC08B65C2D1D7A2A0034A7F3 /* AddStoreController.swift in Sources */,
 				ACB79BC32D1C85A200E3FBBB /* EditUserController.swift in Sources */,
 				AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */,
-				AC08B65A2D1D72A90034A7F3 /* StoreListController.swift in Sources */,
 				ACB79BEC2D1C8CA400E3FBBB /* SettingsViewController.swift in Sources */,
 				AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */,
 				ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */,
 				ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */,
 				ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */,
 				ACB79BD02D1C877C00E3FBBB /* StoreDetailsViewController.swift in Sources */,
+				AC8F6CD22D1DA262008B4763 /* ShopListController.swift in Sources */,
 				ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */,
 				ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */,
 				ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */,
