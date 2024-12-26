@@ -15,7 +15,8 @@ class StoreDetailsViewController: UIViewController,
     private var dropdownTableView: UITableView!
     private var isDropdownVisible = false
     
-    // We’ll show all store items in the dropdown (no filtering).
+    // We'll show all store items in the dropdown (no filtering).
+    // If you want real prices & images, see the note below about item model data.
     private var dropdownItems: [String] = []
     
     // MARK: - View Life Cycle
@@ -27,7 +28,7 @@ class StoreDetailsViewController: UIViewController,
         }
         
         setupSearchBar()
-        setupTableView()
+        setupMainTableView()
         setupDropdown()
     }
     
@@ -39,16 +40,15 @@ class StoreDetailsViewController: UIViewController,
         navigationItem.titleView = searchBar
     }
     
-    // When user types in search, show/hide dropdown with store items
+    // Show/hide dropdown with store items when user types
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let store = store else { return }
         
         if searchText.isEmpty {
-            // Hide if no text
             dropdownItems = []
             isDropdownVisible = false
         } else {
-            // Show all items (no filter)
+            // Show all store items, ignoring the actual text
             dropdownItems = store.items
             isDropdownVisible = !dropdownItems.isEmpty
         }
@@ -57,7 +57,6 @@ class StoreDetailsViewController: UIViewController,
         dropdownTableView.reloadData()
     }
     
-    // Optional: Hide dropdown on Cancel
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         dropdownItems = []
         isDropdownVisible = false
@@ -65,40 +64,48 @@ class StoreDetailsViewController: UIViewController,
         searchBar.resignFirstResponder()
     }
     
-    // MARK: - Main TableView Setup
-    func setupTableView() {
+    // MARK: - Main TableView (Store Info + Best Selling Items)
+    func setupMainTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
         
-        // Register the store info cell
-        tableView.register(StoreInfoTableViewCell.self,
-                           forCellReuseIdentifier: "storeInfoCell")
+        // Store info cell
+        tableView.register(
+            StoreInfoTableViewCell.self,
+            forCellReuseIdentifier: "storeInfoCell"
+        )
         
-        // Register the best selling items cell
-        tableView.register(BestSellingItemsTableViewCell.self,
-                           forCellReuseIdentifier: "bestSellingCell")
+        // Best selling items cell
+        tableView.register(
+            BestSellingItemsTableViewCell.self,
+            forCellReuseIdentifier: "bestSellingCell"
+        )
     }
     
-    // MARK: - Dropdown Setup
+    // MARK: - Dropdown TableView
     func setupDropdown() {
         dropdownTableView = UITableView()
         dropdownTableView.dataSource = self
         dropdownTableView.delegate = self
-        dropdownTableView.register(UITableViewCell.self,
-                                   forCellReuseIdentifier: "dropdownCell")
+        
+        // Register our custom cell for the dropdown
+        dropdownTableView.register(
+            DropdownItemCell.self,
+            forCellReuseIdentifier: "dropdownCell"
+        )
+        
         dropdownTableView.translatesAutoresizingMaskIntoConstraints = false
         dropdownTableView.isHidden = true
         dropdownTableView.layer.borderWidth = 1
         dropdownTableView.layer.borderColor = UIColor.lightGray.cgColor
         dropdownTableView.layer.cornerRadius = 5
-        dropdownTableView.rowHeight = 44
+        dropdownTableView.rowHeight = 60 // so we have enough space for image
         
         view.addSubview(dropdownTableView)
         
         NSLayoutConstraint.activate([
-            // Position the dropdown near the top
             dropdownTableView.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: 10
@@ -117,17 +124,13 @@ class StoreDetailsViewController: UIViewController,
         ])
     }
     
-    // MARK: - TableView Data Source (Shared by Main & Dropdown)
+    // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        
         if tableView == dropdownTableView {
-            // Dropdown table
             return dropdownItems.count
         } else {
             // Main table → 2 rows
-            // Row 0: Store Info
-            // Row 1: Best Selling Items
             return 2
         }
     }
@@ -136,46 +139,65 @@ class StoreDetailsViewController: UIViewController,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == dropdownTableView {
-            // Dropdown cell
+            // We are in the dropdown
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: "dropdownCell",
                 for: indexPath
+            ) as! DropdownItemCell
+            
+            // For now, store.items is an array of strings
+            let itemName = dropdownItems[indexPath.row]
+            
+            // If you had real images & prices, you'd do something like:
+            // let itemImage = UIImage(named: "someImageName")
+            // let itemPrice = "$4.99"
+            
+            // For now, let's just use a placeholder image & price
+            let placeholderImage = UIImage(named: "PlaceholderImage")
+            let placeholderPrice = "$9.99"
+            
+            cell.configure(
+                itemImage: placeholderImage,
+                itemName: itemName,
+                itemPrice: placeholderPrice
             )
-            cell.textLabel?.text = dropdownItems[indexPath.row]
+            
             return cell
+            
         } else {
-            // Main table
+            // We are in the main table
             switch indexPath.row {
             case 0:
-                // Store info cell
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: "storeInfoCell",
                     for: indexPath
                 ) as! StoreInfoTableViewCell
+                
                 if let store = store {
                     cell.configure(with: store)
                 }
                 return cell
+                
             case 1:
-                // Best selling items cell
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: "bestSellingCell",
                     for: indexPath
                 ) as! BestSellingItemsTableViewCell
                 cell.configure()
                 return cell
+                
             default:
                 return UITableViewCell()
             }
         }
     }
     
-    // MARK: - TableView Delegate (Handling Selections)
+    // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         
         if tableView == dropdownTableView {
-            // User selected an item from the dropdown
+            // The user tapped an item in the dropdown
             let selectedProduct = dropdownItems[indexPath.row]
             
             // Hide the dropdown
@@ -184,19 +206,16 @@ class StoreDetailsViewController: UIViewController,
             searchBar.resignFirstResponder()
             
             // Navigate to another storyboard
-            let otherStoryboard = UIStoryboard(
-                name: "Bader",
-                bundle: nil
-            )
-            let someVC = otherStoryboard.instantiateViewController(
-                withIdentifier: "SomeViewControllerID"
-            )
+            let otherStoryboard = UIStoryboard(name: "Bader", bundle: nil)
+            let someVC = otherStoryboard.instantiateViewController(withIdentifier: "SomeViewControllerID")
+            
+            // Pass the selected product if you want:
             // (someVC as? SomeViewControllerClass)?.selectedItemName = selectedProduct
             
             navigationController?.pushViewController(someVC, animated: true)
             
         } else {
-            // If user taps row 0 or 1 in main table
+            // Main table row tapped
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
