@@ -185,7 +185,7 @@ class StoreDetailsViewController: UIViewController,
             
             // Navigate to another storyboard
             let otherStoryboard = UIStoryboard(
-                name: "AnotherStoryboardName",
+                name: "Bader",
                 bundle: nil
             )
             let someVC = otherStoryboard.instantiateViewController(

@@ -12,13 +12,13 @@
         <!--Product Details-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="ProductDetails" id="Y6W-OH-hqX" customClass="ProductDetailsViewController" customModule="Sustainify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SomeViewControllerID" id="Y6W-OH-hqX" customClass="ProductDetailsViewController" customModule="Sustainify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" ambiguous="YES" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="K0m-G1-p7G">
-                                <rect key="frame" x="0.0" y="103" width="393" height="745"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kru-Ds-6hA">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="146"/>
@@ -120,13 +120,13 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owh-yb-i7Z">
-                                        <rect key="frame" x="0.0" y="498.66666666666663" width="393" height="26.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="498.66666666666663" width="393" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="svc-l7-cfR">
-                                        <rect key="frame" x="0.0" y="533" width="393" height="154"/>
+                                        <rect key="frame" x="0.0" y="506.66666666666663" width="393" height="154"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sXI-ld-lFq">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="154"/>
@@ -179,10 +179,10 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qbo-ks-9zP">
-                                        <rect key="frame" x="0.0" y="695" width="393" height="50"/>
+                                        <rect key="frame" x="0.0" y="668.66666666666663" width="393" height="46.333333333333371"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-MM-wm7">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="46.333333333333336"/>
                                                 <subviews>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="mTL-CW-YeX">
                                                         <rect key="frame" x="8" y="17" width="94" height="32"/>
@@ -552,7 +552,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ucQ-oy-Jfe">
             <objects>
-                <navigationController storyboardIdentifier="SomeViewControllerID" automaticallyAdjustsScrollViewInsets="NO" id="aUA-Db-IIq" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aUA-Db-IIq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1OA-z6-27k">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
