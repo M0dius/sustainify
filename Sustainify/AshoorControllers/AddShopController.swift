@@ -8,6 +8,7 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var tBuilding: UITextField!
     @IBOutlet weak var tRoad: UITextField!
     @IBOutlet weak var tBlock: UITextField!
+    @IBOutlet weak var tMinimumOrderAmount: UITextField!  // New text field for Minimum Order Amount
     
     @IBOutlet weak var addShopButton: UIButton!
     
@@ -15,30 +16,30 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var closingTimeValueLabel: UILabel!
     
     // NEW Outlets for store categories
-    // You will create a scrollView + stackView (just like in product) for "What does this store sell?"
     @IBOutlet weak var storeCategoriesScrollView: UIScrollView!
     @IBOutlet weak var storeCategoriesStackView: UIStackView!
     
     // NEW Outlets for store image
     @IBOutlet weak var imgStore: UIImageView!
-    @IBOutlet weak var btnStoreImage: UIButton! // a button to trigger camera/photo library
+    @IBOutlet weak var btnStoreImage: UIButton!
     
     var newShop: Shop?
     var openingTime: Date?
     var closingTime: Date?
     
-    // Just an example set of store categories
+    // Example set of store categories
     let storeCategories = ["Food", "Clothes", "Electronics", "Furniture", "Accessories", "Misc"]
     var selectedStoreCategories = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupStoreCategorySelection()
     }
     
     @IBAction func addShopButtonTapped(_ sender: UIButton) {
         if isFormValid() {
+            let minimumOrderAmount = Double(tMinimumOrderAmount.text ?? "0") ?? 0.0  // Get Minimum Order Amount
+            
             let newShop = Shop(
                 name: tName.text!,
                 crNumber: Int(tCRNumber.text!) ?? 0,
@@ -47,6 +48,7 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
                 block: Int(tBlock.text!) ?? 0,
                 openingTime: openingTime,
                 closingTime: closingTime,
+                minimumOrderAmount: minimumOrderAmount,  // Set the new property
                 storeCategories: selectedStoreCategories,
                 storeImage: imgStore.image
             )
@@ -68,13 +70,11 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
     // MARK: - Store Category Selection Setup
     
     func setupStoreCategorySelection() {
-        // Programmatically create buttons for each possible category
         for category in storeCategories {
             let button = UIButton(type: .system)
             button.setTitle(category, for: .normal)
             button.addTarget(self, action: #selector(storeCategoryButtonTapped(_:)), for: .touchUpInside)
             
-            // Customize appearance
             button.layer.borderColor = UIColor.systemGreen.cgColor
             button.layer.borderWidth = 1
             button.setTitleColor(.systemGreen, for: .normal)
@@ -96,20 +96,16 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
     }
     
     @objc func storeCategoryButtonTapped(_ sender: UIButton) {
-        guard let category = sender.titleLabel?.text else {
-            return
-        }
+        guard let category = sender.titleLabel?.text else { return }
         
         if selectedStoreCategories.contains(category) {
             selectedStoreCategories.removeAll { $0 == category }
-            // revert style
             sender.layer.borderColor = UIColor.systemGreen.cgColor
             sender.layer.borderWidth = 1
             sender.setTitleColor(.systemGreen, for: .normal)
             sender.backgroundColor = .clear
         } else {
             selectedStoreCategories.append(category)
-            // highlight style
             sender.backgroundColor = .systemGreen
             sender.setTitleColor(.white, for: .normal)
             sender.layer.borderWidth = 0
@@ -164,7 +160,7 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - Time Pickers (unchanged)
+    // MARK: - Time Pickers
     
     func presentDatePicker(for tag: Int, sourceView: UIView) {
         let alert = UIAlertController(title: "Select Time", message: nil, preferredStyle: .actionSheet)
@@ -186,10 +182,10 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
             let formatter = DateFormatter()
             formatter.timeStyle = .short
             
-            if tag == 1 { // Opening Time Cell
+            if tag == 1 {
                 self.openingTime = datePicker.date
                 self.openingTimeValueLabel.text = formatter.string(from: datePicker.date)
-            } else if tag == 2 { // Closing Time Cell
+            } else if tag == 2 {
                 self.closingTime = datePicker.date
                 self.closingTimeValueLabel.text = formatter.string(from: datePicker.date)
             }

@@ -7,6 +7,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var tBuilding: UITextField!
     @IBOutlet weak var tRoad: UITextField!
     @IBOutlet weak var tBlock: UITextField!
+    @IBOutlet weak var tMinimumOrderAmount: UITextField!  // New text field for Minimum Order Amount
     
     @IBOutlet weak var openingTimeValueLabel: UILabel!
     @IBOutlet weak var closingTimeValueLabel: UILabel!
@@ -28,7 +29,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
     var openingTime: Date?
     var closingTime: Date?
     
-    // Just an example set of store categories
+    // Example set of store categories
     let storeCategories = ["Food", "Clothes", "Electronics", "Furniture", "Accessories", "Misc"]
     var selectedStoreCategories = [String]()
     
@@ -41,6 +42,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
             tBuilding.text = String(shop.building)
             tRoad.text = String(shop.road)
             tBlock.text = String(shop.block)
+            tMinimumOrderAmount.text = shop.minimumOrderAmount != nil ? String(shop.minimumOrderAmount!) : ""  // Set Minimum Order Amount
             
             let formatter = DateFormatter()
             formatter.timeStyle = .short
@@ -55,7 +57,6 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
                 closingTimeValueLabel.text = formatter.string(from: closing)
             }
             
-            // NEW
             selectedStoreCategories = shop.storeCategories
             imgStore.image = shop.storeImage
         }
@@ -71,14 +72,11 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
             button.setTitle(category, for: .normal)
             button.addTarget(self, action: #selector(storeCategoryButtonTapped(_:)), for: .touchUpInside)
             
-            // if the category was previously selected for this shop
             if selectedStoreCategories.contains(category) {
-                // highlight style
                 button.backgroundColor = .systemGreen
                 button.setTitleColor(.white, for: .normal)
                 button.layer.borderWidth = 0
             } else {
-                // normal style
                 button.layer.borderColor = UIColor.systemGreen.cgColor
                 button.layer.borderWidth = 1
                 button.setTitleColor(.systemGreen, for: .normal)
@@ -101,19 +99,15 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
     }
     
     @objc func storeCategoryButtonTapped(_ sender: UIButton) {
-        guard let category = sender.titleLabel?.text else {
-            return
-        }
+        guard let category = sender.titleLabel?.text else { return }
         if selectedStoreCategories.contains(category) {
             selectedStoreCategories.removeAll { $0 == category }
-            // revert style
             sender.layer.borderColor = UIColor.systemGreen.cgColor
             sender.layer.borderWidth = 1
             sender.setTitleColor(.systemGreen, for: .normal)
             sender.backgroundColor = .clear
         } else {
             selectedStoreCategories.append(category)
-            // highlight style
             sender.backgroundColor = .systemGreen
             sender.setTitleColor(.white, for: .normal)
             sender.layer.borderWidth = 0
@@ -126,15 +120,15 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
         showPhotoAlert(sender: sender)
     }
     
-    func showPhotoAlert(sender: Any){
+    func showPhotoAlert(sender: Any) {
         let alert = UIAlertController(title: "Take Photo From:", message: nil, preferredStyle: .actionSheet)
-        alert.addAction (UIAlertAction(title: "Camera", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
             self.getPhoto(type: .camera)
         }))
-        alert.addAction (UIAlertAction(title: "Photo Library", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { action in
             self.getPhoto(type: .photoLibrary)
         }))
-        alert.addAction (UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         if let popoverController = alert.popoverPresentationController,
            let viewForSource = sender as? UIView {
@@ -146,7 +140,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
         present(alert, animated: true, completion: nil)
     }
     
-    func getPhoto(type: UIImagePickerController.SourceType){
+    func getPhoto(type: UIImagePickerController.SourceType) {
         let picker = UIImagePickerController()
         picker.sourceType = type
         picker.allowsEditing = true
@@ -157,7 +151,6 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true, completion: nil)
-        
         guard let image = info[.editedImage] as? UIImage else {
             print("Image not found")
             return
@@ -173,6 +166,8 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
 
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         if isFormValid() {
+            let minimumOrderAmount = Double(tMinimumOrderAmount.text ?? "0") ?? 0.0  // Get Minimum Order Amount
+            
             let updatedShop = Shop(
                 name: tName.text!,
                 crNumber: Int(tCRNumber.text!) ?? 0,
@@ -181,6 +176,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
                 block: Int(tBlock.text!) ?? 0,
                 openingTime: openingTime,
                 closingTime: closingTime,
+                minimumOrderAmount: minimumOrderAmount,  // Set the updated value
                 storeCategories: selectedStoreCategories,
                 storeImage: imgStore.image
             )
@@ -200,7 +196,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
         }
     }
     
-    // MARK: - Time Pickers (unchanged)
+    // MARK: - Time Pickers
     
     func presentDatePicker(for tag: Int, sourceView: UIView) {
         let alert = UIAlertController(title: "Select Time", message: nil, preferredStyle: .actionSheet)
