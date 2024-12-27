@@ -1,77 +1,88 @@
 import UIKit
 
 class EditShopController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+
     @IBOutlet weak var tName: UITextField!
     @IBOutlet weak var tCRNumber: UITextField!
     @IBOutlet weak var tBuilding: UITextField!
     @IBOutlet weak var tRoad: UITextField!
     @IBOutlet weak var tBlock: UITextField!
-    @IBOutlet weak var tMinimumOrderAmount: UITextField!  // New text field for Minimum Order Amount
-    
+    @IBOutlet weak var tMinimumOrderAmount: UITextField!
+
     @IBOutlet weak var openingTimeValueLabel: UILabel!
     @IBOutlet weak var closingTimeValueLabel: UILabel!
-    
+
     @IBOutlet weak var saveButton: UIButton!
-    
-    // NEW Outlets for store categories
+
+    // Outlets for store categories
     @IBOutlet weak var storeCategoriesScrollView: UIScrollView!
     @IBOutlet weak var storeCategoriesStackView: UIStackView!
-    
-    // NEW Outlets for store image
+
+    // Outlets for store image
     @IBOutlet weak var imgStore: UIImageView!
     @IBOutlet weak var btnStoreImage: UIButton!
-    
+
+    // Outlets for Payment Option Switches
+    @IBOutlet weak var switchCash: UISwitch!
+    @IBOutlet weak var switchBenefit: UISwitch!
+    @IBOutlet weak var switchOnlinePayment: UISwitch!
+
     var shopToEdit: Shop?
     var shopIndex: Int?
     var updatedShop: Shop?
-    
+
     var openingTime: Date?
     var closingTime: Date?
-    
-    // Example set of store categories
+
+    // Store categories
     let storeCategories = ["Food", "Clothes", "Electronics", "Furniture", "Accessories", "Misc"]
     var selectedStoreCategories = [String]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let shop = shopToEdit {
             tName.text = shop.name
             tCRNumber.text = String(shop.crNumber)
             tBuilding.text = String(shop.building)
             tRoad.text = String(shop.road)
             tBlock.text = String(shop.block)
-            tMinimumOrderAmount.text = shop.minimumOrderAmount != nil ? String(shop.minimumOrderAmount!) : ""  // Set Minimum Order Amount
-            
+            tMinimumOrderAmount.text = shop.minimumOrderAmount != nil ? String(shop.minimumOrderAmount!) : ""
+
             let formatter = DateFormatter()
             formatter.timeStyle = .short
-            
+
             if let opening = shop.openingTime {
                 openingTime = opening
                 openingTimeValueLabel.text = formatter.string(from: opening)
             }
-            
+
             if let closing = shop.closingTime {
                 closingTime = closing
                 closingTimeValueLabel.text = formatter.string(from: closing)
             }
-            
+
             selectedStoreCategories = shop.storeCategories
             imgStore.image = shop.storeImage
+
+            // Initialize payment option switches
+            switchCash.isOn = shop.paymentOptions.contains("Cash")
+            switchBenefit.isOn = shop.paymentOptions.contains("Benefit")
+            switchOnlinePayment.isOn = shop.paymentOptions.contains("Online Payment (Debit/Credit Card)")
+
         }
-        
+
         setupStoreCategorySelection()
     }
-    
-    // MARK: - Setup Store Categories
-    
+
+    // MARK: - Store Category Selection
+
     func setupStoreCategorySelection() {
         for category in storeCategories {
             let button = UIButton(type: .system)
             button.setTitle(category, for: .normal)
             button.addTarget(self, action: #selector(storeCategoryButtonTapped(_:)), for: .touchUpInside)
-            
+
             if selectedStoreCategories.contains(category) {
                 button.backgroundColor = .systemGreen
                 button.setTitleColor(.white, for: .normal)
@@ -85,10 +96,10 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
             button.layer.cornerRadius = 5
             button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
             button.widthAnchor.constraint(equalToConstant: 120).isActive = true
-            
+
             storeCategoriesStackView.addArrangedSubview(button)
         }
-        
+
         DispatchQueue.main.async {
             self.storeCategoriesScrollView.contentSize = CGSize(
                 width: self.storeCategoriesStackView.frame.width,
@@ -97,7 +108,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
         }
         storeCategoriesScrollView.isScrollEnabled = true
     }
-    
+
     @objc func storeCategoryButtonTapped(_ sender: UIButton) {
         guard let category = sender.titleLabel?.text else { return }
         if selectedStoreCategories.contains(category) {
@@ -113,13 +124,13 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
             sender.layer.borderWidth = 0
         }
     }
-    
+
     // MARK: - Store Image
-    
+
     @IBAction func btnStoreImageTapped(_ sender: Any) {
         showPhotoAlert(sender: sender)
     }
-    
+
     func showPhotoAlert(sender: Any) {
         let alert = UIAlertController(title: "Take Photo From:", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
@@ -129,17 +140,17 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
             self.getPhoto(type: .photoLibrary)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
+
         if let popoverController = alert.popoverPresentationController,
            let viewForSource = sender as? UIView {
             popoverController.sourceView = viewForSource
             popoverController.sourceRect = viewForSource.bounds
             popoverController.permittedArrowDirections = .any
         }
-        
+
         present(alert, animated: true, completion: nil)
     }
-    
+
     func getPhoto(type: UIImagePickerController.SourceType) {
         let picker = UIImagePickerController()
         picker.sourceType = type
@@ -147,7 +158,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
         picker.delegate = self
         present(picker, animated: true, completion: nil)
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true, completion: nil)
@@ -157,17 +168,17 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
         }
         imgStore.image = image
     }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
+
     // MARK: - Save
 
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         if isFormValid() {
-            let minimumOrderAmount = Double(tMinimumOrderAmount.text ?? "0") ?? 0.0  // Get Minimum Order Amount
-            
+            let minimumOrderAmount = Double(tMinimumOrderAmount.text ?? "0") ?? 0.0
+
             let updatedShop = Shop(
                 name: tName.text!,
                 crNumber: Int(tCRNumber.text!) ?? 0,
@@ -176,82 +187,52 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
                 block: Int(tBlock.text!) ?? 0,
                 openingTime: openingTime,
                 closingTime: closingTime,
-                minimumOrderAmount: minimumOrderAmount,  // Set the updated value
+                minimumOrderAmount: minimumOrderAmount,
                 storeCategories: selectedStoreCategories,
-                storeImage: imgStore.image
+                storeImage: imgStore.image,
+                paymentOptions: getSelectedPaymentOptions()
             )
-            
+
             if let navigationController = navigationController,
                let shopListController = navigationController.viewControllers.first as? ShopListController,
                let shopIndex = shopIndex {
-                
+
                 shopListController.shops[shopIndex] = updatedShop
                 shopListController.tableView.reloadData()
-                
+
                 showAlert(title: "Success", message: "Shop details have been updated successfully.")
                 navigationController.popViewController(animated: true)
             }
         } else {
-            showAlert(title: "Error", message: "Please ensure all fields are filled out correctly.")
+            showAlert(title: "Error", message: "Please ensure all fields and at least one payment option are selected.")
         }
     }
-    
-    // MARK: - Time Pickers
-    
-    func presentDatePicker(for tag: Int, sourceView: UIView) {
-        let alert = UIAlertController(title: "Select Time", message: nil, preferredStyle: .actionSheet)
-        
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .time
-        datePicker.preferredDatePickerStyle = .wheels
-        
-        alert.view.addSubview(datePicker)
-        
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.leadingAnchor.constraint(equalTo: alert.view.leadingAnchor).isActive = true
-        datePicker.trailingAnchor.constraint(equalTo: alert.view.trailingAnchor).isActive = true
-        datePicker.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 20).isActive = true
-        datePicker.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -110).isActive = true
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
-            let formatter = DateFormatter()
-            formatter.timeStyle = .short
-            
-            if tag == 1 {
-                self.openingTime = datePicker.date
-                self.openingTimeValueLabel.text = formatter.string(from: datePicker.date)
-            } else if tag == 2 {
-                self.closingTime = datePicker.date
-                self.closingTimeValueLabel.text = formatter.string(from: datePicker.date)
-            }
-        }))
-        
-        if let popoverController = alert.popoverPresentationController {
-            popoverController.sourceView = sourceView
-            popoverController.sourceRect = sourceView.bounds
-            popoverController.permittedArrowDirections = [.up, .down]
+
+    // MARK: - Helpers
+
+    func getSelectedPaymentOptions() -> [String] {
+        var options = [String]()
+        if switchCash.isOn {
+            options.append("Cash")
         }
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func selectTime(_ sender: UITapGestureRecognizer) {
-        if let cellTag = sender.view?.tag {
-            presentDatePicker(for: cellTag, sourceView: sender.view!)
+        if switchBenefit.isOn {
+            options.append("Benefit")
         }
+        if switchOnlinePayment.isOn {
+            options.append("Online Payment (Debit/Credit Card)")
+        }
+        return options
     }
-    
-    // MARK: - Validation and Alert
-    
+
     func isFormValid() -> Bool {
         return !(tName.text?.isEmpty ?? true) &&
                !(tCRNumber.text?.isEmpty ?? true) && Int(tCRNumber.text!) != nil &&
                !(tBuilding.text?.isEmpty ?? true) && Int(tBuilding.text!) != nil &&
                !(tRoad.text?.isEmpty ?? true) && Int(tRoad.text!) != nil &&
-               !(tBlock.text?.isEmpty ?? true) && Int(tBlock.text!) != nil
+               !(tBlock.text?.isEmpty ?? true) && Int(tBlock.text!) != nil &&
+               (switchCash.isOn || switchBenefit.isOn || switchOnlinePayment.isOn)
     }
-    
+
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

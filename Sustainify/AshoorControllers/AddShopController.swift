@@ -2,34 +2,42 @@ import UIKit
 
 class AddShopController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    // IBOutlets for the text fields
+    // IBOutlets for text fields
     @IBOutlet weak var tName: UITextField!
     @IBOutlet weak var tCRNumber: UITextField!
     @IBOutlet weak var tBuilding: UITextField!
     @IBOutlet weak var tRoad: UITextField!
     @IBOutlet weak var tBlock: UITextField!
-    @IBOutlet weak var tMinimumOrderAmount: UITextField!  // New text field for Minimum Order Amount
+    @IBOutlet weak var tMinimumOrderAmount: UITextField!  // Text field for Minimum Order Amount
     
     @IBOutlet weak var addShopButton: UIButton!
     
     @IBOutlet weak var openingTimeValueLabel: UILabel!
     @IBOutlet weak var closingTimeValueLabel: UILabel!
     
-    // NEW Outlets for store categories
+    // Outlets for store categories
     @IBOutlet weak var storeCategoriesScrollView: UIScrollView!
     @IBOutlet weak var storeCategoriesStackView: UIStackView!
     
-    // NEW Outlets for store image
+    // Outlets for store image
     @IBOutlet weak var imgStore: UIImageView!
     @IBOutlet weak var btnStoreImage: UIButton!
+    
+    // Outlets for Payment Option Switches
+    @IBOutlet weak var switchCash: UISwitch!
+    @IBOutlet weak var switchBenefit: UISwitch!
+    @IBOutlet weak var switchOnlinePayment: UISwitch!
     
     var newShop: Shop?
     var openingTime: Date?
     var closingTime: Date?
     
-    // Example set of store categories
+    // Store categories
     let storeCategories = ["Food", "Clothes", "Electronics", "Furniture", "Accessories", "Misc"]
     var selectedStoreCategories = [String]()
+    
+    // Payment options
+    var selectedPaymentOptions = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +48,12 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
         if isFormValid() {
             let minimumOrderAmount = Double(tMinimumOrderAmount.text ?? "0") ?? 0.0  // Get Minimum Order Amount
             
+            // Gather selected payment options
+            selectedPaymentOptions = []
+            if switchCash.isOn { selectedPaymentOptions.append("Cash") }
+            if switchBenefit.isOn { selectedPaymentOptions.append("Benefit") }
+            if switchOnlinePayment.isOn { selectedPaymentOptions.append("Online Payment (Debit/Credit Card)") }
+            
             let newShop = Shop(
                 name: tName.text!,
                 crNumber: Int(tCRNumber.text!) ?? 0,
@@ -48,9 +62,10 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
                 block: Int(tBlock.text!) ?? 0,
                 openingTime: openingTime,
                 closingTime: closingTime,
-                minimumOrderAmount: minimumOrderAmount,  // Set the new property
+                minimumOrderAmount: minimumOrderAmount,
                 storeCategories: selectedStoreCategories,
-                storeImage: imgStore.image
+                storeImage: imgStore.image,
+                paymentOptions: selectedPaymentOptions
             )
             
             if let navigationController = navigationController,
@@ -63,7 +78,7 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
                 navigationController.popViewController(animated: true)
             }
         } else {
-            showAlert(title: "Error", message: "Please fill in all the fields with valid data.")
+            showAlert(title: "Error", message: "Please fill in all the fields and select at least one payment option.")
         }
     }
     
@@ -213,7 +228,8 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
                !(tCRNumber.text?.isEmpty ?? true) && Int(tCRNumber.text!) != nil &&
                !(tBuilding.text?.isEmpty ?? true) && Int(tBuilding.text!) != nil &&
                !(tRoad.text?.isEmpty ?? true) && Int(tRoad.text!) != nil &&
-               !(tBlock.text?.isEmpty ?? true) && Int(tBlock.text!) != nil
+               !(tBlock.text?.isEmpty ?? true) && Int(tBlock.text!) != nil &&
+               (switchCash.isOn || switchBenefit.isOn || switchOnlinePayment.isOn) // At least one payment option
     }
     
     func showAlert(title: String, message: String) {

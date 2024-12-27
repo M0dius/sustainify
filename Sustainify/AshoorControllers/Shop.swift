@@ -9,11 +9,14 @@ struct Shop {
     var block: Int
     var openingTime: Date?
     var closingTime: Date?
-    var minimumOrderAmount: Double?  // New field for minimum order amount
+    var minimumOrderAmount: Double?  // Field for minimum order amount
     
     // Store categories array
     var storeCategories: [String] = []
     
     // Store image
     var storeImage: UIImage?
+    
+    // Payment options
+    var paymentOptions: [String] = [] // New field for payment options
 }
