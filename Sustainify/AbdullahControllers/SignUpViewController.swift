@@ -22,7 +22,7 @@ class SignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Settings"
+        self.title = "Sign-Up"
     }
 
     // MARK: - Sign-Up Action

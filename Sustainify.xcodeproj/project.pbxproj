@@ -22,6 +22,9 @@
 		AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */; };
 		AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C4B2D09B00200957DA7 /* Ali.storyboard */; };
 		AC69000F2D09BC5300FB9718 /* Mohamed Ashoor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */; };
+		AC7091902D1EEB410089E7A3 /* ProfAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */; };
+		AC7091922D1EEE760089E7A3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */; };
+		AC7091942D1EF4CE0089E7A3 /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */; };
 		ACB79BA52D1C841800E3FBBB /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BA42D1C841800E3FBBB /* Bader.storyboard */; };
 		ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */; };
 		ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */; };
@@ -53,10 +56,7 @@
 		ACB79BE12D1C8B8B00E3FBBB /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = ACB79BE02D1C8B8B00E3FBBB /* FirebaseDatabase */; };
 		ACB79BE32D1C8B8B00E3FBBB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ACB79BE22D1C8B8B00E3FBBB /* FirebaseFirestore */; };
 		ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */; };
-		ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */; };
 		ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */; };
-		ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */; };
-		ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */; };
 		ACCF18522D1DC2EB00FCD1CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */; };
 		ACCF18542D1DD98500FCD1CE /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF18532D1DD98500FCD1CE /* AboutUsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +98,9 @@
 		AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC360C4B2D09B00200957DA7 /* Ali.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ali.storyboard; sourceTree = "<group>"; };
 		AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed Ashoor.storyboard"; sourceTree = "<group>"; };
+		AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfAddressTableViewController.swift; sourceTree = "<group>"; };
+		AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
 		ACB79BA42D1C841800E3FBBB /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
 		ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewController.swift; sourceTree = "<group>"; };
@@ -123,10 +126,7 @@
 		ACB79BCA2D1C877C00E3FBBB /* StoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 		ACB79BD72D1C8B6600E3FBBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
 		ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsTableViewController.swift; sourceTree = "<group>"; };
-		ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoDetailTableViewController.swift; sourceTree = "<group>"; };
-		ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListDelegate.swift; sourceTree = "<group>"; };
 		ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACCF18532D1DD98500FCD1CE /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,12 +228,13 @@
 		AC360C392D09B00100957DA7 /* AbdullahControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */,
 				ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */,
 				ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */,
 				ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */,
-				ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */,
-				ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */,
 				ACCF18532D1DD98500FCD1CE /* AboutUsViewController.swift */,
+				AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */,
+				AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */,
 			);
 			path = AbdullahControllers;
 			sourceTree = "<group>";
@@ -250,7 +251,6 @@
 		AC360C432D09B00200957DA7 /* AbdullahDelegates */ = {
 			isa = PBXGroup;
 			children = (
-				ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */,
 			);
 			path = AbdullahDelegates;
 			sourceTree = "<group>";
@@ -468,10 +468,12 @@
 				ACB79BBE2D1C85A200E3FBBB /* AddProductController.swift in Sources */,
 				ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */,
 				ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */,
+				AC7091902D1EEB410089E7A3 /* ProfAddressTableViewController.swift in Sources */,
+				AC7091922D1EEE760089E7A3 /* ProfileViewController.swift in Sources */,
+				AC7091942D1EF4CE0089E7A3 /* PreferencesTableViewController.swift in Sources */,
 				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
 				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
 				ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */,
-				ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */,
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
 				ACB79BCF2D1C877C00E3FBBB /* ProductsViewController.swift in Sources */,
 				ACB79BB12D1C843100E3FBBB /* AddReviewViewController.swift in Sources */,
@@ -492,8 +494,6 @@
 				ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */,
 				ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */,
 				ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */,
-				ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */,
-				ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */,
 				ACCF18542D1DD98500FCD1CE /* AboutUsViewController.swift in Sources */,
 				ACB79BC02D1C85A200E3FBBB /* User.swift in Sources */,
 			);

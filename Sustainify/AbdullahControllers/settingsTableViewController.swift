@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class settingsTableViewController : UITableViewController {
 
@@ -16,7 +17,8 @@ class settingsTableViewController : UITableViewController {
         "Reviews",
         "Booked Items",
         "Vouchers",
-        "About Us"
+        "About Us",
+        "Sign Out"
     ]
     
     override func viewDidLoad() {
@@ -64,6 +66,8 @@ class settingsTableViewController : UITableViewController {
             navigateToVouchers()
         case "About Us":
             navigateToAboutUs()
+        case "Sign Out":
+            signOut()
         default:
             break
         }
@@ -99,6 +103,15 @@ class settingsTableViewController : UITableViewController {
     func navigateToAboutUs() {
         // Perform segue to About Us screen
         performSegue(withIdentifier: "AboutUsSegue", sender: self)
+    }
+    
+    func signOut(){
+        do {
+            try FirebaseAuth.Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch {
+            print("Error signing out")
+        }
     }
 }
 
