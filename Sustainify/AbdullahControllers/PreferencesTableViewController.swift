@@ -1,3 +1,10 @@
+//
+//  PreferencesTableViewController.swift
+//  Sustainify
+//
+//  Created by Guest User on 27/12/2024.
+
+
 import UIKit
 
 class PreferencesTableViewController: UITableViewController {
@@ -22,11 +29,12 @@ class PreferencesTableViewController: UITableViewController {
         // Optionally, preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
 
-        // Initialize the user interface style to match the saved setting
+        // Initialize the user interface style to match the saved setting or default to light mode
         let lightDarkModeEnabled = UserDefaults.standard.bool(forKey: "lightDarkModeEnabled")
         if lightDarkModeEnabled {
             UIView.appearance().overrideUserInterfaceStyle = .dark
         } else {
+            // Default to light mode
             UIView.appearance().overrideUserInterfaceStyle = .light
         }
     }
@@ -110,6 +118,7 @@ class PreferencesTableViewController: UITableViewController {
 
     // MARK: - Helper Methods
 
+    // Toggle between Light and Dark mode
     @objc func toggleAppearanceMode(_ sender: UISwitch) {
         // Show an alert to confirm the switch
         let alertController = UIAlertController(title: "Are you sure?",
@@ -134,12 +143,15 @@ class PreferencesTableViewController: UITableViewController {
                 // Switch to Light Mode
                 UIView.appearance().overrideUserInterfaceStyle = .light
             }
-            
-            // Update the interface immediately after changing appearance
+
+            // Force the view to refresh immediately by setting needsLayout on the root view
             if let window = self.view.window {
                 window.rootViewController?.view.setNeedsLayout()
-                window.rootViewController?.view.layoutIfNeeded() // Force immediate layout update
+                window.rootViewController?.view.layoutIfNeeded()  // Force layout update
             }
+            
+            // Navigate back to the previous view controller
+            self.navigationController?.popViewController(animated: true)
         }
         
         // Add actions to the alert controller
@@ -149,7 +161,6 @@ class PreferencesTableViewController: UITableViewController {
         // Present the alert
         present(alertController, animated: true, completion: nil)
     }
-
 
     // Handle the notification toggle switch
     @objc func toggleNotifications(_ sender: UISwitch) {

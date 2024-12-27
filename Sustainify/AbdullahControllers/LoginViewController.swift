@@ -80,7 +80,50 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         isSeguePerformed = false // Allow segue to be triggered again
     }
-
+    
+    
+    @IBAction func btnForgotPassword(_ sender: UIButton) {
+        // Show an alert to enter the email address
+        let alert = UIAlertController(title: "Forgot Password", message: "Enter your email address to receive a password reset link.", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.placeholder = "Email Address"
+            textField.keyboardType = .emailAddress
+        }
+        
+        // Add "Send" action to send the reset password request
+        alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { _ in
+            if let email = alert.textFields?.first?.text, !email.isEmpty {
+                // Call Firebase Authentication to send the password reset email
+                FirebaseAuth.Auth.auth().sendPasswordReset(withEmail: email) { error in
+                    if let error = error {
+                        // Display error message if the password reset fails
+                        let errorAlert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                        errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        self.present(errorAlert, animated: true)
+                    } else {
+                        // Notify the user that the reset email has been sent
+                        let successAlert = UIAlertController(title: "Success", message: "A password reset link has been sent to your email.", preferredStyle: .alert)
+                        successAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        self.present(successAlert, animated: true)
+                    }
+                }
+            } else {
+                // Show alert if email is empty
+                let alert = UIAlertController(title: "Missing Email", message: "Please enter a valid email address.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(alert, animated: true)
+            }
+        }))
+        
+        // Add "Cancel" action to close the alert
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // Show the alert
+        self.present(alert, animated: true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 
