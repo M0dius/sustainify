@@ -1,3 +1,4 @@
+// StoreDetailsViewController.swift
 import UIKit
 
 class StoreDetailsViewController: UIViewController,
@@ -14,10 +15,15 @@ class StoreDetailsViewController: UIViewController,
     private let searchBar = UISearchBar()
     private var dropdownTableView: UITableView!
     private var isDropdownVisible = false
-    
-    // We'll show all store items in the dropdown (no filtering).
-    private var dropdownItems: [String] = []
-    
+    private var isFilterDropdownVisible = false
+
+    // Data for search and filter dropdown
+    private var dropdownItems: [StoreItem] = []
+    private var filteredDropdownItems: [StoreItem] = []
+    private let filterOptions = ["A-Z", "Z-A", "Price: Low-High", "Price: High-Low"]
+
+    private var filterDropdownTableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +33,7 @@ class StoreDetailsViewController: UIViewController,
         
         setupSearchBar()
         setupMainTableView()
-        setupDropdown()
+        setupDropdowns()
     }
     
     // MARK: - Search Bar
@@ -36,6 +42,17 @@ class StoreDetailsViewController: UIViewController,
         searchBar.placeholder = "Search items..."
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
+        
+        let filterButton = UIBarButtonItem(title: "Filter",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(toggleFilterDropdown))
+        navigationItem.rightBarButtonItem = filterButton
+    }
+    
+    @objc private func toggleFilterDropdown() {
+        isFilterDropdownVisible.toggle()
+        filterDropdownTableView.isHidden = !isFilterDropdownVisible
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -45,8 +62,9 @@ class StoreDetailsViewController: UIViewController,
             dropdownItems = []
             isDropdownVisible = false
         } else {
-            // Show all store items
-            dropdownItems = store.items
+            dropdownItems = store.allStoreItems.filter {
+                $0.name.lowercased().contains(searchText.lowercased())
+            }
             isDropdownVisible = !dropdownItems.isEmpty
         }
         
@@ -60,29 +78,27 @@ class StoreDetailsViewController: UIViewController,
         dropdownTableView.isHidden = true
         searchBar.resignFirstResponder()
     }
-    
+
     // MARK: - Main TableView
     func setupMainTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
-        
-        // Row 0: store info
+
         tableView.register(StoreInfoTableViewCell.self,
                            forCellReuseIdentifier: "storeInfoCell")
         
-        // Row 1: best-selling
         tableView.register(BestSellingItemsTableViewCell.self,
                            forCellReuseIdentifier: "bestSellingCell")
         
-        // Row 2: all items
         tableView.register(AllItemsTableViewCell.self,
                            forCellReuseIdentifier: "allItemsCell")
     }
-    
-    // MARK: - Dropdown
-    func setupDropdown() {
+
+    // MARK: - Dropdown Setup
+    func setupDropdowns() {
+        // Search Dropdown
         dropdownTableView = UITableView()
         dropdownTableView.dataSource = self
         dropdownTableView.delegate = self
@@ -93,106 +109,109 @@ class StoreDetailsViewController: UIViewController,
         dropdownTableView.layer.borderWidth = 1
         dropdownTableView.layer.borderColor = UIColor.lightGray.cgColor
         dropdownTableView.layer.cornerRadius = 5
-        dropdownTableView.rowHeight = 60
-        
         view.addSubview(dropdownTableView)
-        
+
         NSLayoutConstraint.activate([
             dropdownTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             dropdownTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             dropdownTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             dropdownTableView.heightAnchor.constraint(equalToConstant: 200)
         ])
+
+        // Filter Dropdown
+        filterDropdownTableView = UITableView()
+        filterDropdownTableView.dataSource = self
+        filterDropdownTableView.delegate = self
+        filterDropdownTableView.register(UITableViewCell.self, forCellReuseIdentifier: "filterCell")
+        filterDropdownTableView.translatesAutoresizingMaskIntoConstraints = false
+        filterDropdownTableView.isHidden = true
+        filterDropdownTableView.layer.borderWidth = 1
+        filterDropdownTableView.layer.borderColor = UIColor.lightGray.cgColor
+        filterDropdownTableView.layer.cornerRadius = 5
+        view.addSubview(filterDropdownTableView)
+
+        NSLayoutConstraint.activate([
+            filterDropdownTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            filterDropdownTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            filterDropdownTableView.widthAnchor.constraint(equalToConstant: 150),
+            filterDropdownTableView.heightAnchor.constraint(equalToConstant: 200)
+        ])
     }
     
     // MARK: - UITableView DataSource
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == dropdownTableView {
             return dropdownItems.count
+        } else if tableView == filterDropdownTableView {
+            return filterOptions.count
         } else {
-            // Now 3 rows:
-            // row 0 -> store info
-            // row 1 -> best selling
-            // row 2 -> all items
-            return 3
+            return 3 // Store Info, Best Selling, All Items
         }
     }
-    
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == dropdownTableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "dropdownCell",
-                                                     for: indexPath) as! DropdownItemCell
-            let itemName = dropdownItems[indexPath.row]
-            let placeholderImage = UIImage(named: "PlaceholderImage")
-            let placeholderPrice = "$9.99"
-            
-            cell.configure(itemImage: placeholderImage,
-                           itemName: itemName,
-                           itemPrice: placeholderPrice)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "dropdownCell", for: indexPath) as! DropdownItemCell
+            let item = dropdownItems[indexPath.row]
+            cell.configure(itemImage: UIImage(named: item.imageName), itemName: item.name, itemPrice: item.price)
             return cell
-            
+        } else if tableView == filterDropdownTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "filterCell", for: indexPath)
+            cell.textLabel?.text = filterOptions[indexPath.row]
+            return cell
         } else {
             switch indexPath.row {
             case 0:
-                // Store info
-                let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "storeInfoCell",
-                    for: indexPath
-                ) as! StoreInfoTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "storeInfoCell", for: indexPath) as! StoreInfoTableViewCell
                 if let store = store {
                     cell.configure(with: store)
                 }
                 return cell
-                
             case 1:
-                // Best Selling
-                let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "bestSellingCell",
-                    for: indexPath
-                ) as! BestSellingItemsTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "bestSellingCell", for: indexPath) as! BestSellingItemsTableViewCell
                 if let store = store {
                     cell.configure(with: store.bestSellingItems)
                 }
                 return cell
-                
             case 2:
-                // All Items
-                let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "allItemsCell",
-                    for: indexPath
-                ) as! AllItemsTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "allItemsCell", for: indexPath) as! AllItemsTableViewCell
                 if let store = store {
                     cell.configure(with: store.allStoreItems)
                 }
                 return cell
-                
             default:
                 return UITableViewCell()
             }
         }
     }
-    
-    // MARK: - UITableView Delegate
-    func tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath) {
-        if tableView == dropdownTableView {
-            let selectedProduct = dropdownItems[indexPath.row]
-            // Hide dropdown
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == filterDropdownTableView {
+            let selectedFilter = filterOptions[indexPath.row]
+            applyFilter(selectedFilter)
+            isFilterDropdownVisible = false
+            filterDropdownTableView.isHidden = true
+        } else if tableView == dropdownTableView {
+            let selectedItem = dropdownItems[indexPath.row]
+            print("Selected Item: \(selectedItem.name)")
             isDropdownVisible = false
             dropdownTableView.isHidden = true
-            searchBar.resignFirstResponder()
-            
-            // Navigate to another storyboard
-            let otherStoryboard = UIStoryboard(name: "Bader", bundle: nil)
-            let someVC = otherStoryboard.instantiateViewController(withIdentifier: "SomeViewControllerID")
-            // (someVC as? SomeViewControllerClass)?.selectedItemName = selectedProduct
-            navigationController?.pushViewController(someVC, animated: true)
-            
-        } else {
-            tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+
+    private func applyFilter(_ filter: String) {
+        switch filter {
+        case "A-Z":
+            dropdownItems.sort { $0.name < $1.name }
+        case "Z-A":
+            dropdownItems.sort { $0.name > $1.name }
+        case "Price: Low-High":
+            dropdownItems.sort { $0.price < $1.price }
+        case "Price: High-Low":
+            dropdownItems.sort { $0.price > $1.price }
+        default:
+            break
+        }
+        dropdownTableView.reloadData()
     }
 }
