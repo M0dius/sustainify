@@ -1,10 +1,3 @@
-//
-//  PreferencesTableViewController.swift
-//  Sustainify
-//
-//  Created by Guest User on 27/12/2024.
-
-
 import UIKit
 
 class PreferencesTableViewController: UITableViewController {
@@ -28,6 +21,14 @@ class PreferencesTableViewController: UITableViewController {
         
         // Optionally, preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
+
+        // Initialize the user interface style to match the saved setting
+        let lightDarkModeEnabled = UserDefaults.standard.bool(forKey: "lightDarkModeEnabled")
+        if lightDarkModeEnabled {
+            UIView.appearance().overrideUserInterfaceStyle = .dark
+        } else {
+            UIView.appearance().overrideUserInterfaceStyle = .light
+        }
     }
 
     // MARK: - Table view data source
@@ -50,7 +51,8 @@ class PreferencesTableViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "LightDarkCell", for: indexPath)
             // Add a switch for Light/Dark Mode
             let switchControl = UISwitch()
-            switchControl.isOn = UserDefaults.standard.bool(forKey: "lightDarkModeEnabled")
+            let lightDarkModeEnabled = UserDefaults.standard.bool(forKey: "lightDarkModeEnabled")
+            switchControl.isOn = lightDarkModeEnabled
             switchControl.addTarget(self, action: #selector(toggleAppearanceMode(_:)), for: .valueChanged)
             cell.accessoryView = switchControl
         case "Notifications":
@@ -108,21 +110,46 @@ class PreferencesTableViewController: UITableViewController {
 
     // MARK: - Helper Methods
 
-    // Toggle between Light and Dark mode
     @objc func toggleAppearanceMode(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "lightDarkModeEnabled")
-        let currentStyle = traitCollection.userInterfaceStyle
-        if currentStyle == .dark {
-            // Switch to Light Mode
-            UIView.appearance().overrideUserInterfaceStyle = .light
-        } else {
-            // Switch to Dark Mode
-            UIView.appearance().overrideUserInterfaceStyle = .dark
+        // Show an alert to confirm the switch
+        let alertController = UIAlertController(title: "Are you sure?",
+                                                message: "Do you want to switch the appearance mode?",
+                                                preferredStyle: .alert)
+        
+        // Add "Cancel" action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            // Reset the switch position if the user cancels
+            sender.setOn(!sender.isOn, animated: true)
         }
         
-        // Update the interface immediately after changing appearance
-        self.view.window?.rootViewController?.view.setNeedsLayout()
+        // Add "OK" action to confirm the change
+        let confirmAction = UIAlertAction(title: "OK", style: .default) { _ in
+            // Save the user's preference
+            UserDefaults.standard.set(sender.isOn, forKey: "lightDarkModeEnabled")
+            
+            if sender.isOn {
+                // Switch to Dark Mode
+                UIView.appearance().overrideUserInterfaceStyle = .dark
+            } else {
+                // Switch to Light Mode
+                UIView.appearance().overrideUserInterfaceStyle = .light
+            }
+            
+            // Update the interface immediately after changing appearance
+            if let window = self.view.window {
+                window.rootViewController?.view.setNeedsLayout()
+                window.rootViewController?.view.layoutIfNeeded() // Force immediate layout update
+            }
+        }
+        
+        // Add actions to the alert controller
+        alertController.addAction(cancelAction)
+        alertController.addAction(confirmAction)
+        
+        // Present the alert
+        present(alertController, animated: true, completion: nil)
     }
+
 
     // Handle the notification toggle switch
     @objc func toggleNotifications(_ sender: UISwitch) {
