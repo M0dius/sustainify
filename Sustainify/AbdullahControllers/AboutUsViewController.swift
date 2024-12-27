@@ -22,7 +22,7 @@ class AboutUsViewController: UITableViewController {
         super.viewDidLoad()
         
         // Set the title of the screen
-        self.title = "About Us"
+        self.title = "Contact"
     }
 
     // MARK: - Table View Data Source

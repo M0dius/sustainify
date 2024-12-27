@@ -11,9 +11,11 @@
 		AC00040F2CF71F0F009EDDFD /* SustainifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */; };
 		AC0004112CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */; };
 		AC02ED032D1F1414002A6F27 /* AddEditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED022D1F1414002A6F27 /* AddEditAddressViewController.swift */; };
+		AC02ED052D1F29B4002A6F27 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED042D1F29B4002A6F27 /* FAQ.swift */; };
+		AC02ED072D1F2C41002A6F27 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */; };
+		AC02ED0B2D1F3096002A6F27 /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */; };
 		AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C382D09B00100957DA7 /* ViewController.swift */; };
 		AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3E2D09B00100957DA7 /* PIT_structs.swift */; };
-		AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */; };
 		AC360C532D09B00200957DA7 /* Mohamed AlAlawi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C402D09B00100957DA7 /* Mohamed AlAlawi.storyboard */; };
 		AC360C542D09B00200957DA7 /* Abdullah.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C412D09B00200957DA7 /* Abdullah.storyboard */; };
 		AC360C552D09B00200957DA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C422D09B00200957DA7 /* LaunchScreen.storyboard */; };
@@ -88,9 +90,11 @@
 		AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITests.swift; sourceTree = "<group>"; };
 		AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AC02ED022D1F1414002A6F27 /* AddEditAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditAddressViewController.swift; sourceTree = "<group>"; };
+		AC02ED042D1F29B4002A6F27 /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
+		AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FAQCell.swift; path = ../AbdullahControllers/FAQCell.swift; sourceTree = "<group>"; };
 		AC360C382D09B00100957DA7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AC360C3E2D09B00100957DA7 /* PIT_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIT_structs.swift; sourceTree = "<group>"; };
-		AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo_structs.swift; sourceTree = "<group>"; };
 		AC360C402D09B00100957DA7 /* Mohamed AlAlawi.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed AlAlawi.storyboard"; sourceTree = "<group>"; };
 		AC360C412D09B00200957DA7 /* Abdullah.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Abdullah.storyboard; sourceTree = "<group>"; };
 		AC360C422D09B00200957DA7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 		AC360C392D09B00100957DA7 /* AbdullahControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */,
 				AC7091972D1F13C00089E7A3 /* AddressListViewController.swift */,
 				AC02ED022D1F1414002A6F27 /* AddEditAddressViewController.swift */,
 				AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */,
@@ -248,8 +253,9 @@
 		AC360C3D2D09B00100957DA7 /* structs */ = {
 			isa = PBXGroup;
 			children = (
+				AC02ED042D1F29B4002A6F27 /* FAQ.swift */,
+				AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */,
 				AC360C3E2D09B00100957DA7 /* PIT_structs.swift */,
-				AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */,
 			);
 			path = structs;
 			sourceTree = "<group>";
@@ -477,6 +483,7 @@
 				ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */,
 				AC7091902D1EEB410089E7A3 /* ProfAddressTableViewController.swift in Sources */,
 				AC7091922D1EEE760089E7A3 /* ProfileViewController.swift in Sources */,
+				AC02ED052D1F29B4002A6F27 /* FAQ.swift in Sources */,
 				AC7091942D1EF4CE0089E7A3 /* PreferencesTableViewController.swift in Sources */,
 				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
 				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
@@ -485,7 +492,6 @@
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
 				ACB79BCF2D1C877C00E3FBBB /* ProductsViewController.swift in Sources */,
 				ACB79BB12D1C843100E3FBBB /* AddReviewViewController.swift in Sources */,
-				AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */,
 				ACB79BD22D1C877C00E3FBBB /* StoreTableViewCell.swift in Sources */,
 				ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */,
 				ACB79BAE2D1C843100E3FBBB /* ReviewTableViewCell.swift in Sources */,
@@ -496,12 +502,14 @@
 				AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */,
 				AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */,
 				ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */,
+				AC02ED0B2D1F3096002A6F27 /* FAQCell.swift in Sources */,
 				ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */,
 				ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */,
 				ACB79BD02D1C877C00E3FBBB /* StoreDetailsViewController.swift in Sources */,
 				ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */,
 				ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */,
 				ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */,
+				AC02ED072D1F2C41002A6F27 /* FAQViewController.swift in Sources */,
 				ACCF18542D1DD98500FCD1CE /* AboutUsViewController.swift in Sources */,
 				ACB79BC02D1C85A200E3FBBB /* User.swift in Sources */,
 			);

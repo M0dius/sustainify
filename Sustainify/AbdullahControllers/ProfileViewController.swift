@@ -20,6 +20,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var btnSaveChanges: UIButton!
     @IBOutlet weak var btnDeleteAccount: UIButton!
     
+    var originalUsername: String?
+    var originalEmail: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +40,7 @@ class ProfileViewController: UIViewController {
         
         // Disable text fields for the initial state
         txtUsername.isEnabled = false
-        txtEmail.isEnabled = false
+        txtEmail.isEnabled = false // Email stays disabled
         
         txtEmail.isSecureTextEntry = false // Make email visible
         
@@ -47,9 +50,8 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func btnEditAccount(_ sender: UIButton) {
-        // Enable text fields for editing
+        // Enable only the username text field for editing
         txtUsername.isEnabled = true
-        txtEmail.isEnabled = true
         
         // Disable the Edit button and show Save Changes and Delete Account buttons
         sender.isEnabled = false // Disable Edit button
@@ -58,6 +60,17 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func btnSaveChanges(_ sender: UIButton) {
+        // Check if the username or email has changed before showing an alert
+        let updatedUsername = txtUsername.text ?? ""
+        let updatedEmail = txtEmail.text ?? ""
+        
+        // If no changes are made, reset UI to initial state and return
+        if updatedUsername == originalUsername && updatedEmail == originalEmail {
+            // No changes, so reset UI
+            resetUIToInitialState()
+            return
+        }
+        
         // Show confirmation alert before saving changes
         let alert = UIAlertController(title: "Confirm Changes", message: "Are you sure you want to save the changes?", preferredStyle: .alert)
         
@@ -67,18 +80,26 @@ class ProfileViewController: UIViewController {
             // Save the user data
             self.saveUserData()
             
-            // Disable text fields after saving
-            self.txtUsername.isEnabled = false
-            self.txtEmail.isEnabled = false
-            
-            // Hide the Save Changes button and enable the Edit button
-            self.btnSaveChanges.isHidden = true
-            self.btnDeleteAccount.isHidden = true // Hide the Delete Account button again
-            self.btnEditAccount.isEnabled = true // Enable Edit button again
+            // Reset UI after saving
+            self.resetUIToInitialState()
         }))
         
         self.present(alert, animated: true, completion: nil)
     }
+
+    func resetUIToInitialState() {
+        // Disable text fields after saving
+        txtUsername.isEnabled = false
+        txtEmail.isEnabled = false // Keep email disabled
+        
+        // Hide the Save Changes button and Delete Account button
+        btnSaveChanges.isHidden = true
+        btnDeleteAccount.isHidden = true
+        
+        // Enable the Edit button
+        btnEditAccount.isEnabled = true
+    }
+
     
     @IBAction func btnDeleteAccount(_ sender: UIButton) {
         // Show confirmation alert before deleting account
@@ -111,68 +132,84 @@ class ProfileViewController: UIViewController {
                 // Populate the text fields with the current user data
                 let data = document.data()
                 self?.txtUsername.text = data?["username"] as? String
+                // Save original values for comparison
+                self?.originalUsername = self?.txtUsername.text
+                self?.originalEmail = self?.txtEmail.text
             } else {
                 print("User document does not exist")
             }
         }
     }
 
-    // Save the user data to Firestore and Firebase Authentication
     func saveUserData() {
         guard let user = currentUser else { return }
         
         let updatedUsername = txtUsername.text ?? ""
         let updatedEmail = txtEmail.text ?? ""
         
-        // 1. Update the email in Firebase Authentication (deprecation warning)
-        if updatedEmail != user.email {
-            updateEmail(updatedEmail) // Custom function to handle email update
-        }
+        // 1. Update the email in Firebase Authentication (if changed)
+        /*if updatedEmail != user.email {
+            updateEmail(updatedEmail) // Call the function to update email in Firebase Authentication
+        }*/
         
-        // 2. Update the username in Firestore
-        db.collection("users").document(user.uid).updateData([
-            "username": updatedUsername
-        ]) { error in
-            if let error = error {
-                print("Error updating username: \(error.localizedDescription)")
-            } else {
-                print("Username updated successfully in Firestore")
+        // 2. Update the username in Firestore (if changed)
+        if updatedUsername != originalUsername {
+            db.collection("users").document(user.uid).updateData([
+                "username": updatedUsername
+            ]) { error in
+                if let error = error {
+                    print("Error updating username: \(error.localizedDescription)")
+                } else {
+                    print("Username updated successfully in Firestore")
+                }
             }
         }
     }
-    
-    func updateEmail(_ updatedEmail: String) {
+
+    /*func updateEmail(_ updatedEmail: String) {
         guard let user = currentUser else { return }
         
-        user.sendEmailVerification { error in
+        // Update the email in Firebase Authentication (requires re-authentication if email was recently changed)
+        user.updateEmail(to: updatedEmail) { error in
             if let error = error {
-                print("Error sending verification email: \(error.localizedDescription)")
+                print("Error updating email in Firebase Authentication: \(error.localizedDescription)")
                 return
             }
-            print("Verification email sent successfully to \(updatedEmail). Please verify the email before updating.")
+            
+            // After updating email, send a verification email
+            user.sendEmailVerification { error in
+                if let error = error {
+                    print("Error sending verification email: \(error.localizedDescription)")
+                    return
+                }
+                print("Verification email sent successfully to \(updatedEmail). Please verify the email before updating.")
+                
+                // Optionally, you can show a message to the user indicating that they need to verify their email
+                let alert = UIAlertController(title: "Email Verification", message: "A verification email has been sent to \(updatedEmail). Please verify your email before the changes take effect.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
-        
-        // Actual email update should be done after the user verifies the email.
-    }
+    }*/
 
     func deleteUserAccount() {
         guard let user = currentUser else { return }
         
-        // Delete the user document from Firestore
-        db.collection("users").document(user.uid).delete { error in
-            if let error = error {
-                print("Error deleting user document: \(error.localizedDescription)")
-            } else {
-                print("User document deleted successfully from Firestore")
-            }
-        }
-        
-        // Delete the user account from Firebase Authentication
+        // Delete the user account from Firebase Authentication first
         user.delete { [weak self] error in
             if let error = error {
-                print("Error deleting user account: \(error.localizedDescription)")
-            } else {
-                print("User account deleted successfully")
+                print("Error deleting user account from Firebase Authentication: \(error.localizedDescription)")
+                return
+            }
+            
+            // After the Firebase Authentication account is deleted, delete the user document from Firestore
+            self?.db.collection("users").document(user.uid).delete { error in
+                if let error = error {
+                    print("Error deleting user document from Firestore: \(error.localizedDescription)")
+                } else {
+                    print("User document deleted successfully from Firestore")
+                }
+                
                 // Log out the user after account deletion
                 do {
                     try Auth.auth().signOut()

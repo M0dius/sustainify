@@ -18,6 +18,7 @@ class settingsTableViewController : UITableViewController {
         "Booked Items",
         "Vouchers",
         "About Us",
+        "Contact",
         "Sign Out"
     ]
     
@@ -66,6 +67,8 @@ class settingsTableViewController : UITableViewController {
             navigateToVouchers()
         case "About Us":
             navigateToAboutUs()
+        case "Contact":  // Handle Contact option
+            navigateToContact()
         case "Sign Out":
             signOut()
         default:
@@ -105,6 +108,11 @@ class settingsTableViewController : UITableViewController {
         performSegue(withIdentifier: "AboutUsSegue", sender: self)
     }
     
+    func navigateToContact() {
+        // Perform segue to Contact screen
+        performSegue(withIdentifier: "ContactSegue", sender: self)
+    }
+    
     func signOut(){
         do {
             try FirebaseAuth.Auth.auth().signOut()
@@ -114,4 +122,3 @@ class settingsTableViewController : UITableViewController {
         }
     }
 }
-
