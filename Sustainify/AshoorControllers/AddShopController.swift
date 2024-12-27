@@ -2,7 +2,6 @@ import UIKit
 
 class AddShopController: UITableViewController {
 
-    // Existing Outlets
     @IBOutlet weak var tName: UITextField!
     @IBOutlet weak var tCRNumber: UITextField!
     @IBOutlet weak var tBuilding: UITextField!
@@ -10,13 +9,12 @@ class AddShopController: UITableViewController {
     @IBOutlet weak var tBlock: UITextField!
     @IBOutlet weak var addShopButton: UIButton!
     
-    // New Outlets
     @IBOutlet weak var openingTimeValueLabel: UILabel!
     @IBOutlet weak var closingTimeValueLabel: UILabel!
 
     var newShop: Shop?
-    var openingTime: Date? // New
-    var closingTime: Date? // New
+    var openingTime: Date?
+    var closingTime: Date?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,33 +44,48 @@ class AddShopController: UITableViewController {
         }
     }
 
-    @IBAction func selectTime(_ sender: UITapGestureRecognizer) {
-        // Identify which cell was tapped
-        let cellTag = sender.view?.tag // Retrieve the tag value
+    func presentDatePicker(for tag: Int, sourceView: UIView) {
         let alert = UIAlertController(title: "Select Time", message: nil, preferredStyle: .actionSheet)
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .time
         datePicker.preferredDatePickerStyle = .wheels
+        
         alert.view.addSubview(datePicker)
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        datePicker.frame = CGRect(x: 10, y: 10, width: alert.view.bounds.width - 40, height: 150)
-        
+        datePicker.leadingAnchor.constraint(equalTo: alert.view.leadingAnchor).isActive = true
+        datePicker.trailingAnchor.constraint(equalTo: alert.view.trailingAnchor).isActive = true
+        datePicker.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 20).isActive = true
+        datePicker.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -110).isActive = true
+
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
             let formatter = DateFormatter()
             formatter.timeStyle = .short
-            if cellTag == 1 { // Opening Time Cell
+            if tag == 1 { // Opening Time Cell
                 self.openingTime = datePicker.date
                 self.openingTimeValueLabel.text = formatter.string(from: datePicker.date)
-            } else if cellTag == 2 { // Closing Time Cell
+            } else if tag == 2 { // Closing Time Cell
                 self.closingTime = datePicker.date
                 self.closingTimeValueLabel.text = formatter.string(from: datePicker.date)
             }
         }))
         
+        // iPad-specific code
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = sourceView
+            popoverController.sourceRect = sourceView.bounds
+            popoverController.permittedArrowDirections = [.up, .down]
+        }
+        
         present(alert, animated: true, completion: nil)
     }
 
+    @IBAction func selectTime(_ sender: UITapGestureRecognizer) {
+        if let cellTag = sender.view?.tag {
+            presentDatePicker(for: cellTag, sourceView: sender.view!)
+        }
+    }
 
     func isFormValid() -> Bool {
         return !(tName.text?.isEmpty ?? true) &&
