@@ -10,4 +10,5 @@ struct Product {
     var categories: [String]
     var ecoTags: [EcoTagModel]
     var image: UIImage?  // New property for the product image
+    var stock: Int       // New property for stock management
 }

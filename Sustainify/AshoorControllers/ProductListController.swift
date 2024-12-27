@@ -16,9 +16,7 @@ class ProductListController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
         let product = products[indexPath.row]
         cell.textLabel?.text = "\(product.name) - BD\(String(format: "%.2f", product.price))"
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)  // Custom font size and weight
-        cell.detailTextLabel?.text = product.company
-        // Set the accessory type to disclosure indicator
+        cell.detailTextLabel?.text = "Company: \(product.company) | Stock: \(product.stock)"
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -39,6 +37,24 @@ class ProductListController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let addStockAction = UIContextualAction(style: .normal, title: "Add Stock") { (_, _, completionHandler) in
+            self.products[indexPath.row].stock += 1
+            tableView.reloadRows(at: [indexPath], with: .none)
+            completionHandler(true)
+        }
+
+        let removeStockAction = UIContextualAction(style: .destructive, title: "Remove Stock") { (_, _, completionHandler) in
+            if self.products[indexPath.row].stock > 0 {
+                self.products[indexPath.row].stock -= 1
+                tableView.reloadRows(at: [indexPath], with: .none)
+            }
+            completionHandler(true)
+        }
+
+        return UISwipeActionsConfiguration(actions: [addStockAction, removeStockAction])
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -47,11 +63,9 @@ class ProductListController: UITableViewController {
         if let sourceVC = segue.source as? AddProductController, let newProduct = sourceVC.newProduct {
             products.append(newProduct)
             tableView.reloadData()
-            print("Product Added: The product has been added successfully.")
         } else if let sourceVC = segue.source as? EditProductController, let updatedProduct = sourceVC.updatedProduct, let index = sourceVC.productIndex {
             products[index] = updatedProduct
             tableView.reloadData()
-            print("Product Updated: The product details have been updated successfully.")
         }
     }
 

@@ -14,6 +14,7 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var tPrice: UITextField!
     @IBOutlet weak var tDescription: UITextField!
     @IBOutlet weak var tEcoScore: UITextField!
+    @IBOutlet weak var tStock: UITextField! // New outlet for stock
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var saveButton: UIButton!
@@ -24,7 +25,7 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var switchRecycledMaterial: UISwitch!
     @IBOutlet weak var textFieldRecycledMaterial: UITextField!
     @IBOutlet weak var imgphoto: UIImageView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,6 +35,7 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
             tPrice.text = String(product.price)
             tDescription.text = product.description
             tEcoScore.text = String(product.ecoScore)
+            tStock.text = String(product.stock) // Load the stock value
             imgphoto.image = product.image
             selectedCategories = product.categories
             ecoTags = product.ecoTags
@@ -56,7 +58,7 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
 
         setupCategorySelection()
     }
-    
+
     @IBAction func btnEditPhoto(_ sender: Any) {
         showPhotoAlert(sender: sender)
     }
@@ -67,7 +69,7 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
             let button = UIButton(type: .system)
             button.setTitle(category, for: .normal)
             button.addTarget(self, action: #selector(categoryButtonTapped(_:)), for: .touchUpInside)
-            
+
             // Customize the button appearance
             if selectedCategories.contains(category) {
                 button.backgroundColor = .systemGreen
@@ -79,31 +81,31 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
                 button.setTitleColor(.systemGreen, for: .normal)
                 button.backgroundColor = .clear
             }
-            
+
             button.layer.cornerRadius = 5
             button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
             button.widthAnchor.constraint(equalToConstant: 120).isActive = true
             stackView.addArrangedSubview(button)
         }
-        
+
         DispatchQueue.main.async {
             self.scrollView.contentSize = CGSize(width: self.stackView.frame.width, height: self.stackView.frame.height)
         }
         scrollView.isScrollEnabled = true
     }
-    
-    func showPhotoAlert(sender: Any){
+
+    func showPhotoAlert(sender: Any) {
         let alert = UIAlertController(title: "Take Photo From: ", message: nil, preferredStyle: .actionSheet)
-        
-        alert.addAction (UIAlertAction(title: "Camera", style: .default, handler: { action in
+
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
             self.getPhoto(type: .camera)
         }))
-        
-        alert.addAction (UIAlertAction(title: "Photo Library", style: .default, handler: { action in
+
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { action in
             self.getPhoto(type: .photoLibrary)
         }))
-        
-        alert.addAction (UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         // For iPad: Provide location information for the popover
         if let popoverController = alert.popoverPresentationController {
@@ -111,18 +113,18 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
             popoverController.sourceRect = (sender as! UIView).bounds
             popoverController.permittedArrowDirections = .any
         }
-        
+
         present(alert, animated: true, completion: nil)
     }
-    
-    func getPhoto(type : UIImagePickerController.SourceType){
+
+    func getPhoto(type: UIImagePickerController.SourceType) {
         let picker = UIImagePickerController()
         picker.sourceType = type
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true, completion: nil)
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         dismiss(animated: true, completion: nil)
         guard let image = info[.editedImage] as? UIImage else {
@@ -131,7 +133,7 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
         }
         imgphoto.image = image
     }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -173,9 +175,10 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
                 ecoScore: Int(tEcoScore.text!) ?? 0,
                 categories: selectedCategories,
                 ecoTags: ecoTags,
-                image: imgphoto.image  // Include the updated image
+                image: imgphoto.image, // Include the updated image
+                stock: Int(tStock.text!) ?? 0 // Include stock update
             )
-            
+
             if let navigationController = navigationController,
                let productListController = navigationController.viewControllers.first as? ProductListController,
                let productIndex = productIndex {
@@ -196,7 +199,9 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
                Double(tPrice.text!) != nil &&
                !(tDescription.text?.isEmpty ?? true) &&
                !(tEcoScore.text?.isEmpty ?? true) &&
-               Int(tEcoScore.text!) != nil
+               Int(tEcoScore.text!) != nil &&
+               !(tStock.text?.isEmpty ?? true) && // Validate stock
+               Int(tStock.text!) != nil
     }
 
     func showAlert(title: String, message: String) {

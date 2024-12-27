@@ -13,6 +13,7 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
     @IBOutlet weak var tPrice: UITextField!
     @IBOutlet weak var tDescription: UITextField!
     @IBOutlet weak var tEcoScore: UITextField!
+    @IBOutlet weak var tStock: UITextField! // New outlet for stock
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var addProductButton: UIButton!
@@ -34,7 +35,7 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
     @IBAction func btnTakePhoto(_ sender: Any) {
         showPhotoAlert(sender: sender)
     }
-    
+
     // Setup category selection buttons programmatically
     func setupCategorySelection() {
         for category in categories {
@@ -63,7 +64,7 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
     func setupEcoTags() {
         ecoTags = EcoTag.allCases.map { EcoTagModel(tag: $0, value: nil) }
     }
-    
+
     func showPhotoAlert(sender: Any){
         let alert = UIAlertController(title: "Take Photo From: ", message: nil, preferredStyle: .actionSheet)
         
@@ -86,7 +87,7 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
         
         present(alert, animated: true, completion: nil)
     }
-    
+
     func getPhoto(type: UIImagePickerController.SourceType){
         let picker = UIImagePickerController()
         picker.sourceType = type
@@ -103,7 +104,7 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
         }
         imgphoto.image = image
     }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -145,7 +146,8 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
                 ecoScore: Int(tEcoScore.text!) ?? 0,
                 categories: selectedCategories,
                 ecoTags: ecoTags,
-                image: imgphoto.image  // Include the image when creating the new product
+                image: imgphoto.image,  // Include the image
+                stock: Int(tStock.text!) ?? 0 // Include stock
             )
             
             if let navigationController = navigationController,
@@ -167,7 +169,9 @@ class AddProductController: UITableViewController, UIImagePickerControllerDelega
                Double(tPrice.text!) != nil &&
                !(tDescription.text?.isEmpty ?? true) &&
                !(tEcoScore.text?.isEmpty ?? true) &&
-               Int(tEcoScore.text!) != nil
+               Int(tEcoScore.text!) != nil &&
+               !(tStock.text?.isEmpty ?? true) && // Validate stock
+               Int(tStock.text!) != nil
     }
 
     func showAlert(title: String, message: String) {
