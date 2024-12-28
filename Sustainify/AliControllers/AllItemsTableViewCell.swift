@@ -52,7 +52,7 @@ class AllItemsTableViewCell: UITableViewCell, UITableViewDataSource, UITableView
         
         // Category Stack View
         categoryStack.axis = .horizontal
-        categoryStack.spacing = 10 // Changed from -30 to 10
+        categoryStack.spacing = -30 // Changed from -30 to 10
         categoryStack.alignment = .center
         categoryStack.distribution = .equalSpacing
         categoryStack.translatesAutoresizingMaskIntoConstraints = false
