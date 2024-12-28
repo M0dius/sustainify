@@ -14,6 +14,7 @@ class ProductDetailsViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var addToCartButton: UIButton!
     
     @IBOutlet weak var reviewsCollectionView: UICollectionView!
     
