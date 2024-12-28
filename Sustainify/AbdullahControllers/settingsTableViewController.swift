@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class settingsTableViewController : UITableViewController {
+class settingsTableViewController: UITableViewController {
 
     // Define the sections and rows for the table
     let settingsOptions = [
@@ -18,7 +18,6 @@ class settingsTableViewController : UITableViewController {
         "Booked Items",
         "Vouchers",
         "About Us",
-        "Contact",
         "Sign Out"
     ]
     
@@ -28,7 +27,6 @@ class settingsTableViewController : UITableViewController {
         // Register the cell
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SettingsCell")
     }
-
 
     // MARK: - Table View Data Source
 
@@ -67,8 +65,6 @@ class settingsTableViewController : UITableViewController {
             navigateToVouchers()
         case "About Us":
             navigateToAboutUs()
-        case "Contact":  // Handle Contact option
-            navigateToContact()
         case "Sign Out":
             signOut()
         default:
@@ -108,17 +104,35 @@ class settingsTableViewController : UITableViewController {
         performSegue(withIdentifier: "AboutUsSegue", sender: self)
     }
     
-    func navigateToContact() {
-        // Perform segue to Contact screen
-        performSegue(withIdentifier: "ContactSegue", sender: self)
+    func signOut() {
+        let alert = UIAlertController(
+            title: "Sign Out",
+            message: "Are you sure you want to sign out?",
+            preferredStyle: .alert
+        )
+        
+        // Add the "Cancel" action
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // Add the "Sign Out" action
+        alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
+            do {
+                try FirebaseAuth.Auth.auth().signOut()
+                self.navigationController?.popToRootViewController(animated: true)
+            } catch {
+                print("Error signing out")
+                let errorAlert = UIAlertController(
+                    title: "Error",
+                    message: "An error occurred while signing out. Please try again.",
+                    preferredStyle: .alert
+                )
+                errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(errorAlert, animated: true)
+            }
+        }))
+        
+        // Present the alert
+        present(alert, animated: true)
     }
-    
-    func signOut(){
-        do {
-            try FirebaseAuth.Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
-        } catch {
-            print("Error signing out")
-        }
-    }
+
 }

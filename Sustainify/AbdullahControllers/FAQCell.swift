@@ -14,23 +14,27 @@ class FAQCell: UITableViewCell {
     
 
     override func awakeFromNib() {
-            super.awakeFromNib()
-
-            // Set default properties for labels
-            questionLabel.numberOfLines = 0  // Allow the question to wrap across multiple lines
-            answerLabel.numberOfLines = 0    // Allow the answer to expand to multiple lines
-            answerLabel.lineBreakMode = .byWordWrapping  // Ensure the text wraps properly
-
-            // Set label's maximum width to prevent overflowing content (based on screen width)
-            let maxWidth = UIScreen.main.bounds.width - 30 // Account for padding/margins
-            questionLabel.preferredMaxLayoutWidth = maxWidth
-            answerLabel.preferredMaxLayoutWidth = maxWidth
-        }
-
-        override func layoutSubviews() {
-            super.layoutSubviews()
-
-            // Make sure layout is correctly updated when expanding or collapsing the answer
-            self.contentView.layoutIfNeeded()
-        }
+        super.awakeFromNib()
+        
+        // Set default properties for labels
+        questionLabel.numberOfLines = 0  // Allow the question to wrap across multiple lines
+        answerLabel.numberOfLines = 0    // Allow the answer to expand to multiple lines
+        answerLabel.lineBreakMode = .byWordWrapping  // Ensure the text wraps properly
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        // Ensure layout updates after expanding or collapsing the answer
+        self.contentView.layoutIfNeeded()
+
+        // Set the max width for the labels to avoid overflowing
+        let maxWidth = UIScreen.main.bounds.width - 30 // Account for padding/margins (30px is just an estimate)
+        questionLabel.preferredMaxLayoutWidth = maxWidth
+        answerLabel.preferredMaxLayoutWidth = maxWidth
+        
+        // Fix the layout issue in case the cell was collapsed and then expanded
+        questionLabel.sizeToFit() // Make sure the question label adjusts its size
+        answerLabel.sizeToFit()   // Make sure the answer label adjusts its size
+    }
+}

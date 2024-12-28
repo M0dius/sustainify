@@ -10,7 +10,6 @@
 		AC0004052CF71F0F009EDDFD /* SustainifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0004042CF71F0F009EDDFD /* SustainifyTests.swift */; };
 		AC00040F2CF71F0F009EDDFD /* SustainifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */; };
 		AC0004112CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */; };
-		AC02ED032D1F1414002A6F27 /* AddEditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED022D1F1414002A6F27 /* AddEditAddressViewController.swift */; };
 		AC02ED052D1F29B4002A6F27 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED042D1F29B4002A6F27 /* FAQ.swift */; };
 		AC02ED072D1F2C41002A6F27 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */; };
 		AC02ED0B2D1F3096002A6F27 /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */; };
@@ -28,7 +27,11 @@
 		AC7091902D1EEB410089E7A3 /* ProfAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */; };
 		AC7091922D1EEE760089E7A3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */; };
 		AC7091942D1EF4CE0089E7A3 /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */; };
-		AC7091982D1F13C00089E7A3 /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7091972D1F13C00089E7A3 /* AddressListViewController.swift */; };
+		ACB037EB2D205417005AF392 /* AboutUsChoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037EA2D205417005AF392 /* AboutUsChoiceTableViewController.swift */; };
+		ACB037ED2D2055DE005AF392 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037EC2D2055DE005AF392 /* ContactViewController.swift */; };
+		ACB037EF2D207675005AF392 /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037EE2D207675005AF392 /* AddAddressViewController.swift */; };
+		ACB037F72D207B9F005AF392 /* addressStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037F62D207B9F005AF392 /* addressStruct.swift */; };
+		ACB037F92D208898005AF392 /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037F82D208898005AF392 /* AddressListViewController.swift */; };
 		ACB79BA52D1C841800E3FBBB /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BA42D1C841800E3FBBB /* Bader.storyboard */; };
 		ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */; };
 		ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */; };
@@ -62,7 +65,6 @@
 		ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */; };
 		ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */; };
 		ACCF18522D1DC2EB00FCD1CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */; };
-		ACCF18542D1DD98500FCD1CE /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF18532D1DD98500FCD1CE /* AboutUsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +91,6 @@
 		AC00040A2CF71F0F009EDDFD /* SustainifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SustainifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITests.swift; sourceTree = "<group>"; };
 		AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AC02ED022D1F1414002A6F27 /* AddEditAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditAddressViewController.swift; sourceTree = "<group>"; };
 		AC02ED042D1F29B4002A6F27 /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
 		AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FAQCell.swift; path = ../AbdullahControllers/FAQCell.swift; sourceTree = "<group>"; };
@@ -108,7 +109,11 @@
 		AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfAddressTableViewController.swift; sourceTree = "<group>"; };
 		AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
-		AC7091972D1F13C00089E7A3 /* AddressListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
+		ACB037EA2D205417005AF392 /* AboutUsChoiceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsChoiceTableViewController.swift; sourceTree = "<group>"; };
+		ACB037EC2D2055DE005AF392 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		ACB037EE2D207675005AF392 /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
+		ACB037F62D207B9F005AF392 /* addressStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addressStruct.swift; sourceTree = "<group>"; };
+		ACB037F82D208898005AF392 /* AddressListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
 		ACB79BA42D1C841800E3FBBB /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
 		ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +141,6 @@
 		ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsTableViewController.swift; sourceTree = "<group>"; };
 		ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		ACCF18532D1DD98500FCD1CE /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,13 +241,14 @@
 			isa = PBXGroup;
 			children = (
 				AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */,
-				AC7091972D1F13C00089E7A3 /* AddressListViewController.swift */,
-				AC02ED022D1F1414002A6F27 /* AddEditAddressViewController.swift */,
+				ACB037EE2D207675005AF392 /* AddAddressViewController.swift */,
+				ACB037F82D208898005AF392 /* AddressListViewController.swift */,
 				AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */,
 				ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */,
 				ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */,
 				ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */,
-				ACCF18532D1DD98500FCD1CE /* AboutUsViewController.swift */,
+				ACB037EA2D205417005AF392 /* AboutUsChoiceTableViewController.swift */,
+				ACB037EC2D2055DE005AF392 /* ContactViewController.swift */,
 				AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */,
 				AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */,
 			);
@@ -253,6 +258,7 @@
 		AC360C3D2D09B00100957DA7 /* structs */ = {
 			isa = PBXGroup;
 			children = (
+				ACB037F62D207B9F005AF392 /* addressStruct.swift */,
 				AC02ED042D1F29B4002A6F27 /* FAQ.swift */,
 				AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */,
 				AC360C3E2D09B00100957DA7 /* PIT_structs.swift */,
@@ -476,19 +482,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACCF18522D1DC2EB00FCD1CE /* SignUpViewController.swift in Sources */,
-				AC02ED032D1F1414002A6F27 /* AddEditAddressViewController.swift in Sources */,
+				ACB037ED2D2055DE005AF392 /* ContactViewController.swift in Sources */,
 				ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */,
 				ACB79BBE2D1C85A200E3FBBB /* AddProductController.swift in Sources */,
 				ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */,
 				ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */,
 				AC7091902D1EEB410089E7A3 /* ProfAddressTableViewController.swift in Sources */,
 				AC7091922D1EEE760089E7A3 /* ProfileViewController.swift in Sources */,
+				ACB037F72D207B9F005AF392 /* addressStruct.swift in Sources */,
 				AC02ED052D1F29B4002A6F27 /* FAQ.swift in Sources */,
+				ACB037F92D208898005AF392 /* AddressListViewController.swift in Sources */,
 				AC7091942D1EF4CE0089E7A3 /* PreferencesTableViewController.swift in Sources */,
 				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
 				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
 				ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */,
-				AC7091982D1F13C00089E7A3 /* AddressListViewController.swift in Sources */,
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
 				ACB79BCF2D1C877C00E3FBBB /* ProductsViewController.swift in Sources */,
 				ACB79BB12D1C843100E3FBBB /* AddReviewViewController.swift in Sources */,
@@ -503,14 +510,15 @@
 				AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */,
 				ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */,
 				AC02ED0B2D1F3096002A6F27 /* FAQCell.swift in Sources */,
+				ACB037EB2D205417005AF392 /* AboutUsChoiceTableViewController.swift in Sources */,
 				ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */,
 				ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */,
+				ACB037EF2D207675005AF392 /* AddAddressViewController.swift in Sources */,
 				ACB79BD02D1C877C00E3FBBB /* StoreDetailsViewController.swift in Sources */,
 				ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */,
 				ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */,
 				ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */,
 				AC02ED072D1F2C41002A6F27 /* FAQViewController.swift in Sources */,
-				ACCF18542D1DD98500FCD1CE /* AboutUsViewController.swift in Sources */,
 				ACB79BC02D1C85A200E3FBBB /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
