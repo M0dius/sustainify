@@ -1,5 +1,10 @@
 import UIKit
 
+protocol AllItemsTableViewCellDelegate: AnyObject {
+    /// Called when user taps a product row
+    func didSelectItem(_ item: StoreItem)
+}
+
 class AllItemsTableViewCell: UITableViewCell,
                              UITableViewDataSource,
                              UITableViewDelegate {
@@ -21,8 +26,11 @@ class AllItemsTableViewCell: UITableViewCell,
     private var allItems: [StoreItem] = []
     private var filteredItems: [StoreItem] = []
     
-    // MARK: - Init
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    // Delegate to pass item taps back to StoreDetailsViewController
+    weak var delegate: AllItemsTableViewCellDelegate?
+    
+    override init(style: UITableViewCell.CellStyle,
+                  reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
@@ -32,65 +40,53 @@ class AllItemsTableViewCell: UITableViewCell,
         setupUI()
     }
     
-    // MARK: - UI Setup
     private func setupUI() {
         // Title
         titleLabel.text = "All Items"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        // Category scroll
         categoryScrollView.showsHorizontalScrollIndicator = true
         categoryScrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        // Category stack
         categoryStack.axis = .horizontal
-        categoryStack.spacing = -30    // small gap between each button
+        categoryStack.spacing = -30
         categoryStack.alignment = .center
         categoryStack.distribution = .equalSpacing
         categoryStack.translatesAutoresizingMaskIntoConstraints = false
         
-        // Build the category buttons with a filled style
+        // Build the category buttons
         for cat in categories {
             let button = UIButton(type: .system)
-            
-            // Create a filled configuration
             var config = UIButton.Configuration.filled()
             config.title = cat
             config.cornerStyle = .medium
-            config.baseBackgroundColor = .systemBlue   // fill color
-            config.baseForegroundColor = .white        // text color
+            config.baseBackgroundColor = .systemBlue
+            config.baseForegroundColor = .white
             
             button.configuration = config
             button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
             button.addTarget(self, action: #selector(categoryTapped(_:)), for: .touchUpInside)
-            
             categoryStack.addArrangedSubview(button)
         }
         
-        // Items table
         itemsTableView.translatesAutoresizingMaskIntoConstraints = false
-        itemsTableView.isScrollEnabled = false   // parent scroll controls vertical
+        itemsTableView.isScrollEnabled = false
         itemsTableView.dataSource = self
         itemsTableView.delegate = self
         itemsTableView.rowHeight = 60
-        itemsTableView.register(AllItemsSubCell.self,
-                                forCellReuseIdentifier: "allItemsSubCell")
+        itemsTableView.register(AllItemsSubCell.self, forCellReuseIdentifier: "allItemsSubCell")
         
-        // Add subviews
         contentView.addSubview(titleLabel)
         contentView.addSubview(categoryScrollView)
         categoryScrollView.addSubview(categoryStack)
         contentView.addSubview(itemsTableView)
         
-        // Layout
         NSLayoutConstraint.activate([
-            // Title
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            // Category scroll
             categoryScrollView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             categoryScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             categoryScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
@@ -101,7 +97,6 @@ class AllItemsTableViewCell: UITableViewCell,
             categoryStack.leadingAnchor.constraint(equalTo: categoryScrollView.leadingAnchor),
             categoryStack.trailingAnchor.constraint(equalTo: categoryScrollView.trailingAnchor),
             
-            // Items table
             itemsTableView.topAnchor.constraint(equalTo: categoryScrollView.bottomAnchor, constant: 10),
             itemsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             itemsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -109,14 +104,12 @@ class AllItemsTableViewCell: UITableViewCell,
         ])
     }
     
-    /// Called from StoreDetailsViewController to pass all store items
     func configure(with items: [StoreItem]) {
         allItems = items
         filteredItems = items
         itemsTableView.reloadData()
     }
     
-    // MARK: - Category Buttons
     @objc private func categoryTapped(_ sender: UIButton) {
         guard let catName = sender.configuration?.title else { return }
         
@@ -126,15 +119,9 @@ class AllItemsTableViewCell: UITableViewCell,
             filteredItems = allItems.filter { $0.category == catName }
         }
         itemsTableView.reloadData()
-        
-        // After reloading the table, we want the parent table to recalc height.
-        // If you have a reference to the parent table, you can do:
-        // (superview as? UITableView)?.beginUpdates()
-        // (superview as? UITableView)?.endUpdates()
-        // Or the store details VC might handle it.
     }
     
-    // MARK: - TableView DataSource
+    // MARK: - UITableView DataSource
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         return filteredItems.count
@@ -142,63 +129,24 @@ class AllItemsTableViewCell: UITableViewCell,
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: "allItemsSubCell",
-            for: indexPath
-        ) as! AllItemsSubCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "allItemsSubCell",
+                                                 for: indexPath) as! AllItemsSubCell
         cell.configure(with: filteredItems[indexPath.row])
         return cell
     }
     
-    // MARK: - TableView Delegate
+    // MARK: - UITableView Delegate
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let tappedItem = filteredItems[indexPath.row]
-        print("Tapped item: \(tappedItem.name)")
-        // Possibly navigate or do something with the tapped item
-    }
-    
-    // MARK: - Self-Sizing Trick for Nested Table
-    /// This method helps iOS figure out the correct cell height
-    /// so the entire content is visible without bouncing.
-    override func systemLayoutSizeFitting(_ targetSize: CGSize,
-                                          withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
-                                          verticalFittingPriority: UILayoutPriority) -> CGSize {
         
-        // 1) Let the sub-table calculate its content size
-        itemsTableView.layoutIfNeeded()
-        
-        // 2) Sum up all the vertical space:
-        //    - Title label
-        //    - Category scroll
-        //    - Gap
-        //    - The table’s content height
-        let tableHeight = itemsTableView.contentSize.height
-        let topInset: CGFloat = 10  // from title top
-        let spacingBelowTitle: CGFloat = 10
-        let spacingBelowCategory: CGFloat = 10
-        let bottomInset: CGFloat = 10
-        
-        // We can measure the dynamic heights from frames if we want:
-        let titleHeight = titleLabel.intrinsicContentSize.height
-        let categoryHeight: CGFloat = 40
-        
-        let totalHeight = topInset
-            + titleHeight
-            + spacingBelowTitle
-            + categoryHeight
-            + spacingBelowCategory
-            + tableHeight
-            + bottomInset
-        
-        // The width can remain whatever we’re given or a fixed value
-        let finalWidth = targetSize.width
-        return CGSize(width: finalWidth, height: totalHeight)
+        // Notify our delegate (the StoreDetailsViewController) to show the popup
+        delegate?.didSelectItem(tappedItem)
     }
 }
 
-/// The sub-cell used in itemsTableView (image left, bold name & price in middle, underlined category on right)
+/// The sub-cell used in itemsTableView
 private class AllItemsSubCell: UITableViewCell {
     
     private let itemImageView = UIImageView()
@@ -206,8 +154,7 @@ private class AllItemsSubCell: UITableViewCell {
     private let priceLabel = UILabel()
     private let categoryLabel = UILabel()
     
-    override init(style: UITableViewCell.CellStyle,
-                  reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupLayout()
     }
@@ -263,11 +210,9 @@ private class AllItemsSubCell: UITableViewCell {
         } else {
             itemImageView.image = UIImage(named: "PlaceholderImage")
         }
-        
         nameLabel.text = item.name
         priceLabel.text = item.price
         
-        // Underline the category text
         let underlineCat = NSAttributedString(
             string: item.category,
             attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue]

@@ -1,6 +1,9 @@
 import UIKit
 
-/// Displays a horizontal scroll of most sustainable items.
+protocol BestSellingItemsTableViewCellDelegate: AnyObject {
+    func didTapSustainableItem(_ item: StoreItem)
+}
+
 class BestSellingItemsTableViewCell: UITableViewCell {
     
     private let scrollView: UIScrollView = {
@@ -20,10 +23,9 @@ class BestSellingItemsTableViewCell: UITableViewCell {
         return stack
     }()
     
-    // Title label for the section
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Most Sustainable Items" // Updated title
+        label.text = "Most Sustainable Items"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -31,7 +33,11 @@ class BestSellingItemsTableViewCell: UITableViewCell {
     
     private var items: [StoreItem] = []
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    // Delegate to pass taps up
+    weak var delegate: BestSellingItemsTableViewCellDelegate?
+
+    override init(style: UITableViewCell.CellStyle,
+                  reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
@@ -47,19 +53,16 @@ class BestSellingItemsTableViewCell: UITableViewCell {
         scrollView.addSubview(horizontalStack)
         
         NSLayoutConstraint.activate([
-            // Title
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            // Scroll View
             scrollView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             scrollView.heightAnchor.constraint(equalToConstant: 160),
             
-            // Horizontal stack inside scroll view
             horizontalStack.topAnchor.constraint(equalTo: scrollView.topAnchor),
             horizontalStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             horizontalStack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -68,21 +71,19 @@ class BestSellingItemsTableViewCell: UITableViewCell {
     }
     
     func configure(with sustainableItems: [StoreItem]) {
-        // Clear old subviews
-        for subview in horizontalStack.arrangedSubviews {
-            subview.removeFromSuperview()
+        // Clear old
+        for sub in horizontalStack.arrangedSubviews {
+            sub.removeFromSuperview()
         }
-        
         items = sustainableItems
         
-        // For each item, create a "card" with (image + name + price).
-        for item in items {
-            let itemView = createItemView(for: item)
+        for (index, item) in items.enumerated() {
+            let itemView = createItemView(for: item, index: index)
             horizontalStack.addArrangedSubview(itemView)
         }
     }
     
-    private func createItemView(for item: StoreItem) -> UIView {
+    private func createItemView(for item: StoreItem, index: Int) -> UIView {
         let container = UIStackView()
         container.axis = .vertical
         container.alignment = .center
@@ -94,7 +95,7 @@ class BestSellingItemsTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: item.imageName)
+        imageView.image = UIImage(named: item.imageName) ?? UIImage(named: "PlaceholderImage")
         
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 100),
@@ -115,6 +116,19 @@ class BestSellingItemsTableViewCell: UITableViewCell {
         container.addArrangedSubview(nameLabel)
         container.addArrangedSubview(priceLabel)
         
+        // Add a tap gesture
+        container.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleItemTap(_:)))
+        container.addGestureRecognizer(tap)
+        container.tag = index // store index to identify which item was tapped
+        
         return container
+    }
+    
+    @objc private func handleItemTap(_ gesture: UITapGestureRecognizer) {
+        guard let view = gesture.view else { return }
+        let index = view.tag
+        let item = items[index]
+        delegate?.didTapSustainableItem(item)
     }
 }

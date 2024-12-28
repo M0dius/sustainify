@@ -1,26 +1,21 @@
-//
-//  StoreDetailsViewController.swift
-//
-
 import UIKit
 
 class StoreDetailsViewController: UIViewController,
                                   UITableViewDataSource,
                                   UITableViewDelegate,
-                                  UISearchBarDelegate {
+                                  UISearchBarDelegate,
+                                  AllItemsTableViewCellDelegate,
+                                  BestSellingItemsTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-
-    // The store passed from HomeViewController
+    
     var store: Store?
-
-    // Existing search for items dropdown
+    
     private let searchBar = UISearchBar()
     private var dropdownTableView: UITableView!
     private var isDropdownVisible = false
     private var dropdownItems: [StoreItem] = []
 
-    // Local copy for filtered store items
     private var filteredStoreItems: [StoreItem] = []
 
     override func viewDidLoad() {
@@ -28,7 +23,7 @@ class StoreDetailsViewController: UIViewController,
 
         if let store = store {
             self.title = store.name
-            filteredStoreItems = store.allStoreItems // Start with all items
+            filteredStoreItems = store.allStoreItems // For the "All Items" cell
         }
 
         setupSearchBar()
@@ -36,13 +31,12 @@ class StoreDetailsViewController: UIViewController,
         setupItemDropdown()
     }
 
-    // MARK: - Search Bar
     func setupSearchBar() {
         searchBar.delegate = self
         searchBar.placeholder = "Search items..."
         searchBar.sizeToFit()
 
-        // Turn on the "bookmark" button to act as our filter icon
+        // Filter icon
         searchBar.showsBookmarkButton = true
         searchBar.setImage(
             UIImage(systemName: "line.horizontal.3.decrease.circle"),
@@ -53,12 +47,12 @@ class StoreDetailsViewController: UIViewController,
         navigationItem.titleView = searchBar
     }
 
-    // Called when user taps the filter (bookmark) icon
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        // If you have a filter action sheet, show it here:
         showFilterActionSheet()
     }
 
-    // MARK: - Searching logic (dropdown for items)
+    // Searching logic
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let store = store else { return }
 
@@ -84,7 +78,7 @@ class StoreDetailsViewController: UIViewController,
         searchBar.resignFirstResponder()
     }
 
-    // MARK: - Main TableView
+    // Main Table
     func setupMainTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -96,7 +90,6 @@ class StoreDetailsViewController: UIViewController,
         tableView.register(AllItemsTableViewCell.self, forCellReuseIdentifier: "allItemsCell")
     }
 
-    // MARK: - Item Dropdown
     func setupItemDropdown() {
         dropdownTableView = UITableView()
         dropdownTableView.dataSource = self
@@ -118,37 +111,66 @@ class StoreDetailsViewController: UIViewController,
         ])
     }
 
-    // MARK: - Filter Action Sheet
+    // Filter Action Sheet (example)
     func showFilterActionSheet() {
-        let actionSheet = UIAlertController(title: "Filter Options", message: "Select one or more filters", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(
+            title: "Filter Options",
+            message: "Select one or more filters",
+            preferredStyle: .actionSheet
+        )
 
-        let nameAZAction = UIAlertAction(title: "Name: A-Z", style: .default) { _ in
+        let nameAZ = UIAlertAction(title: "Name: A-Z", style: .default) { _ in
             self.applyFilter("Name: A-Z")
         }
-        let nameZAAction = UIAlertAction(title: "Name: Z-A", style: .default) { _ in
+        let nameZA = UIAlertAction(title: "Name: Z-A", style: .default) { _ in
             self.applyFilter("Name: Z-A")
         }
-        let priceLowHighAction = UIAlertAction(title: "Price: Low-High", style: .default) { _ in
+        let priceLowHigh = UIAlertAction(title: "Price: Low-High", style: .default) { _ in
             self.applyFilter("Price: Low-High")
         }
-        let priceHighLowAction = UIAlertAction(title: "Price: High-Low", style: .default) { _ in
+        let priceHighLow = UIAlertAction(title: "Price: High-Low", style: .default) { _ in
             self.applyFilter("Price: High-Low")
         }
 
-        // Add actions
-        actionSheet.addAction(nameAZAction)
-        actionSheet.addAction(nameZAAction)
-        actionSheet.addAction(priceLowHighAction)
-        actionSheet.addAction(priceHighLowAction)
+        actionSheet.addAction(nameAZ)
+        actionSheet.addAction(nameZA)
+        actionSheet.addAction(priceLowHigh)
+        actionSheet.addAction(priceHighLow)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 
-        // Cancel action
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-        // Present the action sheet
-        present(actionSheet, animated: true, completion: nil)
+        present(actionSheet, animated: true)
     }
 
-    // MARK: - UITableView DataSource
+    func applyFilter(_ filter: String) {
+        guard let store = store else { return }
+        filteredStoreItems = store.allStoreItems
+
+        switch filter {
+        case "Name: A-Z":
+            filteredStoreItems.sort {
+                $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+            }
+        case "Name: Z-A":
+            filteredStoreItems.sort {
+                $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedDescending
+            }
+        case "Price: Low-High":
+            filteredStoreItems.sort {
+                Double($0.price.dropFirst()) ?? 0 < Double($1.price.dropFirst()) ?? 0
+            }
+        case "Price: High-Low":
+            filteredStoreItems.sort {
+                Double($0.price.dropFirst()) ?? 0 > Double($1.price.dropFirst()) ?? 0
+            }
+        default:
+            break
+        }
+
+        let mainIndexPath = IndexPath(row: 2, section: 0)
+        tableView.reloadRows(at: [mainIndexPath], with: .automatic)
+    }
+
+    // Table DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == dropdownTableView {
             return dropdownItems.count
@@ -157,29 +179,45 @@ class StoreDetailsViewController: UIViewController,
         }
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if tableView == dropdownTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "dropdownCell", for: indexPath) as! DropdownItemCell
             let item = dropdownItems[indexPath.row]
-            cell.configure(itemImage: UIImage(named: item.imageName), itemName: item.name, itemPrice: item.price)
+            cell.configure(itemImage: UIImage(named: item.imageName),
+                           itemName: item.name,
+                           itemPrice: item.price)
             return cell
         } else {
             switch indexPath.row {
             case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "storeInfoCell", for: indexPath) as! StoreInfoTableViewCell
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "storeInfoCell",
+                    for: indexPath
+                ) as! StoreInfoTableViewCell
                 if let store = store {
                     cell.configure(with: store)
                 }
                 return cell
             case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "bestSellingCell", for: indexPath) as! BestSellingItemsTableViewCell
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "bestSellingCell",
+                    for: indexPath
+                ) as! BestSellingItemsTableViewCell
                 if let store = store {
                     cell.configure(with: store.mostSustainableItems)
                 }
+                // Set ourselves as delegate
+                cell.delegate = self
                 return cell
             case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "allItemsCell", for: indexPath) as! AllItemsTableViewCell
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "allItemsCell",
+                    for: indexPath
+                ) as! AllItemsTableViewCell
                 cell.configure(with: filteredStoreItems)
+                cell.delegate = self // So we know which item was tapped
                 return cell
             default:
                 return UITableViewCell()
@@ -187,44 +225,43 @@ class StoreDetailsViewController: UIViewController,
         }
     }
 
-    // MARK: - UITableView Delegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == self.tableView && indexPath.row == 1 { // Most Sustainable Items section
-            if let selectedItem = store?.mostSustainableItems[indexPath.row] {
-                print("Selected Item: \(selectedItem.name)")
-            }
+    // TableView Delegate
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        
+        if tableView == dropdownTableView {
+            let tappedItem = dropdownItems[indexPath.row]
+            isDropdownVisible = false
+            dropdownTableView.isHidden = true
+            searchBar.resignFirstResponder()
+            
+            // Show popup
+            presentSustainabilityPopup(for: tappedItem)
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    // MARK: - applyFilter for "All Items"
-    private func applyFilter(_ filter: String) {
+    // MARK: - AllItemsTableViewCellDelegate
+    func didSelectItem(_ item: StoreItem) {
+        // Called by the "All Items" cell
+        presentSustainabilityPopup(for: item)
+    }
+
+    // MARK: - BestSellingItemsTableViewCellDelegate
+    func didTapSustainableItem(_ item: StoreItem) {
+        // Called by the "Most Sustainable" item tap
+        presentSustainabilityPopup(for: item)
+    }
+
+    // MARK: - Present the popup
+    private func presentSustainabilityPopup(for item: StoreItem) {
         guard let store = store else { return }
-
-        filteredStoreItems = store.allStoreItems
-
-        switch filter {
-        case "Name: A-Z":
-            filteredStoreItems.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
-        case "Name: Z-A":
-            filteredStoreItems.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedDescending }
-        case "Price: Low-High":
-            filteredStoreItems.sort {
-                let p1 = Double($0.price.dropFirst()) ?? 0
-                let p2 = Double($1.price.dropFirst()) ?? 0
-                return p1 < p2
-            }
-        case "Price: High-Low":
-            filteredStoreItems.sort {
-                let p1 = Double($0.price.dropFirst()) ?? 0
-                let p2 = Double($1.price.dropFirst()) ?? 0
-                return p1 > p2
-            }
-        default:
-            break
-        }
-
-        let mainIndexPath = IndexPath(row: 2, section: 0)
-        tableView.reloadRows(at: [mainIndexPath], with: .automatic)
+        
+        let popupVC = SustainabilityPopupViewController()
+        popupVC.modalPresentationStyle = .pageSheet // or .overCurrentContext, etc.
+        popupVC.originalItem = item
+        popupVC.store = store
+        self.present(popupVC, animated: true, completion: nil)
     }
 }
