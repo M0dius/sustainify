@@ -197,10 +197,10 @@ class StoreDetailsViewController: UIViewController,
                     cell.configure(with: store)
                 }
                 return cell
-            case 1:
+            case 1: // Section for "Most Sustainable Items"
                 let cell = tableView.dequeueReusableCell(withIdentifier: "bestSellingCell", for: indexPath) as! BestSellingItemsTableViewCell
                 if let store = store {
-                    cell.configure(with: store.bestSellingItems)
+                    cell.configure(with: store.mostSustainableItems) // Dynamically fetch the top 6 eco-friendly items
                 }
                 return cell
             case 2:

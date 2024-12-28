@@ -1,12 +1,6 @@
-//
-//  BestSellingItemsTableViewCell.swift
-//  Sustainify
-//
-
 import UIKit
 
-/// Displays a horizontal scroll of best-selling items.
-/// Each item has a rounded-square image, bold name, and a price below.
+/// Displays a horizontal scroll of most sustainable items.
 class BestSellingItemsTableViewCell: UITableViewCell {
     
     private let scrollView: UIScrollView = {
@@ -19,7 +13,7 @@ class BestSellingItemsTableViewCell: UITableViewCell {
     private let horizontalStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 16   // Subtle gap between items
+        stack.spacing = 16
         stack.alignment = .top
         stack.distribution = .equalSpacing
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +23,7 @@ class BestSellingItemsTableViewCell: UITableViewCell {
     // Title label for the section
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Best Selling Items"
+        label.text = "Most Sustainable Items" // Updated title
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -37,8 +31,7 @@ class BestSellingItemsTableViewCell: UITableViewCell {
     
     private var items: [StoreItem] = []
     
-    override init(style: UITableViewCell.CellStyle,
-                  reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
@@ -55,62 +48,32 @@ class BestSellingItemsTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             // Title
-            titleLabel.topAnchor.constraint(
-                equalTo: contentView.topAnchor,
-                constant: 10
-            ),
-            titleLabel.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 16
-            ),
-            titleLabel.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
-                constant: -16
-            ),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             // Scroll View
-            scrollView.topAnchor.constraint(
-                equalTo: titleLabel.bottomAnchor,
-                constant: 10
-            ),
-            scrollView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 16
-            ),
-            scrollView.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
-                constant: -16
-            ),
-            scrollView.bottomAnchor.constraint(
-                equalTo: contentView.bottomAnchor,
-                constant: -10
-            ),
+            scrollView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             scrollView.heightAnchor.constraint(equalToConstant: 160),
             
             // Horizontal stack inside scroll view
-            horizontalStack.topAnchor.constraint(
-                equalTo: scrollView.topAnchor
-            ),
-            horizontalStack.bottomAnchor.constraint(
-                equalTo: scrollView.bottomAnchor
-            ),
-            horizontalStack.leadingAnchor.constraint(
-                equalTo: scrollView.leadingAnchor
-            ),
-            horizontalStack.trailingAnchor.constraint(
-                equalTo: scrollView.trailingAnchor
-            )
+            horizontalStack.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            horizontalStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            horizontalStack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            horizontalStack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
         ])
     }
     
-    /// Call this to populate the items in the horizontal stack.
-    func configure(with bestSellingItems: [StoreItem]) {
+    func configure(with sustainableItems: [StoreItem]) {
         // Clear old subviews
         for subview in horizontalStack.arrangedSubviews {
             subview.removeFromSuperview()
         }
         
-        items = bestSellingItems
+        items = sustainableItems
         
         // For each item, create a "card" with (image + name + price).
         for item in items {
@@ -126,32 +89,23 @@ class BestSellingItemsTableViewCell: UITableViewCell {
         container.spacing = 4
         container.translatesAutoresizingMaskIntoConstraints = false
         
-        // Item image
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 12 // Rounded corners
+        imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
-        
-        // Load image or fallback
-        if let loadedImage = UIImage(named: item.imageName) {
-            imageView.image = loadedImage
-        } else {
-            imageView.image = UIImage(named: "PlaceholderImage")
-        }
+        imageView.image = UIImage(named: item.imageName)
         
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 100),
             imageView.heightAnchor.constraint(equalToConstant: 100)
         ])
         
-        // Name label
         let nameLabel = UILabel()
         nameLabel.text = item.name
         nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         nameLabel.textAlignment = .center
         
-        // Price label
         let priceLabel = UILabel()
         priceLabel.text = item.price
         priceLabel.font = UIFont.systemFont(ofSize: 12)
