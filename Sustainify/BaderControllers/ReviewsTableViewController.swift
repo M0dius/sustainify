@@ -121,6 +121,8 @@ class ReviewsTableViewController: UITableViewController {
         cell.reviewLabel.text = review.content
         cell.updateStars(rating: review.rating)
         
+        cell.starsLabel.text = "\(review.rating) stars"
+        
         // Set callbacks
         cell.onEdit = { [weak self] in
             self?.navigateToEditReview(at: indexPath.row)

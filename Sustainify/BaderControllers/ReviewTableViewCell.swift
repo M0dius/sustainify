@@ -11,6 +11,7 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var reviewLabel: UILabel!
+    @IBOutlet weak var starsLabel: UILabel!
     @IBOutlet weak var starButton1: UIButton!
     @IBOutlet weak var starButton2: UIButton!
     @IBOutlet weak var starButton3: UIButton!
