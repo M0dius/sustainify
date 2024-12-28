@@ -28,8 +28,8 @@ class TagsTableViewCell: UITableViewCell {
         contentView.layoutIfNeeded()
 
         // Set preferred max width for labels to avoid overflow
-        //let maxWidth = UIScreen.main.bounds.width - 30 // Adjust based on padding
-        //tagLabel.preferredMaxLayoutWidth = maxWidth
-        //infoLabel.preferredMaxLayoutWidth = maxWidth
+        let maxWidth = UIScreen.main.bounds.width - 30 // Adjust based on padding
+        tagLabel.preferredMaxLayoutWidth = maxWidth
+        infoLabel.preferredMaxLayoutWidth = maxWidth
     }
 }

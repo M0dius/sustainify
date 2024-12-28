@@ -77,11 +77,12 @@ class ProductDetailsViewController: UIViewController, UITableViewDataSource, UIT
         cell.tagLabel.text = tag.name
         cell.infoLabel.text = tag.description
 
-        // Set the visibility of the infoLabel based on the expanded state
+        // Show or hide the infoLabel based on the expanded state
         cell.infoLabel.isHidden = !expandedStates[indexPath.row]
 
         return cell
     }
+
 
     // MARK: - UITableViewDelegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
