@@ -5,20 +5,20 @@
 import UIKit
 
 class StoreDetailsViewController: UIViewController,
-                                 UITableViewDataSource,
-                                 UITableViewDelegate,
-                                 UISearchBarDelegate {
+                                  UITableViewDataSource,
+                                  UITableViewDelegate,
+                                  UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
     // The store passed from HomeViewController
     var store: Store?
 
-    // --- Existing search for items dropdown ---
+    // Existing search for items dropdown
     private let searchBar = UISearchBar()
     private var dropdownTableView: UITableView!
     private var isDropdownVisible = false
-    private var dropdownItems: [String] = []
+    private var dropdownItems: [StoreItem] = []
 
     // Local copy for filtered store items
     private var filteredStoreItems: [StoreItem] = []
@@ -67,38 +67,14 @@ class StoreDetailsViewController: UIViewController,
             dropdownItems = []
             isDropdownVisible = false
         } else {
-            var matchingItems = [String]()
-
-            // Match item names
-            for itemName in store.items {
-                if itemName.lowercased().hasPrefix(trimmedText.lowercased()) {
-                    matchingItems.append(itemName)
-                }
+            dropdownItems = store.allStoreItems.filter {
+                $0.name.lowercased().contains(trimmedText.lowercased())
             }
-
-            // Match prices
-            if let typedPrice = parsePrice(trimmedText) {
-                for storeItem in store.allStoreItems {
-                    if let itemPrice = parsePrice(storeItem.price), itemPrice == typedPrice {
-                        if !matchingItems.contains(storeItem.name) {
-                            matchingItems.append(storeItem.name)
-                        }
-                    }
-                }
-            }
-
-            dropdownItems = matchingItems
-            isDropdownVisible = !matchingItems.isEmpty
+            isDropdownVisible = !dropdownItems.isEmpty
         }
 
         dropdownTableView.isHidden = !isDropdownVisible
         dropdownTableView.reloadData()
-    }
-
-    // Helper to parse a "$XX.XX" string into a Double
-    private func parsePrice(_ raw: String) -> Double? {
-        let cleaned = raw.replacingOccurrences(of: "$", with: "").trimmingCharacters(in: .whitespaces)
-        return Double(cleaned)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -184,10 +160,8 @@ class StoreDetailsViewController: UIViewController,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == dropdownTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "dropdownCell", for: indexPath) as! DropdownItemCell
-            let itemName = dropdownItems[indexPath.row]
-            let placeholderImage = UIImage(named: "PlaceholderImage")
-            let placeholderPrice = "$9.99"
-            cell.configure(itemImage: placeholderImage, itemName: itemName, itemPrice: placeholderPrice)
+            let item = dropdownItems[indexPath.row]
+            cell.configure(itemImage: UIImage(named: item.imageName), itemName: item.name, itemPrice: item.price)
             return cell
         } else {
             switch indexPath.row {
@@ -197,10 +171,10 @@ class StoreDetailsViewController: UIViewController,
                     cell.configure(with: store)
                 }
                 return cell
-            case 1: // Section for "Most Sustainable Items"
+            case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "bestSellingCell", for: indexPath) as! BestSellingItemsTableViewCell
                 if let store = store {
-                    cell.configure(with: store.mostSustainableItems) // Dynamically fetch the top 6 eco-friendly items
+                    cell.configure(with: store.mostSustainableItems)
                 }
                 return cell
             case 2:
@@ -211,6 +185,16 @@ class StoreDetailsViewController: UIViewController,
                 return UITableViewCell()
             }
         }
+    }
+
+    // MARK: - UITableView Delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == self.tableView && indexPath.row == 1 { // Most Sustainable Items section
+            if let selectedItem = store?.mostSustainableItems[indexPath.row] {
+                print("Selected Item: \(selectedItem.name)")
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     // MARK: - applyFilter for "All Items"
@@ -226,14 +210,14 @@ class StoreDetailsViewController: UIViewController,
             filteredStoreItems.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedDescending }
         case "Price: Low-High":
             filteredStoreItems.sort {
-                let p1 = parsePrice($0.price) ?? 0
-                let p2 = parsePrice($1.price) ?? 0
+                let p1 = Double($0.price.dropFirst()) ?? 0
+                let p2 = Double($1.price.dropFirst()) ?? 0
                 return p1 < p2
             }
         case "Price: High-Low":
             filteredStoreItems.sort {
-                let p1 = parsePrice($0.price) ?? 0
-                let p2 = parsePrice($1.price) ?? 0
+                let p1 = Double($0.price.dropFirst()) ?? 0
+                let p2 = Double($1.price.dropFirst()) ?? 0
                 return p1 > p2
             }
         default:

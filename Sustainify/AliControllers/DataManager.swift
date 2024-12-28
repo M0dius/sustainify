@@ -5,8 +5,10 @@ struct StoreItem {
     let name: String
     let price: String
     let imageName: String
-    let category: String
-    let ecoScore: Int // A higher score indicates more eco-friendliness
+    let category: String // Category (e.g., Food, Drinks, Clothing, etc.)
+    let co2Emissions: Double // CO2 emissions score (lower is better)
+    let recyclability: Double // Recyclability score (higher is better)
+    let plasticWaste: Double // Plastic waste score (lower is better)
 }
 
 class Store {
@@ -15,14 +17,15 @@ class Store {
     let imageName: String
     let openingTime: String
     let closingTime: String
-    let items: [String]
+    
+    // Items in the store
     let allStoreItems: [StoreItem]
     
-    /// Dynamically fetches the top 6 most eco-friendly items.
+    // Computed property: Most sustainable items
     var mostSustainableItems: [StoreItem] {
         return allStoreItems
-            .sorted { $0.ecoScore > $1.ecoScore } // Sort by highest ecoScore
-            .prefix(6) // Limit to 6 items
+            .sorted(by: { $0.sustainabilityScore < $1.sustainabilityScore })
+            .prefix(5)
             .map { $0 }
     }
     
@@ -32,7 +35,6 @@ class Store {
         imageName: String,
         openingTime: String,
         closingTime: String,
-        items: [String],
         allStoreItems: [StoreItem]
     ) {
         self.name = name
@@ -40,63 +42,38 @@ class Store {
         self.imageName = imageName
         self.openingTime = openingTime
         self.closingTime = closingTime
-        self.items = items
         self.allStoreItems = allStoreItems
     }
 }
 
-class DataManager: NSObject {
+extension StoreItem {
+    var sustainabilityScore: Double {
+        // Lower score is better
+        (co2Emissions * 0.4) + ((1 - recyclability) * 0.3) + (plasticWaste * 0.3)
+    }
+}
+
+class DataManager {
     static let shared = DataManager()
     
     let stores: [Store] = [
         Store(
             name: "IKEA",
-            detail: "Best store in town",
+            detail: "Best store in town for sustainable products",
             imageName: "IKEA",
             openingTime: "9:00 AM",
             closingTime: "9:00 PM",
-            items: ["Item 1", "Item 2", "EcoLamp", "GreenChair"],
             allStoreItems: [
-                StoreItem(name: "Steel Water Bottle",
-                          price: "$10.00",
-                          imageName: "SteelBottleImage",
-                          category: "Drinks",
-                          ecoScore: 100),
-                StoreItem(name: "Plastic Water Bottle",
-                          price: "$1.00",
-                          imageName: "PlasticBottleImage",
-                          category: "Drinks",
-                          ecoScore: 20),
-                StoreItem(name: "Reusable Grocery Bag",
-                          price: "$2.00",
-                          imageName: "ReusableBagImage",
-                          category: "Toiletries",
-                          ecoScore: 90),
-                StoreItem(name: "Eco-Friendly Lamp",
-                          price: "$29.99",
-                          imageName: "LampImage",
-                          category: "Furniture",
-                          ecoScore: 85),
-                StoreItem(name: "Bamboo Table",
-                          price: "$49.99",
-                          imageName: "TableImage",
-                          category: "Furniture",
-                          ecoScore: 70),
-                StoreItem(name: "Lipstick Set",
-                          price: "$12.99",
-                          imageName: "LipstickImage",
-                          category: "Makeup",
-                          ecoScore: 10),
-                StoreItem(name: "Organic Cotton T-Shirt",
-                          price: "$25.00",
-                          imageName: "CottonTShirtImage",
-                          category: "Clothing",
-                          ecoScore: 95),
-                StoreItem(name: "Recycled Notebook",
-                          price: "$5.00",
-                          imageName: "NotebookImage",
-                          category: "Stationery",
-                          ecoScore: 80)
+                StoreItem(name: "Reusable Bottle", price: "$15.00", imageName: "BottleImage", category: "Toiletries", co2Emissions: 0.1, recyclability: 0.9, plasticWaste: 0.0),
+                StoreItem(name: "Eco-Friendly Lamp", price: "$30.00", imageName: "LampImage", category: "Electronics", co2Emissions: 0.3, recyclability: 0.8, plasticWaste: 0.1),
+                StoreItem(name: "Organic Cotton T-Shirt", price: "$25.00", imageName: "TShirtImage", category: "Clothing", co2Emissions: 0.2, recyclability: 0.7, plasticWaste: 0.0),
+                StoreItem(name: "Bamboo Utensils Set", price: "$20.00", imageName: "BambooImage", category: "Food", co2Emissions: 0.1, recyclability: 0.95, plasticWaste: 0.0),
+                StoreItem(name: "Steel Water Bottle", price: "$12.00", imageName: "SteelBottleImage", category: "Drinks", co2Emissions: 0.05, recyclability: 1.0, plasticWaste: 0.0),
+                StoreItem(name: "Organic Juice", price: "$5.00", imageName: "JuiceImage", category: "Drinks", co2Emissions: 0.15, recyclability: 0.85, plasticWaste: 0.05),
+                StoreItem(name: "Recyclable Shampoo Bottle", price: "$10.00", imageName: "ShampooImage", category: "Toiletries", co2Emissions: 0.2, recyclability: 0.9, plasticWaste: 0.1),
+                StoreItem(name: "Foundation", price: "$10.00", imageName: "FoundationImage", category: "Makeup", co2Emissions: 0.3, recyclability: 0.7, plasticWaste: 0.2),
+                StoreItem(name: "Reusable Shopping Bag", price: "$2.00", imageName: "BagImage", category: "Toiletries", co2Emissions: 0.05, recyclability: 1.0, plasticWaste: 0.0),
+                StoreItem(name: "Wireless Headphones", price: "$50.00", imageName: "HeadphonesImage", category: "Electronics", co2Emissions: 0.5, recyclability: 0.4, plasticWaste: 0.2)
             ]
         )
     ]

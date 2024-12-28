@@ -1,3 +1,7 @@
+//
+//  ProductsViewController.swift
+//
+
 import UIKit
 
 class ProductsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -26,18 +30,34 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
     // Implement UITableViewDataSource methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return store?.items.count ?? 0
+        // Use allStoreItems instead of items
+        return store?.allStoreItems.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath)
-        cell.textLabel?.text = store?.items[indexPath.row]
+        
+        // Use allStoreItems instead of items
+        if let store = store {
+            let product = store.allStoreItems[indexPath.row]
+            cell.textLabel?.text = product.name
+        }
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let selectedProduct = store?.allStoreItems[indexPath.row] {
+            print("Selected Product: \(selectedProduct.name)")
+            // Implement navigation or action here for the selected product
+        }
     }
 }
