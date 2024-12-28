@@ -7,16 +7,10 @@ struct Shop {
     var building: Int
     var road: Int
     var block: Int
-    var openingTime: Date?
-    var closingTime: Date?
-    var minimumOrderAmount: Double?  // Field for minimum order amount
-    
-    // Store categories array
-    var storeCategories: [String] = []
-    
-    // Store image
+    var openingTime: String? // Changed to String
+    var closingTime: String? // Changed to String
+    var minimumOrderAmount: Double?
+    var storeCategories: [String]
     var storeImage: UIImage?
-    
-    // Payment options
-    var paymentOptions: [String] = [] // New field for payment options
+    var paymentOptions: [String]
 }

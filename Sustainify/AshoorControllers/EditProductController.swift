@@ -83,7 +83,7 @@ class EditProductController: UITableViewController, UIImagePickerControllerDeleg
             }
 
             button.layer.cornerRadius = 5
-            button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+//            button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
             button.widthAnchor.constraint(equalToConstant: 120).isActive = true
             stackView.addArrangedSubview(button)
         }

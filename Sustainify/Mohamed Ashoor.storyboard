@@ -913,17 +913,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Stores" id="LBP-8C-boi">
-                        <barButtonItem key="leftBarButtonItem" title="Delete" id="ndD-wk-vLT">
-                            <connections>
-                                <action selector="editButtonTapped:" destination="aUa-kf-CDg" id="AiM-QI-0gb"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="h5a-O9-16K">
-                            <connections>
-                                <action selector="addShopButtonTapped:" destination="aUa-kf-CDg" id="oFu-sI-CWN"/>
-                                <segue destination="Dkh-2c-COD" kind="show" identifier="toAddShop" id="d89-bh-yRX"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="h5a-O9-16K">
+                                <connections>
+                                    <action selector="addShopButtonTapped:" destination="aUa-kf-CDg" id="oFu-sI-CWN"/>
+                                    <segue destination="Dkh-2c-COD" kind="show" identifier="toAddShop" id="d89-bh-yRX"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Delete" id="ndD-wk-vLT">
+                                <connections>
+                                    <action selector="editButtonTapped:" destination="aUa-kf-CDg" id="AiM-QI-0gb"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Amd-KU-Q1M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2001,7 +2003,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

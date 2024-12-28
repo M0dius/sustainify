@@ -1,6 +1,11 @@
 import UIKit
+import FirebaseFirestore
+
 
 class AddShopController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    let db = Firestore.firestore()
+
     
     // IBOutlets for text fields
     @IBOutlet weak var tName: UITextField!
@@ -29,8 +34,8 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var switchOnlinePayment: UISwitch!
     
     var newShop: Shop?
-    var openingTime: Date?
-    var closingTime: Date?
+    var openingTime: String? // Changed from Date? to String?
+    var closingTime: String? // Changed from Date? to String?
     
     // Store categories
     let storeCategories = ["Food", "Clothes", "Electronics", "Furniture", "Accessories", "Misc"]
@@ -46,41 +51,66 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
     
     @IBAction func addShopButtonTapped(_ sender: UIButton) {
         if isFormValid() {
-            let minimumOrderAmount = Double(tMinimumOrderAmount.text ?? "0") ?? 0.0  // Get Minimum Order Amount
-            
+            let minimumOrderAmount = Double(tMinimumOrderAmount.text ?? "0") ?? 0.0
+
             // Gather selected payment options
             selectedPaymentOptions = []
             if switchCash.isOn { selectedPaymentOptions.append("Cash") }
             if switchBenefit.isOn { selectedPaymentOptions.append("Benefit") }
             if switchOnlinePayment.isOn { selectedPaymentOptions.append("Online Payment (Debit/Credit Card)") }
-            
-            let newShop = Shop(
-                name: tName.text!,
-                crNumber: Int(tCRNumber.text!) ?? 0,
-                building: Int(tBuilding.text!) ?? 0,
-                road: Int(tRoad.text!) ?? 0,
-                block: Int(tBlock.text!) ?? 0,
-                openingTime: openingTime,
-                closingTime: closingTime,
-                minimumOrderAmount: minimumOrderAmount,
-                storeCategories: selectedStoreCategories,
-                storeImage: imgStore.image,
-                paymentOptions: selectedPaymentOptions
-            )
-            
+
+            // Prepare the shop data
+            let shopData: [String: Any] = [
+                "name": tName.text ?? "",
+                "crNumber": Int(tCRNumber.text!) ?? 0,
+                "building": Int(tBuilding.text!) ?? 0,
+                "road": Int(tRoad.text!) ?? 0,
+                "block": Int(tBlock.text!) ?? 0,
+                "minimumOrder": minimumOrderAmount,
+                "openingTime": openingTime ?? "", // Use directly as String
+                "closingTime": closingTime ?? "", // Use directly as String
+                "paymentOptions": selectedPaymentOptions,
+                "storeCategories": selectedStoreCategories
+            ]
+
+            // Save the new shop to Firestore
+            db.collection("Stores").addDocument(data: shopData) { error in
+                if let error = error {
+                    print("Error adding document: \(error)")
+                    self.showAlert(title: "Error", message: "Failed to add store. Please try again.")
+                } else {
+                    print("Document added successfully")
+                    self.showAlert(title: "Success", message: "Store has been added successfully.")
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+
+            // Add to ShopListController if necessary
             if let navigationController = navigationController,
                let shopListController = navigationController.viewControllers.first as? ShopListController {
-                
+                let newShop = Shop(
+                    name: tName.text ?? "",
+                    crNumber: Int(tCRNumber.text!) ?? 0,
+                    building: Int(tBuilding.text!) ?? 0,
+                    road: Int(tRoad.text!) ?? 0,
+                    block: Int(tBlock.text!) ?? 0,
+                    openingTime: openingTime, // Directly as String
+                    closingTime: closingTime, // Directly as String
+                    minimumOrderAmount: minimumOrderAmount,
+                    storeCategories: selectedStoreCategories,
+                    storeImage: imgStore.image,
+                    paymentOptions: selectedPaymentOptions
+                )
                 shopListController.shops.append(newShop)
                 shopListController.tableView.reloadData()
-                
-                showAlert(title: "Success", message: "Shop has been added successfully.")
-                navigationController.popViewController(animated: true)
             }
         } else {
             showAlert(title: "Error", message: "Please fill in all the fields and select at least one payment option.")
         }
     }
+
+
+
     
     // MARK: - Store Category Selection Setup
     
@@ -95,7 +125,7 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
             button.setTitleColor(.systemGreen, for: .normal)
             button.backgroundColor = .clear
             button.layer.cornerRadius = 5
-            button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+//            button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
             button.widthAnchor.constraint(equalToConstant: 120).isActive = true
             
             storeCategoriesStackView.addArrangedSubview(button)
@@ -179,39 +209,39 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
     
     func presentDatePicker(for tag: Int, sourceView: UIView) {
         let alert = UIAlertController(title: "Select Time", message: nil, preferredStyle: .actionSheet)
-        
+
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .time
         datePicker.preferredDatePickerStyle = .wheels
-        
+
         alert.view.addSubview(datePicker)
-        
+
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.leadingAnchor.constraint(equalTo: alert.view.leadingAnchor).isActive = true
         datePicker.trailingAnchor.constraint(equalTo: alert.view.trailingAnchor).isActive = true
         datePicker.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 20).isActive = true
         datePicker.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -110).isActive = true
-        
+
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
             let formatter = DateFormatter()
-            formatter.timeStyle = .short
-            
+            formatter.dateFormat = "HH:mm" // Format as String
+
             if tag == 1 {
-                self.openingTime = datePicker.date
-                self.openingTimeValueLabel.text = formatter.string(from: datePicker.date)
+                self.openingTime = formatter.string(from: datePicker.date) // Store as String
+                self.openingTimeValueLabel.text = self.openingTime
             } else if tag == 2 {
-                self.closingTime = datePicker.date
-                self.closingTimeValueLabel.text = formatter.string(from: datePicker.date)
+                self.closingTime = formatter.string(from: datePicker.date) // Store as String
+                self.closingTimeValueLabel.text = self.closingTime
             }
         }))
-        
+
         if let popoverController = alert.popoverPresentationController {
             popoverController.sourceView = sourceView
             popoverController.sourceRect = sourceView.bounds
             popoverController.permittedArrowDirections = [.up, .down]
         }
-        
+
         present(alert, animated: true, completion: nil)
     }
     

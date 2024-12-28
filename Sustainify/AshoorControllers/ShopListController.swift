@@ -1,12 +1,49 @@
 import UIKit
+import FirebaseFirestore
 
 class ShopListController: UITableViewController {
-
+    
+    let db = Firestore.firestore()
     var shops: [Shop] = []
+    
+    func fetchShops() {
+        db.collection("Stores").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching documents: \(error)")
+                return
+            }
+            guard let documents = snapshot?.documents else { return }
+            
+            self.shops = documents.compactMap { doc in
+                let data = doc.data()
+                return Shop(
+                    name: data["name"] as? String ?? "",
+                    crNumber: data["crNumber"] as? Int ?? 0,
+                    building: data["building"] as? Int ?? 0,
+                    road: data["road"] as? Int ?? 0,
+                    block: data["block"] as? Int ?? 0,
+                    openingTime: data["openingTime"] as? String, // Correctly fetch as String
+                    closingTime: data["closingTime"] as? String, // Correctly fetch as String
+                    minimumOrderAmount: data["minimumOrder"] as? Double ?? nil,
+                    storeCategories: data["storeCategories"] as? [String] ?? [],
+                    storeImage: nil,
+                    paymentOptions: data["paymentOptions"] as? [String] ?? []
+                )
+            }
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchShops()
     }
+
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shops.count
@@ -16,11 +53,9 @@ class ShopListController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCell", for: indexPath)
         let shop = shops[indexPath.row]
         
-        let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        
-        let openingTime = shop.openingTime != nil ? formatter.string(from: shop.openingTime!) : "N/A"
-        let closingTime = shop.closingTime != nil ? formatter.string(from: shop.closingTime!) : "N/A"
+        let openingTime = shop.openingTime ?? "N/A"
+        let closingTime = shop.closingTime ?? "N/A"
+
         
         cell.textLabel?.text = shop.name
         cell.detailTextLabel?.text = """
@@ -42,10 +77,35 @@ class ShopListController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            shops.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            let shopToDelete = shops[indexPath.row]
+
+            // Query Firestore for the document to delete
+            db.collection("Stores").whereField("name", isEqualTo: shopToDelete.name).getDocuments { snapshot, error in
+                if let error = error {
+                    print("Error finding document to delete: \(error)")
+                    return
+                }
+                guard let document = snapshot?.documents.first else {
+                    print("No matching document found for shop: \(shopToDelete.name)")
+                    return
+                }
+
+                // Delete the document
+                document.reference.delete { error in
+                    if let error = error {
+                        print("Error deleting document: \(error)")
+                    } else {
+                        print("Firestore document successfully deleted")
+
+                        // Remove the shop locally
+                        self.shops.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: .automatic)
+                    }
+                }
+            }
         }
     }
+
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
