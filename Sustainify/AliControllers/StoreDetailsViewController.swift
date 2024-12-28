@@ -1,3 +1,5 @@
+// StoreDetailsViewController.swift
+
 import UIKit
 
 class StoreDetailsViewController: UIViewController,
@@ -15,9 +17,9 @@ class StoreDetailsViewController: UIViewController,
     private var dropdownTableView: UITableView!
     private var isDropdownVisible = false
     private var dropdownItems: [StoreItem] = []
-
+    
     private var filteredStoreItems: [StoreItem] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +33,7 @@ class StoreDetailsViewController: UIViewController,
         setupItemDropdown()
     }
 
+    // MARK: - Search Bar Setup
     func setupSearchBar() {
         searchBar.delegate = self
         searchBar.placeholder = "Search items..."
@@ -47,12 +50,12 @@ class StoreDetailsViewController: UIViewController,
         navigationItem.titleView = searchBar
     }
 
+    // MARK: - Search Bar Actions
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        // If you have a filter action sheet, show it here:
+        // Show filter action sheet
         showFilterActionSheet()
     }
 
-    // Searching logic
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let store = store else { return }
 
@@ -78,7 +81,7 @@ class StoreDetailsViewController: UIViewController,
         searchBar.resignFirstResponder()
     }
 
-    // Main Table
+    // MARK: - Main Table View Setup
     func setupMainTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -90,6 +93,7 @@ class StoreDetailsViewController: UIViewController,
         tableView.register(AllItemsTableViewCell.self, forCellReuseIdentifier: "allItemsCell")
     }
 
+    // MARK: - Item Dropdown Setup
     func setupItemDropdown() {
         dropdownTableView = UITableView()
         dropdownTableView.dataSource = self
@@ -111,7 +115,7 @@ class StoreDetailsViewController: UIViewController,
         ])
     }
 
-    // Filter Action Sheet (example)
+    // MARK: - Filter Action Sheet
     func showFilterActionSheet() {
         let actionSheet = UIAlertController(
             title: "Filter Options",
@@ -170,12 +174,12 @@ class StoreDetailsViewController: UIViewController,
         tableView.reloadRows(at: [mainIndexPath], with: .automatic)
     }
 
-    // Table DataSource
+    // MARK: - UITableViewDataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == dropdownTableView {
             return dropdownItems.count
         } else {
-            return 3
+            return 3 // storeInfoCell, bestSellingCell, allItemsCell
         }
     }
 
@@ -225,7 +229,7 @@ class StoreDetailsViewController: UIViewController,
         }
     }
 
-    // TableView Delegate
+    // MARK: - UITableViewDelegate Methods
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         
@@ -254,7 +258,7 @@ class StoreDetailsViewController: UIViewController,
         presentSustainabilityPopup(for: item)
     }
 
-    // MARK: - Present the popup
+    // MARK: - Present the Popup
     private func presentSustainabilityPopup(for item: StoreItem) {
         guard let store = store else { return }
         
