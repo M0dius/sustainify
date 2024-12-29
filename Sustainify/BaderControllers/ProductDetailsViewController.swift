@@ -21,6 +21,8 @@ class ProductDetailsViewController: UIViewController, UITableViewDataSource, UIT
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Product Details"
 
         // Initialize quantity
         quantityLabel.text = "0"
