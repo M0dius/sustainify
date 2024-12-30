@@ -86,12 +86,12 @@ class settingsTableViewController: UITableViewController {
 
     func navigateToReviews() {
         // Perform segue to Reviews screen
-        performSegue(withIdentifier: "ReviewsSegue", sender: self)
+        //performSegue(withIdentifier: "ReviewsSegue", sender: self)
     }
 
     func navigateToBookedItems() {
         // Perform segue to Booked Items screen
-        performSegue(withIdentifier: "BookedItemsSegue", sender: self)
+        //performSegue(withIdentifier: "BookedItemsSegue", sender: self)
     }
 
     func navigateToVouchers() {
@@ -134,5 +134,4 @@ class settingsTableViewController: UITableViewController {
         // Present the alert
         present(alert, animated: true)
     }
-
 }

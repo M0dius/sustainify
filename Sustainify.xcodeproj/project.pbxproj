@@ -27,6 +27,9 @@
 		AC7091902D1EEB410089E7A3 /* ProfAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */; };
 		AC7091922D1EEE760089E7A3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */; };
 		AC7091942D1EF4CE0089E7A3 /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */; };
+		AC89804C2D2306350026AD1F /* VoucherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC89804B2D2306350026AD1F /* VoucherTableViewController.swift */; };
+		AC8980502D2317050026AD1F /* vouchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC89804F2D2317050026AD1F /* vouchers.swift */; };
+		AC913D302D21986900CE40F9 /* EditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC913D2F2D21986900CE40F9 /* EditAddressViewController.swift */; };
 		ACB037EB2D205417005AF392 /* AboutUsChoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037EA2D205417005AF392 /* AboutUsChoiceTableViewController.swift */; };
 		ACB037ED2D2055DE005AF392 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037EC2D2055DE005AF392 /* ContactViewController.swift */; };
 		ACB037EF2D207675005AF392 /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037EE2D207675005AF392 /* AddAddressViewController.swift */; };
@@ -109,6 +112,9 @@
 		AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfAddressTableViewController.swift; sourceTree = "<group>"; };
 		AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
+		AC89804B2D2306350026AD1F /* VoucherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VoucherTableViewController.swift; path = ../VoucherTableViewController.swift; sourceTree = "<group>"; };
+		AC89804F2D2317050026AD1F /* vouchers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vouchers.swift; sourceTree = "<group>"; };
+		AC913D2F2D21986900CE40F9 /* EditAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressViewController.swift; sourceTree = "<group>"; };
 		ACB037EA2D205417005AF392 /* AboutUsChoiceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsChoiceTableViewController.swift; sourceTree = "<group>"; };
 		ACB037EC2D2055DE005AF392 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		ACB037EE2D207675005AF392 /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
@@ -240,17 +246,19 @@
 		AC360C392D09B00100957DA7 /* AbdullahControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */,
-				ACB037EE2D207675005AF392 /* AddAddressViewController.swift */,
-				ACB037F82D208898005AF392 /* AddressListViewController.swift */,
-				AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */,
-				ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */,
 				ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */,
-				ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */,
-				ACB037EA2D205417005AF392 /* AboutUsChoiceTableViewController.swift */,
-				ACB037EC2D2055DE005AF392 /* ContactViewController.swift */,
-				AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */,
+				ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */,
+				ACB037F82D208898005AF392 /* AddressListViewController.swift */,
+				ACB037EE2D207675005AF392 /* AddAddressViewController.swift */,
+				AC913D2F2D21986900CE40F9 /* EditAddressViewController.swift */,
 				AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */,
+				AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */,
+				AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */,
+				ACB037EA2D205417005AF392 /* AboutUsChoiceTableViewController.swift */,
+				AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */,
+				ACB037EC2D2055DE005AF392 /* ContactViewController.swift */,
+				ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */,
+				AC89804B2D2306350026AD1F /* VoucherTableViewController.swift */,
 			);
 			path = AbdullahControllers;
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				ACB037F62D207B9F005AF392 /* addressStruct.swift */,
+				AC89804F2D2317050026AD1F /* vouchers.swift */,
 				AC02ED042D1F29B4002A6F27 /* FAQ.swift */,
 				AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */,
 				AC360C3E2D09B00100957DA7 /* PIT_structs.swift */,
@@ -489,11 +498,13 @@
 				ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */,
 				AC7091902D1EEB410089E7A3 /* ProfAddressTableViewController.swift in Sources */,
 				AC7091922D1EEE760089E7A3 /* ProfileViewController.swift in Sources */,
+				AC89804C2D2306350026AD1F /* VoucherTableViewController.swift in Sources */,
 				ACB037F72D207B9F005AF392 /* addressStruct.swift in Sources */,
 				AC02ED052D1F29B4002A6F27 /* FAQ.swift in Sources */,
 				ACB037F92D208898005AF392 /* AddressListViewController.swift in Sources */,
 				AC7091942D1EF4CE0089E7A3 /* PreferencesTableViewController.swift in Sources */,
 				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
+				AC913D302D21986900CE40F9 /* EditAddressViewController.swift in Sources */,
 				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
 				ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */,
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
@@ -511,6 +522,7 @@
 				ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */,
 				AC02ED0B2D1F3096002A6F27 /* FAQCell.swift in Sources */,
 				ACB037EB2D205417005AF392 /* AboutUsChoiceTableViewController.swift in Sources */,
+				AC8980502D2317050026AD1F /* vouchers.swift in Sources */,
 				ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */,
 				ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */,
 				ACB037EF2D207675005AF392 /* AddAddressViewController.swift in Sources */,

@@ -16,9 +16,16 @@ class LoginViewController: UIViewController {
     private var isLoggingIn = false
     private var isSeguePerformed = false
 
+    @IBOutlet weak var welcomeStack: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    welcomeStack.translatesAutoresizingMaskIntoConstraints = false
+    // Center the stack view horizontally in its superview
+    NSLayoutConstraint.activate([
+        welcomeStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+    ])
     }
     
     @IBAction func btnLogin(_ sender: UIButton) {

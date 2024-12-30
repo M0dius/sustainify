@@ -12,29 +12,36 @@ class FAQCell: UITableViewCell {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // Set default properties for labels
-        questionLabel.numberOfLines = 0  // Allow the question to wrap across multiple lines
-        answerLabel.numberOfLines = 0    // Allow the answer to expand to multiple lines
-        answerLabel.lineBreakMode = .byWordWrapping  // Ensure the text wraps properly
+        // Configure labels for multi-line text
+        questionLabel.numberOfLines = 0  // Allow the question label to wrap
+        questionLabel.lineBreakMode = .byWordWrapping
+        
+        answerLabel.numberOfLines = 0  // Allow the answer label to expand
+        answerLabel.lineBreakMode = .byWordWrapping
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        // Ensure layout updates after expanding or collapsing the answer
+        
+        // Trigger layout updates for content view
         self.contentView.layoutIfNeeded()
 
-        // Set the max width for the labels to avoid overflowing
-        let maxWidth = UIScreen.main.bounds.width - 30 // Account for padding/margins (30px is just an estimate)
+        // Calculate and set the max layout width for labels
+        let maxWidth = self.contentView.bounds.width - 30 // Adjust for padding (15px left + 15px right)
         questionLabel.preferredMaxLayoutWidth = maxWidth
         answerLabel.preferredMaxLayoutWidth = maxWidth
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
         
-        // Fix the layout issue in case the cell was collapsed and then expanded
-        questionLabel.sizeToFit() // Make sure the question label adjusts its size
-        answerLabel.sizeToFit()   // Make sure the answer label adjusts its size
+        // Reset the text and layout properties to avoid reusing stale values
+        questionLabel.text = nil
+        answerLabel.text = nil
+        questionLabel.preferredMaxLayoutWidth = 0
+        answerLabel.preferredMaxLayoutWidth = 0
     }
 }

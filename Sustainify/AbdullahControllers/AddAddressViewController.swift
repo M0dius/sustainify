@@ -1,5 +1,13 @@
+//
+//  AddressListViewController.swift
+//  Sustainify
+//
+//  Created by Guest User on 27/12/2024.
+//
+
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class AddAddressViewController: UIViewController {
     
@@ -85,8 +93,16 @@ class AddAddressViewController: UIViewController {
     }
 
     @IBAction func saveAddressButtonTapped(_ sender: UIButton) {
+        // Get the current logged-in user's UID
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("No user is logged in.")
+            return
+        }
+
+        // Prepare address data to be saved
         var addressData: [String: Any] = [:]
 
+        // Add address details to the dictionary
         addressData["addressType"] = selectedAddressType
         addressData["address"] = addressTitleField.text ?? ""
         addressData["house"] = houseField.text ?? ""
@@ -98,11 +114,16 @@ class AddAddressViewController: UIViewController {
         addressData["floor"] = floorField.text ?? ""
         addressData["company"] = companyField.text ?? ""
         addressData["officeNumber"] = officeNumberField.text ?? ""
+        
+        // Add the user ID to the address data
+        addressData["userID"] = userID
 
+        // Save the address to Firestore
         db.collection("Addresses").addDocument(data: addressData) { error in
             if let error = error {
                 print("Error adding document: \(error)")
             } else {
+                // Successfully saved address, go back to the previous screen
                 self.navigationController?.popViewController(animated: true)
             }
         }

@@ -17,12 +17,28 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtUsername: UITextField!
     
+    @IBOutlet weak var segmentedUserType: UISegmentedControl!
     // Firestore reference
     private let db = Firestore.firestore()
 
+    @IBOutlet weak var welcomeStack: UIStackView!
+    
+    @IBOutlet weak var signupStack: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Sign-Up"
+        welcomeStack.translatesAutoresizingMaskIntoConstraints = false
+        // Center the stack view horizontally in its superview
+        NSLayoutConstraint.activate([
+            welcomeStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        signupStack.translatesAutoresizingMaskIntoConstraints = false
+        // Center the sign-up button horizontally in its superview
+        NSLayoutConstraint.activate([
+            signupStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
 
     // MARK: - Sign-Up Action
@@ -41,6 +57,9 @@ class SignUpViewController: UIViewController {
             return
         }
 
+        // Get the selected user type
+        let userType = segmentedUserType.selectedSegmentIndex == 0 ? "Buyer" : "Seller"
+
         // Create user with Firebase Authentication
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
@@ -55,6 +74,7 @@ class SignUpViewController: UIViewController {
                 self.db.collection("users").document(userId).setData([
                     "username": username,
                     "email": email,
+                    "userType": userType,
                     "createdAt": Timestamp(date: Date())
                 ]) { error in
                     if let error = error {
@@ -66,6 +86,7 @@ class SignUpViewController: UIViewController {
             }
         }
     }
+
 
     // MARK: - Helper Functions
     private func showAlert(message: String, isSuccess: Bool = false) {
