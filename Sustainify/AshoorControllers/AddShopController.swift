@@ -13,6 +13,8 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var tBuilding: UITextField!
     @IBOutlet weak var tRoad: UITextField!
     @IBOutlet weak var tBlock: UITextField!
+    @IBOutlet weak var tDescription: UITextField!
+
     @IBOutlet weak var tMinimumOrderAmount: UITextField!  // Text field for Minimum Order Amount
     
     @IBOutlet weak var addShopButton: UIButton!
@@ -62,16 +64,18 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
             // Prepare the shop data
             let shopData: [String: Any] = [
                 "name": tName.text ?? "",
+                "description": tDescription.text ?? "", // Add description
                 "crNumber": Int(tCRNumber.text!) ?? 0,
                 "building": Int(tBuilding.text!) ?? 0,
                 "road": Int(tRoad.text!) ?? 0,
                 "block": Int(tBlock.text!) ?? 0,
                 "minimumOrder": minimumOrderAmount,
-                "openingTime": openingTime ?? "", // Use directly as String
-                "closingTime": closingTime ?? "", // Use directly as String
+                "openingTime": openingTime ?? "",
+                "closingTime": closingTime ?? "",
                 "paymentOptions": selectedPaymentOptions,
                 "storeCategories": selectedStoreCategories
             ]
+
 
             // Save the new shop to Firestore
             db.collection("Stores").addDocument(data: shopData) { error in
@@ -96,11 +100,14 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
                     block: Int(tBlock.text!) ?? 0,
                     openingTime: openingTime, // Directly as String
                     closingTime: closingTime, // Directly as String
+                    description: tDescription.text ?? "", // Add description in the correct position
                     minimumOrderAmount: minimumOrderAmount,
                     storeCategories: selectedStoreCategories,
                     storeImage: imgStore.image,
                     paymentOptions: selectedPaymentOptions
                 )
+
+
                 shopListController.shops.append(newShop)
                 shopListController.tableView.reloadData()
             }
@@ -255,12 +262,14 @@ class AddShopController: UITableViewController, UIImagePickerControllerDelegate,
     
     func isFormValid() -> Bool {
         return !(tName.text?.isEmpty ?? true) &&
+               !(tDescription.text?.isEmpty ?? true) && // Validate description
                !(tCRNumber.text?.isEmpty ?? true) && Int(tCRNumber.text!) != nil &&
                !(tBuilding.text?.isEmpty ?? true) && Int(tBuilding.text!) != nil &&
                !(tRoad.text?.isEmpty ?? true) && Int(tRoad.text!) != nil &&
                !(tBlock.text?.isEmpty ?? true) && Int(tBlock.text!) != nil &&
-               (switchCash.isOn || switchBenefit.isOn || switchOnlinePayment.isOn) // At least one payment option
+               (switchCash.isOn || switchBenefit.isOn || switchOnlinePayment.isOn)
     }
+
     
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

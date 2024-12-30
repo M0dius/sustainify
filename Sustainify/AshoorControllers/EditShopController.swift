@@ -12,6 +12,8 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var tBuilding: UITextField!
     @IBOutlet weak var tRoad: UITextField!
     @IBOutlet weak var tBlock: UITextField!
+    @IBOutlet weak var tDescription: UITextField!
+
     @IBOutlet weak var tMinimumOrderAmount: UITextField!
 
     @IBOutlet weak var openingTimeValueLabel: UILabel!
@@ -46,33 +48,37 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
     var selectedStoreCategories = [String]()
 
     override func viewDidLoad() {
-            super.viewDidLoad()
+        super.viewDidLoad()
 
-            if let shop = shopToEdit {
-                tName.text = shop.name
-                tCRNumber.text = String(shop.crNumber)
-                tBuilding.text = String(shop.building)
-                tRoad.text = String(shop.road)
-                tBlock.text = String(shop.block)
-                tMinimumOrderAmount.text = shop.minimumOrderAmount != nil ? String(shop.minimumOrderAmount!) : ""
+        if let shop = shopToEdit {
+            tName.text = shop.name
+            tCRNumber.text = String(shop.crNumber)
+            tBuilding.text = String(shop.building)
+            tRoad.text = String(shop.road)
+            tBlock.text = String(shop.block)
+            tMinimumOrderAmount.text = shop.minimumOrderAmount != nil ? String(shop.minimumOrderAmount!) : ""
 
-                // Display opening and closing times as strings
-                openingTime = shop.openingTime
-                closingTime = shop.closingTime
-                openingTimeValueLabel.text = openingTime ?? "N/A"
-                closingTimeValueLabel.text = closingTime ?? "N/A"
+            // Display opening and closing times as strings
+            openingTime = shop.openingTime
+            closingTime = shop.closingTime
+            openingTimeValueLabel.text = openingTime ?? "N/A"
+            closingTimeValueLabel.text = closingTime ?? "N/A"
 
-                selectedStoreCategories = shop.storeCategories
-                imgStore.image = shop.storeImage
+            // Pre-fill the description field
+            tDescription.text = shop.description ?? "" // Add this line
 
-                // Initialize payment option switches
-                switchCash.isOn = shop.paymentOptions.contains("Cash")
-                switchBenefit.isOn = shop.paymentOptions.contains("Benefit")
-                switchOnlinePayment.isOn = shop.paymentOptions.contains("Online Payment (Debit/Credit Card)")
-            }
+            selectedStoreCategories = shop.storeCategories
+            imgStore.image = shop.storeImage
 
-            setupStoreCategorySelection()
+            // Initialize payment option switches
+            switchCash.isOn = shop.paymentOptions.contains("Cash")
+            switchBenefit.isOn = shop.paymentOptions.contains("Benefit")
+            switchOnlinePayment.isOn = shop.paymentOptions.contains("Online Payment (Debit/Credit Card)")
         }
+
+        setupStoreCategorySelection()
+    }
+
 
 
 
@@ -241,6 +247,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
                 block: Int(tBlock.text!) ?? 0,
                 openingTime: openingTime, // Stored as String
                 closingTime: closingTime, // Stored as String
+                description: tDescription.text ?? "", // Add description
                 minimumOrderAmount: minimumOrderAmount,
                 storeCategories: selectedStoreCategories,
                 storeImage: imgStore.image,
@@ -269,6 +276,7 @@ class EditShopController: UITableViewController, UIImagePickerControllerDelegate
                         "building": updatedShop.building,
                         "road": updatedShop.road,
                         "block": updatedShop.block,
+                        "description": updatedShop.description ?? "", // Add description
                         "minimumOrder": updatedShop.minimumOrderAmount ?? 0,
                         "openingTime": updatedShop.openingTime ?? "",
                         "closingTime": updatedShop.closingTime ?? "",

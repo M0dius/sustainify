@@ -22,8 +22,9 @@ class ShopListController: UITableViewController {
                     building: data["building"] as? Int ?? 0,
                     road: data["road"] as? Int ?? 0,
                     block: data["block"] as? Int ?? 0,
-                    openingTime: data["openingTime"] as? String, // Correctly fetch as String
-                    closingTime: data["closingTime"] as? String, // Correctly fetch as String
+                    openingTime: data["openingTime"] as? String,
+                    closingTime: data["closingTime"] as? String,
+                    description: data["description"] as? String, // Fetch description
                     minimumOrderAmount: data["minimumOrder"] as? Double ?? nil,
                     storeCategories: data["storeCategories"] as? [String] ?? [],
                     storeImage: nil,
@@ -36,6 +37,7 @@ class ShopListController: UITableViewController {
             }
         }
     }
+
 
 
     
@@ -52,11 +54,10 @@ class ShopListController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCell", for: indexPath)
         let shop = shops[indexPath.row]
-        
+
         let openingTime = shop.openingTime ?? "N/A"
         let closingTime = shop.closingTime ?? "N/A"
 
-        
         cell.textLabel?.text = shop.name
         cell.detailTextLabel?.text = """
         CR: \(shop.crNumber), Building: \(shop.building), Road: \(shop.road), Block: \(shop.block)
@@ -65,6 +66,8 @@ class ShopListController: UITableViewController {
         cell.accessoryType = .disclosureIndicator
         return cell
     }
+
+
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         tableView.setEditing(!tableView.isEditing, animated: true)

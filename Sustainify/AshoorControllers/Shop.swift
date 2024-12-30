@@ -7,10 +7,12 @@ struct Shop {
     var building: Int
     var road: Int
     var block: Int
-    var openingTime: String? // Changed to String
-    var closingTime: String? // Changed to String
+    var openingTime: String?
+    var closingTime: String?
+    var description: String? // Add description here
     var minimumOrderAmount: Double?
     var storeCategories: [String]
     var storeImage: UIImage?
     var paymentOptions: [String]
 }
+
