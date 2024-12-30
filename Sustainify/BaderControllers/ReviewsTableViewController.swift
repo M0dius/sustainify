@@ -43,6 +43,44 @@ class ReviewsTableViewController: UITableViewController {
         }
     }
     
+    func reportReview(at index: Int) {
+            let review = reviews[index]
+            let db = Firestore.firestore()
+            
+            let reportData: [String: Any] = [
+                "reviewID": review.id,
+                "title": review.title,
+                "content": review.content,
+                "rating": review.rating,
+                "timestamp": Timestamp() // Add timestamp for when the review was reported
+            ]
+            
+            // Save the reported review to a new "ReportedReviews" collection
+            db.collection("ReportedReviews").addDocument(data: reportData) { error in
+                if let error = error {
+                    print("Error reporting review: \(error)")
+                } else {
+                    print("Review successfully reported!")
+                    self.showAlert(message: "The review has been reported successfully.")
+                }
+            }
+        }
+        
+        func confirmReportReview(at index: Int) {
+            let alert = UIAlertController(title: "Report Review", message: "Are you sure you want to report this review?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { [weak self] _ in
+                self?.reportReview(at: index)
+            }))
+            present(alert, animated: true, completion: nil)
+        }
+        
+        func showAlert(message: String) {
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true, completion: nil)
+        }
+    
     @objc func toggleEditingMode() {
         // Toggle the table view editing mode
         tableView.setEditing(!tableView.isEditing, animated: true)
@@ -88,6 +126,10 @@ class ReviewsTableViewController: UITableViewController {
         cell.reviewLabel.text = review.content
         cell.updateStars(rating: review.rating)
         cell.starsLabel.text = "\(review.rating) stars"
+        
+        cell.onReport = { [weak self] in
+                    self?.confirmReportReview(at: indexPath.row)
+                }
         
         return cell
     }

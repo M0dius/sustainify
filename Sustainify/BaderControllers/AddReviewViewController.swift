@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class AddReviewViewController: UIViewController {
     
@@ -55,36 +56,32 @@ class AddReviewViewController: UIViewController {
     }
     
     func saveReviewToFirebase(title: String, content: String, rating: Int) {
-        if let ref = ref {
-            // Update existing review
-            ref.updateData([
-                "title": title,
-                "content": content,
-                "rating": rating
-            ]) { error in
-                if let error = error {
-                    print("Error updating document: \(error)")
-                } else {
-                    print("Document successfully updated!")
-                }
-            }
-        } else {
-            // Add new review
-            let db = Firestore.firestore()
-            db.collection("Reviews").addDocument(data: [
-                "title": title,
-                "content": content,
-                "rating": rating
-            ]) { error in
-                if let error = error {
-                    print("Error adding document: \(error)")
-                } else {
-                    print("Document successfully added!")
-                }
+        guard let user = Auth.auth().currentUser else {
+            showAlert(message: "User not logged in. Please log in to submit a review.")
+            return
+        }
+        
+        let uniqueID = UUID().uuidString // Generate a unique identifier for the review
+        let userID = user.uid // Get the currently logged-in user's ID
+        
+        let db = Firestore.firestore()
+        
+        // Add new review
+        db.collection("Reviews").addDocument(data: [
+            "id": uniqueID, // Unique review ID
+            "userID": userID, // User ID of the logged-in user
+            "title": title,
+            "content": content,
+            "rating": rating,
+            "timestamp": Timestamp() // Add a timestamp for the review
+        ]) { error in
+            if let error = error {
+                print("Error adding document: \(error)")
+            } else {
+                print("Document successfully added!")
             }
         }
     }
-
 
     @IBAction func starButtonTapped1(_ sender: UIButton) { updateRating(rating: 1) }
     @IBAction func starButtonTapped2(_ sender: UIButton) { updateRating(rating: 2) }

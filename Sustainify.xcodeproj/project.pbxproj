@@ -21,6 +21,8 @@
 		AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C472D09B00200957DA7 /* AppDelegate.swift */; };
 		AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */; };
 		AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C4B2D09B00200957DA7 /* Ali.storyboard */; };
+		AC6634C22D21A99400574F9F /* ReportedReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6634C12D21A99400574F9F /* ReportedReviewsTableViewController.swift */; };
+		AC6634C42D21B9D000574F9F /* ReportedReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6634C32D21B9D000574F9F /* ReportedReviewsTableViewCell.swift */; };
 		AC66F64E2D20715D004D7582 /* TagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC66F64D2D20715D004D7582 /* TagsTableViewCell.swift */; };
 		AC69000F2D09BC5300FB9718 /* Mohamed Ashoor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */; };
 		ACB79BA52D1C841800E3FBBB /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BA42D1C841800E3FBBB /* Bader.storyboard */; };
@@ -95,6 +97,8 @@
 		AC360C482D09B00200957DA7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC360C4B2D09B00200957DA7 /* Ali.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ali.storyboard; sourceTree = "<group>"; };
+		AC6634C12D21A99400574F9F /* ReportedReviewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedReviewsTableViewController.swift; sourceTree = "<group>"; };
+		AC6634C32D21B9D000574F9F /* ReportedReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedReviewsTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		AC66F64D2D20715D004D7582 /* TagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsTableViewCell.swift; sourceTree = "<group>"; };
 		AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed Ashoor.storyboard"; sourceTree = "<group>"; };
 		ACB79BA42D1C841800E3FBBB /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
@@ -269,11 +273,13 @@
 		AC7C2FF82D09B6470097608D /* BaderControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC6634C32D21B9D000574F9F /* ReportedReviewsTableViewCell.swift */,
 				ACB79BAB2D1C843100E3FBBB /* AddReviewViewController.swift */,
 				ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */,
 				ACB79BA92D1C843100E3FBBB /* ReviewCollectionViewCell.swift */,
 				ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */,
 				ACB79BA82D1C843100E3FBBB /* ReviewTableViewCell.swift */,
+				AC6634C12D21A99400574F9F /* ReportedReviewsTableViewController.swift */,
 				ACB79BAA2D1C843100E3FBBB /* Tag.swift */,
 				AC66F64D2D20715D004D7582 /* TagsTableViewCell.swift */,
 			);
@@ -455,10 +461,12 @@
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
 				ACB79BCF2D1C877C00E3FBBB /* ProductsViewController.swift in Sources */,
 				ACB79BB12D1C843100E3FBBB /* AddReviewViewController.swift in Sources */,
+				AC6634C22D21A99400574F9F /* ReportedReviewsTableViewController.swift in Sources */,
 				AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */,
 				ACB79BD22D1C877C00E3FBBB /* StoreTableViewCell.swift in Sources */,
 				ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */,
 				ACB79BAE2D1C843100E3FBBB /* ReviewTableViewCell.swift in Sources */,
+				AC6634C42D21B9D000574F9F /* ReportedReviewsTableViewCell.swift in Sources */,
 				ACB79BBC2D1C85A200E3FBBB /* ProductListController.swift in Sources */,
 				ACB79BCE2D1C877C00E3FBBB /* HomeViewController.swift in Sources */,
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,

@@ -12,16 +12,26 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var starsLabel: UILabel!
+    
     @IBOutlet weak var starButton1: UIButton!
     @IBOutlet weak var starButton2: UIButton!
     @IBOutlet weak var starButton3: UIButton!
     @IBOutlet weak var starButton4: UIButton!
     @IBOutlet weak var starButton5: UIButton!
+    
+    
+    @IBOutlet weak var reportReviewButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
     var onEdit: (() -> Void)?
     var onDelete: (() -> Void)?
+    
+    var onReport: (() -> Void)? // Closure to handle reporting action
+        
+        @IBAction func reportButtonTapped(_ sender: UIButton) {
+            onReport?()
+        }
     
     @IBAction func editButtonTapped(_ sender: UIButton) {
         onEdit?()
