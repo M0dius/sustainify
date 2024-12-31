@@ -63,7 +63,7 @@ class ListOfStoresTableViewController: UITableViewController {
            let indexPath = tableView.indexPathForSelectedRow,
            let destinationVC = segue.destination as? ListOfProductsTableViewController {
             let selectedStore = stores[indexPath.row]
-            destinationVC.storeID = selectedStore.id
+            //destinationVC.storeID = selectedStore.id
         }
     }
 

@@ -5,12 +5,32 @@
 //  Created by Guest User on 30/12/2024.
 //
 
+//
+//  ListOfProductsTableViewController.swift
+//  Sustainify
+//
+//  Created by Guest User on 30/12/2024.
+//
+
+//
+//  ListOfProductsTableViewController.swift
+//  Sustainify
+//
+//  Created by Guest User on 30/12/2024.
+//
+
+//
+//  ListOfProductsTableViewController.swift
+//  Sustainify
+//
+//  Created by Guest User on 30/12/2024.
+//
+
 import UIKit
 import Firebase
 
 class ListOfProductsTableViewController: UITableViewController {
-    var storeID: String?
-    var products: [(id: String, name: String)] = []
+    var products: [[String: Any]] = [] // Store product data as dictionaries
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,19 +39,15 @@ class ListOfProductsTableViewController: UITableViewController {
     }
 
     func fetchProducts() {
-        guard let storeID = storeID else { return }
         let db = Firestore.firestore()
         
-        db.collection("Stores").document(storeID).collection("Products").getDocuments { snapshot, error in
+        db.collection("Products").getDocuments { snapshot, error in
             if let error = error {
-                print("Error fetching products: \(error)")
-            } else {
-                self.products = snapshot?.documents.compactMap { document in
-                    let data = document.data()
-                    let name = data["name"] as? String ?? "Unnamed Product"
-                    return (id: document.documentID, name: name)
-                } ?? []
-                self.tableView.reloadData()
+                print("Error fetching products: \(error.localizedDescription)")
+            } else if let snapshot = snapshot {
+                self.products = snapshot.documents.compactMap { $0.data() }
+                self.tableView.reloadData() // Refresh the table view
+                print("Fetched products: \(self.products)")
             }
         }
     }
@@ -44,7 +60,7 @@ class ListOfProductsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
         let product = products[indexPath.row]
-        cell.textLabel?.text = product.name
+        cell.textLabel?.text = product["name"] as? String ?? "Unnamed Product"
         return cell
     }
 
@@ -53,8 +69,7 @@ class ListOfProductsTableViewController: UITableViewController {
            let indexPath = tableView.indexPathForSelectedRow,
            let destinationVC = segue.destination as? ProductDetailsViewController {
             let selectedProduct = products[indexPath.row]
-            destinationVC.productID = selectedProduct.id
-            destinationVC.storeID = storeID
+            destinationVC.productDetails = selectedProduct // Pass the product details to the next screen
         }
     }
 }

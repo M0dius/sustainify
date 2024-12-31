@@ -60,6 +60,8 @@
 		ACB79BEC2D1C8CA400E3FBBB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */; };
 		ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */; };
 		ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */; };
+		ACD05CD32D23E4FF00E48387 /* AllReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD05CD22D23E4FF00E48387 /* AllReviewsTableViewController.swift */; };
+		ACD05CD52D23E54700E48387 /* AllReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD05CD42D23E54700E48387 /* AllReviewsTableViewCell.swift */; };
 		CE8990AC2D20F7DB0087A9F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8990AB2D20F7DB0087A9F8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +136,8 @@
 		ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoDetailTableViewController.swift; sourceTree = "<group>"; };
 		ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListDelegate.swift; sourceTree = "<group>"; };
+		ACD05CD22D23E4FF00E48387 /* AllReviewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		ACD05CD42D23E54700E48387 /* AllReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllReviewsTableViewCell.swift; path = Sustainify/AllReviewsTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		CE8990AB2D20F7DB0087A9F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,6 +281,8 @@
 		AC7C2FF82D09B6470097608D /* BaderControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ACD05CD42D23E54700E48387 /* AllReviewsTableViewCell.swift */,
+				ACD05CD22D23E4FF00E48387 /* AllReviewsTableViewController.swift */,
 				ACB6349F2D23045700A187EB /* ListOfProductsTableViewController.swift */,
 				ACB6349D2D2302B400A187EB /* ListOfStoresTableViewController.swift */,
 				AC6634C32D21B9D000574F9F /* ReportedReviewsTableViewCell.swift */,
@@ -474,6 +480,7 @@
 				ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */,
 				ACB79BAE2D1C843100E3FBBB /* ReviewTableViewCell.swift in Sources */,
 				AC6634C42D21B9D000574F9F /* ReportedReviewsTableViewCell.swift in Sources */,
+				ACD05CD32D23E4FF00E48387 /* AllReviewsTableViewController.swift in Sources */,
 				ACB79BBC2D1C85A200E3FBBB /* ProductListController.swift in Sources */,
 				ACB79BCE2D1C877C00E3FBBB /* HomeViewController.swift in Sources */,
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,
@@ -484,6 +491,7 @@
 				ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */,
 				ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */,
 				ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */,
+				ACD05CD52D23E54700E48387 /* AllReviewsTableViewCell.swift in Sources */,
 				ACB6349E2D2302B400A187EB /* ListOfStoresTableViewController.swift in Sources */,
 				ACB79BD02D1C877C00E3FBBB /* StoreDetailsViewController.swift in Sources */,
 				ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */,

@@ -7,11 +7,13 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class ReviewsTableViewController: UITableViewController {
     
     var reviews: [(id: String, title: String, content: String, rating: Int)] = [] // Add an `id` to track Firestore document IDs.
-    
+    var userID: String? // The currently logged-in user's ID
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Reviews"
@@ -21,13 +23,59 @@ class ReviewsTableViewController: UITableViewController {
         // Add the Edit button to the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditingMode))
 
-        fetchReviewsFromFirestore()
+        // Get the current user's ID
+        if let currentUser = Auth.auth().currentUser {
+            userID = currentUser.uid
+            fetchReviewsFromFirestore()
+        } else {
+            print("User is not logged in")
+            showAlert(message: "Please log in to see your reviews.")
+        }
+        duplicateReviewsWithUserID()
     }
     
-    func fetchReviewsFromFirestore() {
+    func duplicateReviewsWithUserID() {
         let db = Firestore.firestore()
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("No user is logged in. Cannot add userID.")
+            return
+        }
+
+        db.collection("Reviews").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching reviews: \(error)")
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                print("No reviews found in the collection.")
+                return
+            }
+
+            print("Number of reviews fetched: \(documents.count)")
+
+            for document in documents {
+                let data = document.data()
+                var newData = data
+                newData["userID"] = currentUserID // Add userID field
+
+                db.collection("NewReviews").document(document.documentID).setData(newData) { error in
+                    if let error = error {
+                        print("Error duplicating document \(document.documentID): \(error)")
+                    } else {
+                        print("Successfully duplicated document \(document.documentID) to NewReviews.")
+                    }
+                }
+            }
+        }
+    }
+
+    
+    func fetchReviewsFromFirestore() {
+        guard let userID = userID else { return }
         
-        db.collection("Reviews").getDocuments { snapshot, error in
+        let db = Firestore.firestore()
+        db.collection("Reviews").whereField("userID", isEqualTo: userID).getDocuments { snapshot, error in
             if let error = error {
                 print("Error fetching reviews: \(error)")
             } else {
@@ -44,42 +92,42 @@ class ReviewsTableViewController: UITableViewController {
     }
     
     func reportReview(at index: Int) {
-            let review = reviews[index]
-            let db = Firestore.firestore()
-            
-            let reportData: [String: Any] = [
-                "reviewID": review.id,
-                "title": review.title,
-                "content": review.content,
-                "rating": review.rating,
-                "timestamp": Timestamp() // Add timestamp for when the review was reported
-            ]
-            
-            // Save the reported review to a new "ReportedReviews" collection
-            db.collection("ReportedReviews").addDocument(data: reportData) { error in
-                if let error = error {
-                    print("Error reporting review: \(error)")
-                } else {
-                    print("Review successfully reported!")
-                    self.showAlert(message: "The review has been reported successfully.")
-                }
+        let review = reviews[index]
+        let db = Firestore.firestore()
+        
+        let reportData: [String: Any] = [
+            "reviewID": review.id,
+            "title": review.title,
+            "content": review.content,
+            "rating": review.rating,
+            "timestamp": Timestamp() // Add timestamp for when the review was reported
+        ]
+        
+        // Save the reported review to a new "ReportedReviews" collection
+        db.collection("ReportedReviews").addDocument(data: reportData) { error in
+            if let error = error {
+                print("Error reporting review: \(error)")
+            } else {
+                print("Review successfully reported!")
+                self.showAlert(message: "The review has been reported successfully.")
             }
         }
-        
-        func confirmReportReview(at index: Int) {
-            let alert = UIAlertController(title: "Report Review", message: "Are you sure you want to report this review?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { [weak self] _ in
-                self?.reportReview(at: index)
-            }))
-            present(alert, animated: true, completion: nil)
-        }
-        
-        func showAlert(message: String) {
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated: true, completion: nil)
-        }
+    }
+    
+    func confirmReportReview(at index: Int) {
+        let alert = UIAlertController(title: "Report Review", message: "Are you sure you want to report this review?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { [weak self] _ in
+            self?.reportReview(at: index)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true, completion: nil)
+    }
     
     @objc func toggleEditingMode() {
         // Toggle the table view editing mode
@@ -128,8 +176,8 @@ class ReviewsTableViewController: UITableViewController {
         cell.starsLabel.text = "\(review.rating) stars"
         
         cell.onReport = { [weak self] in
-                    self?.confirmReportReview(at: indexPath.row)
-                }
+            self?.confirmReportReview(at: indexPath.row)
+        }
         
         return cell
     }
@@ -145,4 +193,3 @@ class ReviewsTableViewController: UITableViewController {
         }
     }
 }
-
