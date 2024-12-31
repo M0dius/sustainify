@@ -5,14 +5,19 @@
 //  Created by Guest User on 15/12/2024.
 //
 
+//
+//  ReviewsTableViewController.swift
+//  Sustainify
+//
+//  Created by Guest User on 15/12/2024.
+//
+
 import UIKit
 import Firebase
-import FirebaseAuth
 
 class ReviewsTableViewController: UITableViewController {
     
-    var reviews: [(id: String, title: String, content: String, rating: Int)] = [] // Add an `id` to track Firestore document IDs.
-    var userID: String? // The currently logged-in user's ID
+    var reviews: [(id: String, title: String, content: String, rating: Int)] = [] // Store all reviews.
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,59 +28,15 @@ class ReviewsTableViewController: UITableViewController {
         // Add the Edit button to the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditingMode))
 
-        // Get the current user's ID
-        if let currentUser = Auth.auth().currentUser {
-            userID = currentUser.uid
-            fetchReviewsFromFirestore()
-        } else {
-            print("User is not logged in")
-            showAlert(message: "Please log in to see your reviews.")
-        }
-        duplicateReviewsWithUserID()
+        // Fetch reviews from Firestore
+        fetchReviewsFromFirestore()
     }
-    
-    func duplicateReviewsWithUserID() {
-        let db = Firestore.firestore()
-        guard let currentUserID = Auth.auth().currentUser?.uid else {
-            print("No user is logged in. Cannot add userID.")
-            return
-        }
-
-        db.collection("Reviews").getDocuments { (snapshot, error) in
-            if let error = error {
-                print("Error fetching reviews: \(error)")
-                return
-            }
-
-            guard let documents = snapshot?.documents else {
-                print("No reviews found in the collection.")
-                return
-            }
-
-            print("Number of reviews fetched: \(documents.count)")
-
-            for document in documents {
-                let data = document.data()
-                var newData = data
-                newData["userID"] = currentUserID // Add userID field
-
-                db.collection("NewReviews").document(document.documentID).setData(newData) { error in
-                    if let error = error {
-                        print("Error duplicating document \(document.documentID): \(error)")
-                    } else {
-                        print("Successfully duplicated document \(document.documentID) to NewReviews.")
-                    }
-                }
-            }
-        }
-    }
-
     
     func fetchReviewsFromFirestore() {
-        guard let userID = userID else { return }
-        
         let db = Firestore.firestore()
-        db.collection("Reviews").whereField("userID", isEqualTo: userID).getDocuments { snapshot, error in
+        
+        // Fetch all reviews from the "Reviews" collection
+        db.collection("Reviews").getDocuments { snapshot, error in
             if let error = error {
                 print("Error fetching reviews: \(error)")
             } else {
@@ -84,9 +45,11 @@ class ReviewsTableViewController: UITableViewController {
                     let title = data["title"] as? String ?? "No title"
                     let content = data["content"] as? String ?? "No content"
                     let rating = data["rating"] as? Int ?? 0
-                    return (id: document.documentID, title: title, content: content, rating: rating) // Add document ID
+                    return (id: document.documentID, title: title, content: content, rating: rating)
                 } ?? []
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
