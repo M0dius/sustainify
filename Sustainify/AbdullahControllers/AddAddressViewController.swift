@@ -40,8 +40,13 @@ class AddAddressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Update UI based on the selected address type
         updateUIForAddressType(selectedAddressType)
 
+        // Set the keyboard type for number fields
+        setNumberFieldsKeyboard()
+
+        // Add target to the segmented control to detect address type change
         addressTypeSegmentedControl.addTarget(self, action: #selector(addressTypeChanged), for: .valueChanged)
     }
 
@@ -92,10 +97,37 @@ class AddAddressViewController: UIViewController {
         }
     }
 
+    // Set the keyboard type for fields that should only accept numbers
+    func setNumberFieldsKeyboard() {
+        houseField.keyboardType = .numberPad
+        blockField.keyboardType = .numberPad
+        roadField.keyboardType = .numberPad
+        phoneNumberField.keyboardType = .phonePad
+        apartmentNumberField.keyboardType = .numberPad
+        buildingField.keyboardType = .numberPad
+        floorField.keyboardType = .numberPad
+        officeNumberField.keyboardType = .numberPad
+    }
+
+    // Validate number fields to ensure only digits are entered
+    func isValidNumber(_ text: String) -> Bool {
+        let characterSet = CharacterSet(charactersIn: "0123456789")
+        return text.rangeOfCharacter(from: characterSet.inverted) == nil
+    }
+
     @IBAction func saveAddressButtonTapped(_ sender: UIButton) {
         // Get the current logged-in user's UID
         guard let userID = Auth.auth().currentUser?.uid else {
             print("No user is logged in.")
+            return
+        }
+
+        // Validate the required fields based on address type
+        if !validateFieldsForAddressType() {
+            // Show an alert or handle validation error
+            let alert = UIAlertController(title: "Error", message: "Please fill all required fields.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             return
         }
 
@@ -126,6 +158,35 @@ class AddAddressViewController: UIViewController {
                 // Successfully saved address, go back to the previous screen
                 self.navigationController?.popViewController(animated: true)
             }
+        }
+    }
+
+    // Validate the required fields for each address type
+    func validateFieldsForAddressType() -> Bool {
+        switch selectedAddressType {
+        case "House":
+            // Ensure all house fields are filled
+            return !(houseField.text?.isEmpty ?? true) &&
+                   !(blockField.text?.isEmpty ?? true) &&
+                   !(roadField.text?.isEmpty ?? true) &&
+                   !(phoneNumberField.text?.isEmpty ?? true)
+        case "Apartment":
+            // Ensure all apartment fields are filled
+            return !(apartmentNumberField.text?.isEmpty ?? true) &&
+                   !(buildingField.text?.isEmpty ?? true) &&
+                   !(floorField.text?.isEmpty ?? true) &&
+                   !(roadField.text?.isEmpty ?? true) &&
+                   !(phoneNumberField.text?.isEmpty ?? true)
+        case "Office":
+            // Ensure all office fields are filled
+            return !(companyField.text?.isEmpty ?? true) &&
+                   !(buildingField.text?.isEmpty ?? true) &&
+                   !(floorField.text?.isEmpty ?? true) &&
+                   !(officeNumberField.text?.isEmpty ?? true) &&
+                   !(roadField.text?.isEmpty ?? true) &&
+                   !(phoneNumberField.text?.isEmpty ?? true)
+        default:
+            return false
         }
     }
 }

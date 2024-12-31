@@ -10,12 +10,13 @@ import FirebaseAuth
 
 class settingsTableViewController: UITableViewController {
 
-    // Define the sections and rows for the table
+    // Define the sections and rows for the table, including "Booked Items"
     let settingsOptions = [
         "Profile",
         "Preferences",
         "Reviews",
         "Booked Items",
+        "Order History",
         "Vouchers",
         "About Us",
         "Sign Out"
@@ -59,12 +60,14 @@ class settingsTableViewController: UITableViewController {
             navigateToPreferences()
         case "Reviews":
             navigateToReviews()
-        case "Booked Items":
-            navigateToBookedItems()
+        case "Order History":
+            navigateToOrderHistory()  // Updated name to "Order History"
         case "Vouchers":
             navigateToVouchers()
         case "About Us":
             navigateToAboutUs()
+        case "Booked Items":  // New "Booked Items" cell action
+            navigateToBookedItems()  // This will handle the "Booked Items" selection
         case "Sign Out":
             signOut()
         default:
@@ -86,12 +89,17 @@ class settingsTableViewController: UITableViewController {
 
     func navigateToReviews() {
         // Perform segue to Reviews screen
-        //performSegue(withIdentifier: "ReviewsSegue", sender: self)
+        // performSegue(withIdentifier: "ReviewsSegue", sender: self)
+    }
+
+    func navigateToOrderHistory() {
+        // Perform segue to Order History screen
+        performSegue(withIdentifier: "OrderHistorySegue", sender: self) // Updated for Order History
     }
 
     func navigateToBookedItems() {
         // Perform segue to Booked Items screen
-        //performSegue(withIdentifier: "BookedItemsSegue", sender: self)
+        //performSegue(withIdentifier: "BookedItemSegue", sender: self)  // Corrected segue to "BookedItemSegue"
     }
 
     func navigateToVouchers() {

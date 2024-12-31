@@ -13,6 +13,7 @@ class AddressListViewController: UITableViewController {
 
     @IBOutlet weak var addAddress: UIBarButtonItem!
     @IBOutlet weak var deleteAddress: UIBarButtonItem!
+    @IBOutlet weak var btnrefresh: UIBarButtonItem!
 
     var addresses: [Address] = []
     let db = Firestore.firestore()
@@ -150,5 +151,12 @@ class AddressListViewController: UITableViewController {
                 editVC.addressID = address.id
             }
         }
+    }
+
+    // MARK: - Refresh Button Action
+
+    @IBAction func refreshAddresses(_ sender: UIBarButtonItem) {
+        // Reload the addresses from Firestore
+        fetchAddresses()
     }
 }

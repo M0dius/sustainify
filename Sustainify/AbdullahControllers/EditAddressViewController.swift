@@ -40,8 +40,10 @@ class EditAddressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Update UI based on the selected address type
         updateUIForAddressType(selectedAddressType)
 
+        // Add target to the segmented control to detect address type change
         addressTypeSegmentedControl.addTarget(self, action: #selector(addressTypeChanged), for: .valueChanged)
 
         // Fetch address data if editing an existing address
@@ -72,6 +74,7 @@ class EditAddressViewController: UIViewController {
             floorField.isHidden = true
             companyField.isHidden = true
             officeNumberField.isHidden = true
+            addressTypeSegmentedControl.selectedSegmentIndex = 0
         case "Apartment":
             apartmentNumberField.isHidden = false
             buildingField.isHidden = false
@@ -82,6 +85,7 @@ class EditAddressViewController: UIViewController {
             blockField.isHidden = true
             companyField.isHidden = true
             officeNumberField.isHidden = true
+            addressTypeSegmentedControl.selectedSegmentIndex = 1
         case "Office":
             companyField.isHidden = false
             buildingField.isHidden = false
@@ -92,6 +96,7 @@ class EditAddressViewController: UIViewController {
             houseField.isHidden = true
             blockField.isHidden = true
             apartmentNumberField.isHidden = true
+            addressTypeSegmentedControl.selectedSegmentIndex = 2
         default:
             break
         }
@@ -118,6 +123,7 @@ class EditAddressViewController: UIViewController {
                 self.officeNumberField.text = data?["officeNumber"] as? String
                 self.selectedAddressType = data?["addressType"] as? String ?? "House"
                 
+                // Update UI with the correct address type
                 self.updateUIForAddressType(self.selectedAddressType)
             }
         }
@@ -126,7 +132,15 @@ class EditAddressViewController: UIViewController {
     // Save address data to Firestore
     @IBAction func saveAddress(_ sender: Any) {
         guard let addressID = addressID else { return }
-        
+
+        // Validate the fields based on address type
+        if !validateFieldsForAddressType() {
+            let alert = UIAlertController(title: "Error", message: "Please fill all required fields.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+
         let updatedData: [String: Any] = [
             "address": addressTitleField.text ?? "",
             "addressType": selectedAddressType,
@@ -148,6 +162,32 @@ class EditAddressViewController: UIViewController {
                 // Go back to the address list
                 self.navigationController?.popViewController(animated: true)
             }
+        }
+    }
+
+    // Validate the required fields for each address type
+    func validateFieldsForAddressType() -> Bool {
+        switch selectedAddressType {
+        case "House":
+            return !(houseField.text?.isEmpty ?? true) &&
+                   !(blockField.text?.isEmpty ?? true) &&
+                   !(roadField.text?.isEmpty ?? true) &&
+                   !(phoneNumberField.text?.isEmpty ?? true)
+        case "Apartment":
+            return !(apartmentNumberField.text?.isEmpty ?? true) &&
+                   !(buildingField.text?.isEmpty ?? true) &&
+                   !(floorField.text?.isEmpty ?? true) &&
+                   !(roadField.text?.isEmpty ?? true) &&
+                   !(phoneNumberField.text?.isEmpty ?? true)
+        case "Office":
+            return !(companyField.text?.isEmpty ?? true) &&
+                   !(buildingField.text?.isEmpty ?? true) &&
+                   !(floorField.text?.isEmpty ?? true) &&
+                   !(officeNumberField.text?.isEmpty ?? true) &&
+                   !(roadField.text?.isEmpty ?? true) &&
+                   !(phoneNumberField.text?.isEmpty ?? true)
+        default:
+            return false
         }
     }
 }

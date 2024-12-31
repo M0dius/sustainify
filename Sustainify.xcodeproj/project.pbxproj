@@ -13,6 +13,12 @@
 		AC02ED052D1F29B4002A6F27 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED042D1F29B4002A6F27 /* FAQ.swift */; };
 		AC02ED072D1F2C41002A6F27 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */; };
 		AC02ED0B2D1F3096002A6F27 /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */; };
+		AC2B91612D243F1D00F8DD45 /* orderHistoryStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B915F2D243F1D00F8DD45 /* orderHistoryStruct.swift */; };
+		AC2B91622D243F1D00F8DD45 /* OrderHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B91602D243F1D00F8DD45 /* OrderHistoryTableViewCell.swift */; };
+		AC2B91642D243F3900F8DD45 /* OrderHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B91632D243F3900F8DD45 /* OrderHistoryTableViewController.swift */; };
+		AC2B91672D243F4800F8DD45 /* VouchersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B91652D243F4800F8DD45 /* VouchersTableViewController.swift */; };
+		AC2B91682D243F4800F8DD45 /* BookedItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B91662D243F4800F8DD45 /* BookedItemsTableViewController.swift */; };
+		AC2B916A2D243F8E00F8DD45 /* BookedItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B91692D243F8E00F8DD45 /* BookedItemList.swift */; };
 		AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C382D09B00100957DA7 /* ViewController.swift */; };
 		AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3E2D09B00100957DA7 /* PIT_structs.swift */; };
 		AC360C532D09B00200957DA7 /* Mohamed AlAlawi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C402D09B00100957DA7 /* Mohamed AlAlawi.storyboard */; };
@@ -27,8 +33,6 @@
 		AC7091902D1EEB410089E7A3 /* ProfAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */; };
 		AC7091922D1EEE760089E7A3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */; };
 		AC7091942D1EF4CE0089E7A3 /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */; };
-		AC89804C2D2306350026AD1F /* VoucherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC89804B2D2306350026AD1F /* VoucherTableViewController.swift */; };
-		AC8980502D2317050026AD1F /* vouchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC89804F2D2317050026AD1F /* vouchers.swift */; };
 		AC913D302D21986900CE40F9 /* EditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC913D2F2D21986900CE40F9 /* EditAddressViewController.swift */; };
 		ACB037EB2D205417005AF392 /* AboutUsChoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037EA2D205417005AF392 /* AboutUsChoiceTableViewController.swift */; };
 		ACB037ED2D2055DE005AF392 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB037EC2D2055DE005AF392 /* ContactViewController.swift */; };
@@ -96,7 +100,13 @@
 		AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AC02ED042D1F29B4002A6F27 /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
 		AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
-		AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FAQCell.swift; path = ../AbdullahControllers/FAQCell.swift; sourceTree = "<group>"; };
+		AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQCell.swift; sourceTree = "<group>"; };
+		AC2B915F2D243F1D00F8DD45 /* orderHistoryStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = orderHistoryStruct.swift; path = "../../../../Desktop/sustainify-AbdullaPart 2/Sustainify/structs/orderHistoryStruct.swift"; sourceTree = "<group>"; };
+		AC2B91602D243F1D00F8DD45 /* OrderHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderHistoryTableViewCell.swift; path = "../../../../Desktop/sustainify-AbdullaPart 2/Sustainify/structs/OrderHistoryTableViewCell.swift"; sourceTree = "<group>"; };
+		AC2B91632D243F3900F8DD45 /* OrderHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderHistoryTableViewController.swift; path = "../../../../Desktop/sustainify-AbdullaPart 2/Sustainify/AbdullahControllers/OrderHistoryTableViewController.swift"; sourceTree = "<group>"; };
+		AC2B91652D243F4800F8DD45 /* VouchersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VouchersTableViewController.swift; path = "../../../../Desktop/sustainify-AbdullaPart 2/Sustainify/AbdullahControllers/VouchersTableViewController.swift"; sourceTree = "<group>"; };
+		AC2B91662D243F4800F8DD45 /* BookedItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookedItemsTableViewController.swift; path = "../../../../Desktop/sustainify-AbdullaPart 2/Sustainify/AbdullahControllers/BookedItemsTableViewController.swift"; sourceTree = "<group>"; };
+		AC2B91692D243F8E00F8DD45 /* BookedItemList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookedItemList.swift; path = "../../../../Desktop/sustainify-AbdullaPart 2/Sustainify/structs/BookedItemList.swift"; sourceTree = "<group>"; };
 		AC360C382D09B00100957DA7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AC360C3E2D09B00100957DA7 /* PIT_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIT_structs.swift; sourceTree = "<group>"; };
 		AC360C402D09B00100957DA7 /* Mohamed AlAlawi.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed AlAlawi.storyboard"; sourceTree = "<group>"; };
@@ -112,8 +122,6 @@
 		AC70918F2D1EEB410089E7A3 /* ProfAddressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfAddressTableViewController.swift; sourceTree = "<group>"; };
 		AC7091912D1EEE760089E7A3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AC7091932D1EF4CE0089E7A3 /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
-		AC89804B2D2306350026AD1F /* VoucherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VoucherTableViewController.swift; path = ../VoucherTableViewController.swift; sourceTree = "<group>"; };
-		AC89804F2D2317050026AD1F /* vouchers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vouchers.swift; sourceTree = "<group>"; };
 		AC913D2F2D21986900CE40F9 /* EditAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressViewController.swift; sourceTree = "<group>"; };
 		ACB037EA2D205417005AF392 /* AboutUsChoiceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsChoiceTableViewController.swift; sourceTree = "<group>"; };
 		ACB037EC2D2055DE005AF392 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -202,8 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				ACB79BCB2D1C877C00E3FBBB /* AliControllers */,
-				AC69000D2D09BC0600FB9718 /* AlAlawiDelegates */,
-				AC69000C2D09BBF300FB9718 /* AlAlawiControllers */,
 				AC69000B2D09BBCB00FB9718 /* AshoorControllers */,
 				AC360C3D2D09B00100957DA7 /* structs */,
 				AC360C432D09B00200957DA7 /* AbdullahDelegates */,
@@ -246,6 +252,12 @@
 		AC360C392D09B00100957DA7 /* AbdullahControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC2B91692D243F8E00F8DD45 /* BookedItemList.swift */,
+				AC2B915F2D243F1D00F8DD45 /* orderHistoryStruct.swift */,
+				AC2B91602D243F1D00F8DD45 /* OrderHistoryTableViewCell.swift */,
+				AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */,
+				AC02ED042D1F29B4002A6F27 /* FAQ.swift */,
+				ACB037F62D207B9F005AF392 /* addressStruct.swift */,
 				ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */,
 				ACCF18512D1DC2EB00FCD1CE /* SignUpViewController.swift */,
 				ACB037F82D208898005AF392 /* AddressListViewController.swift */,
@@ -258,7 +270,9 @@
 				AC02ED062D1F2C41002A6F27 /* FAQViewController.swift */,
 				ACB037EC2D2055DE005AF392 /* ContactViewController.swift */,
 				ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */,
-				AC89804B2D2306350026AD1F /* VoucherTableViewController.swift */,
+				AC2B91632D243F3900F8DD45 /* OrderHistoryTableViewController.swift */,
+				AC2B91662D243F4800F8DD45 /* BookedItemsTableViewController.swift */,
+				AC2B91652D243F4800F8DD45 /* VouchersTableViewController.swift */,
 			);
 			path = AbdullahControllers;
 			sourceTree = "<group>";
@@ -266,10 +280,6 @@
 		AC360C3D2D09B00100957DA7 /* structs */ = {
 			isa = PBXGroup;
 			children = (
-				ACB037F62D207B9F005AF392 /* addressStruct.swift */,
-				AC89804F2D2317050026AD1F /* vouchers.swift */,
-				AC02ED042D1F29B4002A6F27 /* FAQ.swift */,
-				AC02ED0A2D1F3096002A6F27 /* FAQCell.swift */,
 				AC360C3E2D09B00100957DA7 /* PIT_structs.swift */,
 			);
 			path = structs;
@@ -296,20 +306,6 @@
 				ACB79BB82D1C85A200E3FBBB /* UserListControllers.swift */,
 			);
 			path = AshoorControllers;
-			sourceTree = "<group>";
-		};
-		AC69000C2D09BBF300FB9718 /* AlAlawiControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AlAlawiControllers;
-			sourceTree = "<group>";
-		};
-		AC69000D2D09BC0600FB9718 /* AlAlawiDelegates */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AlAlawiDelegates;
 			sourceTree = "<group>";
 		};
 		AC7C2FF82D09B6470097608D /* BaderControllers */ = {
@@ -498,14 +494,15 @@
 				ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */,
 				AC7091902D1EEB410089E7A3 /* ProfAddressTableViewController.swift in Sources */,
 				AC7091922D1EEE760089E7A3 /* ProfileViewController.swift in Sources */,
-				AC89804C2D2306350026AD1F /* VoucherTableViewController.swift in Sources */,
 				ACB037F72D207B9F005AF392 /* addressStruct.swift in Sources */,
 				AC02ED052D1F29B4002A6F27 /* FAQ.swift in Sources */,
 				ACB037F92D208898005AF392 /* AddressListViewController.swift in Sources */,
 				AC7091942D1EF4CE0089E7A3 /* PreferencesTableViewController.swift in Sources */,
 				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
+				AC2B91622D243F1D00F8DD45 /* OrderHistoryTableViewCell.swift in Sources */,
 				AC913D302D21986900CE40F9 /* EditAddressViewController.swift in Sources */,
 				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
+				AC2B916A2D243F8E00F8DD45 /* BookedItemList.swift in Sources */,
 				ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */,
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
 				ACB79BCF2D1C877C00E3FBBB /* ProductsViewController.swift in Sources */,
@@ -516,17 +513,20 @@
 				ACB79BBC2D1C85A200E3FBBB /* ProductListController.swift in Sources */,
 				ACB79BCE2D1C877C00E3FBBB /* HomeViewController.swift in Sources */,
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,
+				AC2B91612D243F1D00F8DD45 /* orderHistoryStruct.swift in Sources */,
 				ACB79BC32D1C85A200E3FBBB /* EditUserController.swift in Sources */,
 				AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */,
+				AC2B91642D243F3900F8DD45 /* OrderHistoryTableViewController.swift in Sources */,
 				AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */,
 				ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */,
 				AC02ED0B2D1F3096002A6F27 /* FAQCell.swift in Sources */,
 				ACB037EB2D205417005AF392 /* AboutUsChoiceTableViewController.swift in Sources */,
-				AC8980502D2317050026AD1F /* vouchers.swift in Sources */,
+				AC2B91682D243F4800F8DD45 /* BookedItemsTableViewController.swift in Sources */,
 				ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */,
 				ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */,
 				ACB037EF2D207675005AF392 /* AddAddressViewController.swift in Sources */,
 				ACB79BD02D1C877C00E3FBBB /* StoreDetailsViewController.swift in Sources */,
+				AC2B91672D243F4800F8DD45 /* VouchersTableViewController.swift in Sources */,
 				ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */,
 				ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */,
 				ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */,
