@@ -45,7 +45,7 @@ class StoreTableViewCell: UITableViewCell {
         
         // Configure the timings labels
         openingTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        openingTimeLabel.font = UIFont.boldSystemFont(ofSize: 10)  
+        openingTimeLabel.font = UIFont.boldSystemFont(ofSize: 10)
         openingTimeLabel.textColor = .white
         openingTimeLabel.textAlignment = .center
         openingTimeLabel.numberOfLines = 2
