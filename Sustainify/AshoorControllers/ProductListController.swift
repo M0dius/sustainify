@@ -75,23 +75,7 @@ class ProductListController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let addStockAction = UIContextualAction(style: .normal, title: "Add Stock") { (_, _, completionHandler) in
-            self.products[indexPath.row].stock += 1
-            tableView.reloadRows(at: [indexPath], with: .none)
-            completionHandler(true)
-        }
-
-        let removeStockAction = UIContextualAction(style: .destructive, title: "Remove Stock") { (_, _, completionHandler) in
-            if self.products[indexPath.row].stock > 0 {
-                self.products[indexPath.row].stock -= 1
-                tableView.reloadRows(at: [indexPath], with: .none)
-            }
-            completionHandler(true)
-        }
-
-        return UISwipeActionsConfiguration(actions: [addStockAction, removeStockAction])
-    }
+    
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
