@@ -41,10 +41,6 @@
 		ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB42D1C85A100E3FBBB /* EditProductController.swift */; };
 		ACB79BBE2D1C85A200E3FBBB /* AddProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB52D1C85A100E3FBBB /* AddProductController.swift */; };
 		ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB62D1C85A100E3FBBB /* Product.swift */; };
-		ACB79BC02D1C85A200E3FBBB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB72D1C85A100E3FBBB /* User.swift */; };
-		ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB82D1C85A200E3FBBB /* UserListControllers.swift */; };
-		ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB92D1C85A200E3FBBB /* AddingUserControllers.swift */; };
-		ACB79BC32D1C85A200E3FBBB /* EditUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BBA2D1C85A200E3FBBB /* EditUserController.swift */; };
 		ACB79BCC2D1C877C00E3FBBB /* CustomAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BC42D1C877C00E3FBBB /* CustomAssets.xcassets */; };
 		ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BC52D1C877C00E3FBBB /* DataManager.swift */; };
 		ACB79BCE2D1C877C00E3FBBB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BC62D1C877C00E3FBBB /* HomeViewController.swift */; };
@@ -118,10 +114,6 @@
 		ACB79BB42D1C85A100E3FBBB /* EditProductController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductController.swift; sourceTree = "<group>"; };
 		ACB79BB52D1C85A100E3FBBB /* AddProductController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductController.swift; sourceTree = "<group>"; };
 		ACB79BB62D1C85A100E3FBBB /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		ACB79BB72D1C85A100E3FBBB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		ACB79BB82D1C85A200E3FBBB /* UserListControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListControllers.swift; sourceTree = "<group>"; };
-		ACB79BB92D1C85A200E3FBBB /* AddingUserControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingUserControllers.swift; sourceTree = "<group>"; };
-		ACB79BBA2D1C85A200E3FBBB /* EditUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserController.swift; sourceTree = "<group>"; };
 		ACB79BC42D1C877C00E3FBBB /* CustomAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CustomAssets.xcassets; sourceTree = "<group>"; };
 		ACB79BC52D1C877C00E3FBBB /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		ACB79BC62D1C877C00E3FBBB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -263,10 +255,6 @@
 		AC69000B2D09BBCB00FB9718 /* AshoorControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ACB79BB72D1C85A100E3FBBB /* User.swift */,
-				ACB79BB82D1C85A200E3FBBB /* UserListControllers.swift */,
-				ACB79BB92D1C85A200E3FBBB /* AddingUserControllers.swift */,
-				ACB79BBA2D1C85A200E3FBBB /* EditUserController.swift */,
 				ACB79BB62D1C85A100E3FBBB /* Product.swift */,
 				ACB79BB32D1C85A100E3FBBB /* ProductListController.swift */,
 				ACB79BB22D1C85A100E3FBBB /* EcoTagModel.swift */,
@@ -477,7 +465,6 @@
 				ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */,
 				AC8F6CD02D1DA251008B4763 /* Shop.swift in Sources */,
 				ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */,
-				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
 				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
 				ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */,
 				ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */,
@@ -493,7 +480,6 @@
 				AC8F6CD42D1DA275008B4763 /* AddShopController.swift in Sources */,
 				AC8F6CD62D1DA2B9008B4763 /* EditShopController.swift in Sources */,
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,
-				ACB79BC32D1C85A200E3FBBB /* EditUserController.swift in Sources */,
 				AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */,
 				ACB79BEC2D1C8CA400E3FBBB /* SettingsViewController.swift in Sources */,
 				AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */,
@@ -503,11 +489,9 @@
 				ACB79BD02D1C877C00E3FBBB /* StoreDetailsViewController.swift in Sources */,
 				AC8F6CD22D1DA262008B4763 /* ShopListController.swift in Sources */,
 				ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */,
-				ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */,
 				ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */,
 				ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */,
 				ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */,
-				ACB79BC02D1C85A200E3FBBB /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

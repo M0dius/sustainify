@@ -6,6 +6,10 @@ class ShopListController: UITableViewController {
     let db = Firestore.firestore()
     var shops: [Shop] = []
     
+    @IBAction func refreshBtnS(_ sender: UIBarButtonItem) {
+        fetchShops()
+    }
+    
     func fetchShops() {
         db.collection("Stores").getDocuments { (snapshot, error) in
             if let error = error {
