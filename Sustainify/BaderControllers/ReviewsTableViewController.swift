@@ -5,85 +5,113 @@
 //  Created by Guest User on 15/12/2024.
 //
 
+//
+//  ReviewsTableViewController.swift
+//  Sustainify
+//
+//  Created by Guest User on 15/12/2024.
+//
+
 import UIKit
+import Firebase
 
 class ReviewsTableViewController: UITableViewController {
+    
+    var reviews: [(id: String, title: String, content: String, rating: Int)] = [] // Store all reviews.
 
-    var reviews: [(title: String, content: String, rating: Int)] = []
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Reviews"
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 150
+
+        // Add the Edit button to the navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditingMode))
+
+        // Fetch reviews from Firestore
+        fetchReviewsFromFirestore()
+    }
+    
+    func fetchReviewsFromFirestore() {
+        let db = Firestore.firestore()
         
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            title = "Reviews"
-            tableView.rowHeight = UITableView.automaticDimension
-            tableView.estimatedRowHeight = 80
-            //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reviewCell")
-        }
-        
-        // MARK: - Navigation to AddReviewViewController
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showAddReview",
-           let addReviewVC = segue.destination as? AddReviewViewController {
-            
-            // pass a callback to get the data back
-            addReviewVC.onReviewAdded = { [weak self] title, content, rating in
-                print("New Review Added - Title: \(title), Content: \(content), Rating: \(rating)") // debugging
-                self?.reviews.append((title: title, content: content, rating: rating))
-                print("Total Reviews: \(self?.reviews.count ?? 0)") // verify array count
-                self?.tableView.reloadData()
+        // Fetch all reviews from the "Reviews" collection
+        db.collection("Reviews").getDocuments { snapshot, error in
+            if let error = error {
+                print("Error fetching reviews: \(error)")
+            } else {
+                self.reviews = snapshot?.documents.compactMap { document in
+                    let data = document.data()
+                    let title = data["title"] as? String ?? "No title"
+                    let content = data["content"] as? String ?? "No content"
+                    let rating = data["rating"] as? Int ?? 0
+                    return (id: document.documentID, title: title, content: content, rating: rating)
+                } ?? []
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
-
-        
-        // MARK: - TableView DataSource
-        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return reviews.count
-        }
-        
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Dequeue the custom cell
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as? ReviewTableViewCell else {
-            fatalError("Unable to dequeue ReviewTableViewCell")
-        }
-
-        let review = reviews[indexPath.row]
-        cell.reviewLabel.text = "\(review.title)\n\(review.content)"
-        cell.reviewLabel.numberOfLines = 0
-        cell.updateStars(rating: review.rating)
-
-        // Handle Edit action
-        cell.onEdit = { [weak self] in
-            self?.navigateToEditReview(at: indexPath.row)
-        }
-        
-        // Handle Delete action
-        cell.onDelete = { [weak self] in
-            self?.confirmDeleteReview(at: indexPath.row)
-        }
-        
-        return cell
-    }
-
-
-
     
-    func navigateToEditReview(at index: Int) {
+    func reportReview(at index: Int) {
         let review = reviews[index]
-        if let addReviewVC = storyboard?.instantiateViewController(withIdentifier: "AddReviewViewController") as? AddReviewViewController {
-            addReviewVC.editingReviewIndex = index
-            addReviewVC.initialTitle = review.title
-            addReviewVC.initialContent = review.content
-            addReviewVC.currentRating = review.rating // Pass the current rating to the editing view
-
-            addReviewVC.onReviewAdded = { [weak self] title, content, rating in
-                self?.reviews[index] = (title: title, content: content, rating: rating)
-                self?.tableView.reloadData()
+        let db = Firestore.firestore()
+        
+        let reportData: [String: Any] = [
+            "reviewID": review.id,
+            "title": review.title,
+            "content": review.content,
+            "rating": review.rating,
+            "timestamp": Timestamp() // Add timestamp for when the review was reported
+        ]
+        
+        // Save the reported review to a new "ReportedReviews" collection
+        db.collection("ReportedReviews").addDocument(data: reportData) { error in
+            if let error = error {
+                print("Error reporting review: \(error)")
+            } else {
+                print("Review successfully reported!")
+                self.showAlert(message: "The review has been reported successfully.")
             }
-            navigationController?.pushViewController(addReviewVC, animated: true)
+        }
+    }
+    
+    func confirmReportReview(at index: Int) {
+        let alert = UIAlertController(title: "Report Review", message: "Are you sure you want to report this review?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { [weak self] _ in
+            self?.reportReview(at: index)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func toggleEditingMode() {
+        // Toggle the table view editing mode
+        tableView.setEditing(!tableView.isEditing, animated: true)
+    }
+    
+    func deleteReview(at index: Int) {
+        let review = reviews[index]
+        let db = Firestore.firestore()
+        
+        db.collection("Reviews").document(review.id).delete { error in
+            if let error = error {
+                print("Error deleting document: \(error)")
+            } else {
+                print("Document successfully deleted!")
+                self.reviews.remove(at: index) // Update local data
+                self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic) // Update table view
+            }
         }
     }
 
-    
     func confirmDeleteReview(at index: Int) {
         let alert = UIAlertController(title: "Delete Review", message: "Are you sure you want to delete this review?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -93,10 +121,38 @@ class ReviewsTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    func deleteReview(at index: Int) {
-        reviews.remove(at: index)
-        tableView.reloadData()
+    // MARK: - Table View Data Source
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reviews.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as? ReviewTableViewCell else {
+            fatalError("Unable to dequeue ReviewTableViewCell")
+        }
+        
+        let review = reviews[indexPath.row]
+        cell.titleLabel.text = review.title
+        cell.reviewLabel.text = review.content
+        cell.updateStars(rating: review.rating)
+        cell.starsLabel.text = "\(review.rating) stars"
+        
+        cell.onReport = { [weak self] in
+            self?.confirmReportReview(at: indexPath.row)
+        }
+        
+        return cell
     }
 
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Allow all rows to be editable
+        return true
+    }
 
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            confirmDeleteReview(at: indexPath.row)
+        }
+    }
 }

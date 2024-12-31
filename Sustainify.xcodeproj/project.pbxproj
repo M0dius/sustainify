@@ -11,8 +11,6 @@
 		AC00040F2CF71F0F009EDDFD /* SustainifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */; };
 		AC0004112CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */; };
 		AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C382D09B00100957DA7 /* ViewController.swift */; };
-		AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3E2D09B00100957DA7 /* PIT_structs.swift */; };
-		AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */; };
 		AC360C532D09B00200957DA7 /* Mohamed AlAlawi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C402D09B00100957DA7 /* Mohamed AlAlawi.storyboard */; };
 		AC360C542D09B00200957DA7 /* Abdullah.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C412D09B00200957DA7 /* Abdullah.storyboard */; };
 		AC360C552D09B00200957DA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C422D09B00200957DA7 /* LaunchScreen.storyboard */; };
@@ -21,14 +19,47 @@
 		AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C472D09B00200957DA7 /* AppDelegate.swift */; };
 		AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */; };
 		AC360C5D2D09B00200957DA7 /* Ali.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC360C4B2D09B00200957DA7 /* Ali.storyboard */; };
+		AC5F90A52D24626D009A8CF4 /* ProfAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F908D2D24626C009A8CF4 /* ProfAddressTableViewController.swift */; };
+		AC5F90A62D24626D009A8CF4 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F908E2D24626C009A8CF4 /* FAQViewController.swift */; };
+		AC5F90A72D24626D009A8CF4 /* OrderHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F908F2D24626D009A8CF4 /* OrderHistoryTableViewController.swift */; };
+		AC5F90A82D24626D009A8CF4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90902D24626D009A8CF4 /* SettingsViewController.swift */; };
+		AC5F90A92D24626D009A8CF4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90912D24626D009A8CF4 /* SignUpViewController.swift */; };
+		AC5F90AA2D24626D009A8CF4 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90922D24626D009A8CF4 /* AboutUsViewController.swift */; };
+		AC5F90AB2D24626D009A8CF4 /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90932D24626D009A8CF4 /* AddAddressViewController.swift */; };
+		AC5F90AC2D24626D009A8CF4 /* BookedItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90942D24626D009A8CF4 /* BookedItemsTableViewController.swift */; };
+		AC5F90AE2D24626D009A8CF4 /* settingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90962D24626D009A8CF4 /* settingsTableViewController.swift */; };
+		AC5F90AF2D24626D009A8CF4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90972D24626D009A8CF4 /* LoginViewController.swift */; };
+		AC5F90B12D24626D009A8CF4 /* EditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90992D24626D009A8CF4 /* EditAddressViewController.swift */; };
+		AC5F90B22D24626D009A8CF4 /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F909A2D24626D009A8CF4 /* PreferencesTableViewController.swift */; };
+		AC5F90B32D24626D009A8CF4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F909B2D24626D009A8CF4 /* ProfileViewController.swift */; };
+		AC5F90B42D24626D009A8CF4 /* VoucherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F909C2D24626D009A8CF4 /* VoucherTableViewController.swift */; };
+		AC5F90B52D24626D009A8CF4 /* VouchersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F909D2D24626D009A8CF4 /* VouchersTableViewController.swift */; };
+		AC5F90B62D24626D009A8CF4 /* AboutUsChoiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F909E2D24626D009A8CF4 /* AboutUsChoiceTableViewController.swift */; };
+		AC5F90B72D24626D009A8CF4 /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F909F2D24626D009A8CF4 /* AddressListViewController.swift */; };
+		AC5F90B82D24626D009A8CF4 /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90A02D24626D009A8CF4 /* FAQCell.swift */; };
+		AC5F90BA2D24626D009A8CF4 /* AddEditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90A22D24626D009A8CF4 /* AddEditAddressViewController.swift */; };
+		AC5F90BB2D24626D009A8CF4 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90A32D24626D009A8CF4 /* ContactViewController.swift */; };
+		AC5F90C42D246285009A8CF4 /* PIT_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90BD2D246285009A8CF4 /* PIT_structs.swift */; };
+		AC5F90C52D246285009A8CF4 /* BookedItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90BE2D246285009A8CF4 /* BookedItemList.swift */; };
+		AC5F90C62D246285009A8CF4 /* orderHistoryStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90BF2D246285009A8CF4 /* orderHistoryStruct.swift */; };
+		AC5F90C72D246285009A8CF4 /* OrderHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90C02D246285009A8CF4 /* OrderHistoryTableViewCell.swift */; };
+		AC5F90C92D246285009A8CF4 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90C22D246285009A8CF4 /* FAQ.swift */; };
+		AC5F90CA2D246285009A8CF4 /* addressStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90C32D246285009A8CF4 /* addressStruct.swift */; };
+		AC5F90D52D246458009A8CF4 /* ReportedReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90CB2D246457009A8CF4 /* ReportedReviewsTableViewController.swift */; };
+		AC5F90D62D246458009A8CF4 /* AllReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90CC2D246457009A8CF4 /* AllReviewsTableViewController.swift */; };
+		AC5F90D72D246458009A8CF4 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90CD2D246457009A8CF4 /* ReviewCollectionViewCell.swift */; };
+		AC5F90D82D246458009A8CF4 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90CE2D246458009A8CF4 /* Tag.swift */; };
+		AC5F90D92D246458009A8CF4 /* TagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90CF2D246458009A8CF4 /* TagsTableViewCell.swift */; };
+		AC5F90DA2D246458009A8CF4 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90D02D246458009A8CF4 /* ReviewTableViewCell.swift */; };
+		AC5F90DB2D246458009A8CF4 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90D12D246458009A8CF4 /* ProductDetailsViewController.swift */; };
+		AC5F90DC2D246458009A8CF4 /* ReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90D22D246458009A8CF4 /* ReviewsTableViewController.swift */; };
+		AC5F90DD2D246458009A8CF4 /* AddReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90D32D246458009A8CF4 /* AddReviewViewController.swift */; };
+		AC5F90DE2D246458009A8CF4 /* ReportedReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90D42D246458009A8CF4 /* ReportedReviewsTableViewCell.swift */; };
+		AC5F90E22D2464C1009A8CF4 /* AllReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90DF2D2464C1009A8CF4 /* AllReviewsTableViewCell.swift */; };
+		AC5F90E32D2464C1009A8CF4 /* ListOfStoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90E02D2464C1009A8CF4 /* ListOfStoresTableViewController.swift */; };
+		AC5F90E42D2464C1009A8CF4 /* ListOfProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5F90E12D2464C1009A8CF4 /* ListOfProductsTableViewController.swift */; };
 		AC69000F2D09BC5300FB9718 /* Mohamed Ashoor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */; };
 		ACB79BA52D1C841800E3FBBB /* Bader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB79BA42D1C841800E3FBBB /* Bader.storyboard */; };
-		ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */; };
-		ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */; };
-		ACB79BAE2D1C843100E3FBBB /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA82D1C843100E3FBBB /* ReviewTableViewCell.swift */; };
-		ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BA92D1C843100E3FBBB /* ReviewCollectionViewCell.swift */; };
-		ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BAA2D1C843100E3FBBB /* Tag.swift */; };
-		ACB79BB12D1C843100E3FBBB /* AddReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BAB2D1C843100E3FBBB /* AddReviewViewController.swift */; };
 		ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB22D1C85A100E3FBBB /* EcoTagModel.swift */; };
 		ACB79BBC2D1C85A200E3FBBB /* ProductListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB32D1C85A100E3FBBB /* ProductListController.swift */; };
 		ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BB42D1C85A100E3FBBB /* EditProductController.swift */; };
@@ -52,12 +83,6 @@
 		ACB79BDF2D1C8B8B00E3FBBB /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = ACB79BDE2D1C8B8B00E3FBBB /* FirebaseCore */; };
 		ACB79BE12D1C8B8B00E3FBBB /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = ACB79BE02D1C8B8B00E3FBBB /* FirebaseDatabase */; };
 		ACB79BE32D1C8B8B00E3FBBB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ACB79BE22D1C8B8B00E3FBBB /* FirebaseFirestore */; };
-		ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */; };
-		ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */; };
-		ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */; };
-		ACB79BEC2D1C8CA400E3FBBB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */; };
-		ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */; };
-		ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,8 +110,6 @@
 		AC00040E2CF71F0F009EDDFD /* SustainifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITests.swift; sourceTree = "<group>"; };
 		AC0004102CF71F0F009EDDFD /* SustainifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AC360C382D09B00100957DA7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AC360C3E2D09B00100957DA7 /* PIT_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIT_structs.swift; sourceTree = "<group>"; };
-		AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo_structs.swift; sourceTree = "<group>"; };
 		AC360C402D09B00100957DA7 /* Mohamed AlAlawi.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed AlAlawi.storyboard"; sourceTree = "<group>"; };
 		AC360C412D09B00200957DA7 /* Abdullah.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Abdullah.storyboard; sourceTree = "<group>"; };
 		AC360C422D09B00200957DA7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -96,14 +119,47 @@
 		AC360C482D09B00200957DA7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC360C4A2D09B00200957DA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC360C4B2D09B00200957DA7 /* Ali.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ali.storyboard; sourceTree = "<group>"; };
+		AC5F908D2D24626C009A8CF4 /* ProfAddressTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfAddressTableViewController.swift; sourceTree = "<group>"; };
+		AC5F908E2D24626C009A8CF4 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		AC5F908F2D24626D009A8CF4 /* OrderHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryTableViewController.swift; sourceTree = "<group>"; };
+		AC5F90902D24626D009A8CF4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AC5F90912D24626D009A8CF4 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		AC5F90922D24626D009A8CF4 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		AC5F90932D24626D009A8CF4 /* AddAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
+		AC5F90942D24626D009A8CF4 /* BookedItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookedItemsTableViewController.swift; sourceTree = "<group>"; };
+		AC5F90962D24626D009A8CF4 /* settingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsTableViewController.swift; sourceTree = "<group>"; };
+		AC5F90972D24626D009A8CF4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AC5F90992D24626D009A8CF4 /* EditAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAddressViewController.swift; sourceTree = "<group>"; };
+		AC5F909A2D24626D009A8CF4 /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
+		AC5F909B2D24626D009A8CF4 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AC5F909C2D24626D009A8CF4 /* VoucherTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherTableViewController.swift; sourceTree = "<group>"; };
+		AC5F909D2D24626D009A8CF4 /* VouchersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VouchersTableViewController.swift; sourceTree = "<group>"; };
+		AC5F909E2D24626D009A8CF4 /* AboutUsChoiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsChoiceTableViewController.swift; sourceTree = "<group>"; };
+		AC5F909F2D24626D009A8CF4 /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
+		AC5F90A02D24626D009A8CF4 /* FAQCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQCell.swift; sourceTree = "<group>"; };
+		AC5F90A22D24626D009A8CF4 /* AddEditAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAddressViewController.swift; sourceTree = "<group>"; };
+		AC5F90A32D24626D009A8CF4 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		AC5F90BD2D246285009A8CF4 /* PIT_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIT_structs.swift; sourceTree = "<group>"; };
+		AC5F90BE2D246285009A8CF4 /* BookedItemList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookedItemList.swift; sourceTree = "<group>"; };
+		AC5F90BF2D246285009A8CF4 /* orderHistoryStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = orderHistoryStruct.swift; sourceTree = "<group>"; };
+		AC5F90C02D246285009A8CF4 /* OrderHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		AC5F90C22D246285009A8CF4 /* FAQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
+		AC5F90C32D246285009A8CF4 /* addressStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addressStruct.swift; sourceTree = "<group>"; };
+		AC5F90CB2D246457009A8CF4 /* ReportedReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportedReviewsTableViewController.swift; sourceTree = "<group>"; };
+		AC5F90CC2D246457009A8CF4 /* AllReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewController.swift; sourceTree = "<group>"; };
+		AC5F90CD2D246457009A8CF4 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC5F90CE2D246458009A8CF4 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		AC5F90CF2D246458009A8CF4 /* TagsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsTableViewCell.swift; sourceTree = "<group>"; };
+		AC5F90D02D246458009A8CF4 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		AC5F90D12D246458009A8CF4 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		AC5F90D22D246458009A8CF4 /* ReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewController.swift; sourceTree = "<group>"; };
+		AC5F90D32D246458009A8CF4 /* AddReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReviewViewController.swift; sourceTree = "<group>"; };
+		AC5F90D42D246458009A8CF4 /* ReportedReviewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportedReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		AC5F90DF2D2464C1009A8CF4 /* AllReviewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		AC5F90E02D2464C1009A8CF4 /* ListOfStoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfStoresTableViewController.swift; sourceTree = "<group>"; };
+		AC5F90E12D2464C1009A8CF4 /* ListOfProductsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfProductsTableViewController.swift; sourceTree = "<group>"; };
 		AC69000E2D09BC5300FB9718 /* Mohamed Ashoor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mohamed Ashoor.storyboard"; sourceTree = "<group>"; };
 		ACB79BA42D1C841800E3FBBB /* Bader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bader.storyboard; sourceTree = "<group>"; };
-		ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
-		ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewController.swift; sourceTree = "<group>"; };
-		ACB79BA82D1C843100E3FBBB /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
-		ACB79BA92D1C843100E3FBBB /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
-		ACB79BAA2D1C843100E3FBBB /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
-		ACB79BAB2D1C843100E3FBBB /* AddReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReviewViewController.swift; sourceTree = "<group>"; };
 		ACB79BB22D1C85A100E3FBBB /* EcoTagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoTagModel.swift; sourceTree = "<group>"; };
 		ACB79BB32D1C85A100E3FBBB /* ProductListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListController.swift; sourceTree = "<group>"; };
 		ACB79BB42D1C85A100E3FBBB /* EditProductController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductController.swift; sourceTree = "<group>"; };
@@ -121,12 +177,6 @@
 		ACB79BC92D1C877C00E3FBBB /* StoreInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreInfoTableViewCell.swift; sourceTree = "<group>"; };
 		ACB79BCA2D1C877C00E3FBBB /* StoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 		ACB79BD72D1C8B6600E3FBBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
-		ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsTableViewController.swift; sourceTree = "<group>"; };
-		ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoDetailTableViewController.swift; sourceTree = "<group>"; };
-		ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,11 +276,26 @@
 		AC360C392D09B00100957DA7 /* AbdullahControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ACB79BE42D1C8CA400E3FBBB /* LoginViewController.swift */,
-				ACB79BE62D1C8CA400E3FBBB /* settingsTableViewController.swift */,
-				ACB79BE72D1C8CA400E3FBBB /* SettingsViewController.swift */,
-				ACB79BE82D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift */,
-				ACB79BE52D1C8CA400E3FBBB /* ToDoTableViewController.swift */,
+				AC5F909E2D24626D009A8CF4 /* AboutUsChoiceTableViewController.swift */,
+				AC5F90922D24626D009A8CF4 /* AboutUsViewController.swift */,
+				AC5F90932D24626D009A8CF4 /* AddAddressViewController.swift */,
+				AC5F90A22D24626D009A8CF4 /* AddEditAddressViewController.swift */,
+				AC5F909F2D24626D009A8CF4 /* AddressListViewController.swift */,
+				AC5F90942D24626D009A8CF4 /* BookedItemsTableViewController.swift */,
+				AC5F90A32D24626D009A8CF4 /* ContactViewController.swift */,
+				AC5F90992D24626D009A8CF4 /* EditAddressViewController.swift */,
+				AC5F90A02D24626D009A8CF4 /* FAQCell.swift */,
+				AC5F908E2D24626C009A8CF4 /* FAQViewController.swift */,
+				AC5F90972D24626D009A8CF4 /* LoginViewController.swift */,
+				AC5F908F2D24626D009A8CF4 /* OrderHistoryTableViewController.swift */,
+				AC5F909A2D24626D009A8CF4 /* PreferencesTableViewController.swift */,
+				AC5F908D2D24626C009A8CF4 /* ProfAddressTableViewController.swift */,
+				AC5F909B2D24626D009A8CF4 /* ProfileViewController.swift */,
+				AC5F90962D24626D009A8CF4 /* settingsTableViewController.swift */,
+				AC5F90902D24626D009A8CF4 /* SettingsViewController.swift */,
+				AC5F90912D24626D009A8CF4 /* SignUpViewController.swift */,
+				AC5F909D2D24626D009A8CF4 /* VouchersTableViewController.swift */,
+				AC5F909C2D24626D009A8CF4 /* VoucherTableViewController.swift */,
 			);
 			path = AbdullahControllers;
 			sourceTree = "<group>";
@@ -238,8 +303,12 @@
 		AC360C3D2D09B00100957DA7 /* structs */ = {
 			isa = PBXGroup;
 			children = (
-				AC360C3E2D09B00100957DA7 /* PIT_structs.swift */,
-				AC360C3F2D09B00100957DA7 /* ToDo_structs.swift */,
+				AC5F90C32D246285009A8CF4 /* addressStruct.swift */,
+				AC5F90BE2D246285009A8CF4 /* BookedItemList.swift */,
+				AC5F90C22D246285009A8CF4 /* FAQ.swift */,
+				AC5F90BF2D246285009A8CF4 /* orderHistoryStruct.swift */,
+				AC5F90C02D246285009A8CF4 /* OrderHistoryTableViewCell.swift */,
+				AC5F90BD2D246285009A8CF4 /* PIT_structs.swift */,
 			);
 			path = structs;
 			sourceTree = "<group>";
@@ -247,7 +316,6 @@
 		AC360C432D09B00200957DA7 /* AbdullahDelegates */ = {
 			isa = PBXGroup;
 			children = (
-				ACB79BEE2D1C8CC500E3FBBB /* ToDoListDelegate.swift */,
 			);
 			path = AbdullahDelegates;
 			sourceTree = "<group>";
@@ -285,12 +353,19 @@
 		AC7C2FF82D09B6470097608D /* BaderControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ACB79BAB2D1C843100E3FBBB /* AddReviewViewController.swift */,
-				ACB79BA62D1C843100E3FBBB /* ProductDetailsViewController.swift */,
-				ACB79BA92D1C843100E3FBBB /* ReviewCollectionViewCell.swift */,
-				ACB79BA72D1C843100E3FBBB /* ReviewsTableViewController.swift */,
-				ACB79BA82D1C843100E3FBBB /* ReviewTableViewCell.swift */,
-				ACB79BAA2D1C843100E3FBBB /* Tag.swift */,
+				AC5F90DF2D2464C1009A8CF4 /* AllReviewsTableViewCell.swift */,
+				AC5F90E12D2464C1009A8CF4 /* ListOfProductsTableViewController.swift */,
+				AC5F90E02D2464C1009A8CF4 /* ListOfStoresTableViewController.swift */,
+				AC5F90D32D246458009A8CF4 /* AddReviewViewController.swift */,
+				AC5F90CC2D246457009A8CF4 /* AllReviewsTableViewController.swift */,
+				AC5F90D12D246458009A8CF4 /* ProductDetailsViewController.swift */,
+				AC5F90D42D246458009A8CF4 /* ReportedReviewsTableViewCell.swift */,
+				AC5F90CB2D246457009A8CF4 /* ReportedReviewsTableViewController.swift */,
+				AC5F90CD2D246457009A8CF4 /* ReviewCollectionViewCell.swift */,
+				AC5F90D22D246458009A8CF4 /* ReviewsTableViewController.swift */,
+				AC5F90D02D246458009A8CF4 /* ReviewTableViewCell.swift */,
+				AC5F90CE2D246458009A8CF4 /* Tag.swift */,
+				AC5F90CF2D246458009A8CF4 /* TagsTableViewCell.swift */,
 			);
 			path = BaderControllers;
 			sourceTree = "<group>";
@@ -460,37 +535,62 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACB79BE92D1C8CA400E3FBBB /* LoginViewController.swift in Sources */,
+				AC5F90D82D246458009A8CF4 /* Tag.swift in Sources */,
+				AC5F90AC2D24626D009A8CF4 /* BookedItemsTableViewController.swift in Sources */,
 				ACB79BBE2D1C85A200E3FBBB /* AddProductController.swift in Sources */,
-				ACB79BEB2D1C8CA400E3FBBB /* settingsTableViewController.swift in Sources */,
+				AC5F90C92D246285009A8CF4 /* FAQ.swift in Sources */,
 				ACB79BBB2D1C85A200E3FBBB /* EcoTagModel.swift in Sources */,
+				AC5F90AF2D24626D009A8CF4 /* LoginViewController.swift in Sources */,
 				ACB79BC12D1C85A200E3FBBB /* UserListControllers.swift in Sources */,
-				ACB79BB02D1C843100E3FBBB /* Tag.swift in Sources */,
-				ACB79BAD2D1C843100E3FBBB /* ReviewsTableViewController.swift in Sources */,
-				ACB79BEA2D1C8CA400E3FBBB /* ToDoTableViewController.swift in Sources */,
+				AC5F90CA2D246285009A8CF4 /* addressStruct.swift in Sources */,
 				AC360C592D09B00200957DA7 /* AppDelegate.swift in Sources */,
+				AC5F90DB2D246458009A8CF4 /* ProductDetailsViewController.swift in Sources */,
+				AC5F90BB2D24626D009A8CF4 /* ContactViewController.swift in Sources */,
 				ACB79BCF2D1C877C00E3FBBB /* ProductsViewController.swift in Sources */,
-				ACB79BB12D1C843100E3FBBB /* AddReviewViewController.swift in Sources */,
-				AC360C522D09B00200957DA7 /* ToDo_structs.swift in Sources */,
+				AC5F90B42D24626D009A8CF4 /* VoucherTableViewController.swift in Sources */,
+				AC5F90B12D24626D009A8CF4 /* EditAddressViewController.swift in Sources */,
+				AC5F90C42D246285009A8CF4 /* PIT_structs.swift in Sources */,
+				AC5F90A62D24626D009A8CF4 /* FAQViewController.swift in Sources */,
+				AC5F90A92D24626D009A8CF4 /* SignUpViewController.swift in Sources */,
+				AC5F90D62D246458009A8CF4 /* AllReviewsTableViewController.swift in Sources */,
 				ACB79BD22D1C877C00E3FBBB /* StoreTableViewCell.swift in Sources */,
-				ACB79BAC2D1C843100E3FBBB /* ProductDetailsViewController.swift in Sources */,
-				ACB79BAE2D1C843100E3FBBB /* ReviewTableViewCell.swift in Sources */,
+				AC5F90B32D24626D009A8CF4 /* ProfileViewController.swift in Sources */,
+				AC5F90C62D246285009A8CF4 /* orderHistoryStruct.swift in Sources */,
+				AC5F90B82D24626D009A8CF4 /* FAQCell.swift in Sources */,
+				AC5F90A52D24626D009A8CF4 /* ProfAddressTableViewController.swift in Sources */,
+				AC5F90B52D24626D009A8CF4 /* VouchersTableViewController.swift in Sources */,
+				AC5F90C52D246285009A8CF4 /* BookedItemList.swift in Sources */,
+				AC5F90E42D2464C1009A8CF4 /* ListOfProductsTableViewController.swift in Sources */,
 				ACB79BBC2D1C85A200E3FBBB /* ProductListController.swift in Sources */,
+				AC5F90DC2D246458009A8CF4 /* ReviewsTableViewController.swift in Sources */,
+				AC5F90A72D24626D009A8CF4 /* OrderHistoryTableViewController.swift in Sources */,
 				ACB79BCE2D1C877C00E3FBBB /* HomeViewController.swift in Sources */,
+				AC5F90BA2D24626D009A8CF4 /* AddEditAddressViewController.swift in Sources */,
 				AC360C5C2D09B00200957DA7 /* SceneDelegate.swift in Sources */,
 				ACB79BC32D1C85A200E3FBBB /* EditUserController.swift in Sources */,
-				AC360C512D09B00200957DA7 /* PIT_structs.swift in Sources */,
-				ACB79BEC2D1C8CA400E3FBBB /* SettingsViewController.swift in Sources */,
+				AC5F90C72D246285009A8CF4 /* OrderHistoryTableViewCell.swift in Sources */,
+				AC5F90B62D24626D009A8CF4 /* AboutUsChoiceTableViewController.swift in Sources */,
+				AC5F90A82D24626D009A8CF4 /* SettingsViewController.swift in Sources */,
+				AC5F90B22D24626D009A8CF4 /* PreferencesTableViewController.swift in Sources */,
 				AC360C4D2D09B00200957DA7 /* ViewController.swift in Sources */,
-				ACB79BAF2D1C843100E3FBBB /* ReviewCollectionViewCell.swift in Sources */,
+				AC5F90B72D24626D009A8CF4 /* AddressListViewController.swift in Sources */,
 				ACB79BD12D1C877C00E3FBBB /* StoreInfoTableViewCell.swift in Sources */,
 				ACB79BBF2D1C85A200E3FBBB /* Product.swift in Sources */,
 				ACB79BD02D1C877C00E3FBBB /* StoreDetailsViewController.swift in Sources */,
+				AC5F90E22D2464C1009A8CF4 /* AllReviewsTableViewCell.swift in Sources */,
+				AC5F90D72D246458009A8CF4 /* ReviewCollectionViewCell.swift in Sources */,
+				AC5F90D92D246458009A8CF4 /* TagsTableViewCell.swift in Sources */,
 				ACB79BCD2D1C877C00E3FBBB /* DataManager.swift in Sources */,
 				ACB79BC22D1C85A200E3FBBB /* AddingUserControllers.swift in Sources */,
+				AC5F90DD2D246458009A8CF4 /* AddReviewViewController.swift in Sources */,
+				AC5F90DE2D246458009A8CF4 /* ReportedReviewsTableViewCell.swift in Sources */,
+				AC5F90E32D2464C1009A8CF4 /* ListOfStoresTableViewController.swift in Sources */,
 				ACB79BBD2D1C85A200E3FBBB /* EditProductController.swift in Sources */,
-				ACB79BED2D1C8CA400E3FBBB /* ToDoDetailTableViewController.swift in Sources */,
-				ACB79BEF2D1C8CC500E3FBBB /* ToDoListDelegate.swift in Sources */,
+				AC5F90AE2D24626D009A8CF4 /* settingsTableViewController.swift in Sources */,
+				AC5F90D52D246458009A8CF4 /* ReportedReviewsTableViewController.swift in Sources */,
+				AC5F90AB2D24626D009A8CF4 /* AddAddressViewController.swift in Sources */,
+				AC5F90DA2D246458009A8CF4 /* ReviewTableViewCell.swift in Sources */,
+				AC5F90AA2D24626D009A8CF4 /* AboutUsViewController.swift in Sources */,
 				ACB79BC02D1C85A200E3FBBB /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
