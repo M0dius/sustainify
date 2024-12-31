@@ -1,11 +1,49 @@
 import UIKit
+import FirebaseFirestore
 
 class ProductListController: UITableViewController {
 
+    let db = Firestore.firestore()
     var products: [Product] = []
+    
+    
+    @IBAction func refreshBtn(_ sender: UIBarButtonItem) {
+        fetchProducts()
+    }
+    
+
+    func fetchProducts() {
+        db.collection("Products").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching products: \(error)")
+                return
+            }
+            guard let documents = snapshot?.documents else { return }
+            
+            self.products = documents.compactMap { doc in
+                let data = doc.data()
+                return Product(
+                    name: data["name"] as? String ?? "",
+                    company: data["company"] as? String ?? "",
+                    price: data["price"] as? Double ?? 0.0,
+                    description: data["description"] as? String ?? "",
+                    ecoScore: data["ecoScore"] as? Int ?? 0,
+                    categories: data["categories"] as? [String] ?? [],
+                    ecoTags: [],  // EcoTags can be added with additional parsing if needed
+                    image: nil,   // Handle image fetching separately
+                    stock: data["stockQuantity"] as? Int ?? 0
+                )
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchProducts()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -15,10 +53,8 @@ class ProductListController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
         let product = products[indexPath.row]
-        cell.textLabel?.text = "\(product.name) - BD\(String(format: "%.2f", product.price))"
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)  // Custom font size and weight
-        cell.detailTextLabel?.text = product.company
-        // Set the accessory type to disclosure indicator
+        cell.textLabel?.text = "\(product.name) - $\(String(format: "%.2f", product.price))"
+        cell.detailTextLabel?.text = "Company: \(product.company) | Stock: \(product.stock)"
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -39,6 +75,8 @@ class ProductListController: UITableViewController {
         }
     }
 
+    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -47,11 +85,9 @@ class ProductListController: UITableViewController {
         if let sourceVC = segue.source as? AddProductController, let newProduct = sourceVC.newProduct {
             products.append(newProduct)
             tableView.reloadData()
-            print("Product Added: The product has been added successfully.")
         } else if let sourceVC = segue.source as? EditProductController, let updatedProduct = sourceVC.updatedProduct, let index = sourceVC.productIndex {
             products[index] = updatedProduct
             tableView.reloadData()
-            print("Product Updated: The product details have been updated successfully.")
         }
     }
 

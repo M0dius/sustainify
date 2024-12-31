@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Bamboo Stick Two Icon PNG & SVG Design For T-Shirts.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

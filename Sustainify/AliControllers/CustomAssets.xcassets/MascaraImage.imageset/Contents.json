@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Empty Glass Brow_Mascara Tube - 5ml - Extensions Eyelash Eyebrow Spoolie Wand Bamboo Sustainable Green Eco Reusable Clean Beauty.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

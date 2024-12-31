@@ -1,6 +1,6 @@
 import UIKit
 
-class AddProductController: UITableViewController {
+class AddProductController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let categories = ["Food", "Drinks", "Makeup", "Toiletries", "Clothing", "Electronic", "Others"]
     var selectedCategories = [String]()
@@ -13,6 +13,7 @@ class AddProductController: UITableViewController {
     @IBOutlet weak var tPrice: UITextField!
     @IBOutlet weak var tDescription: UITextField!
     @IBOutlet weak var tEcoScore: UITextField!
+    @IBOutlet weak var tStock: UITextField! // New outlet for stock
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var addProductButton: UIButton!
@@ -23,11 +24,16 @@ class AddProductController: UITableViewController {
     @IBOutlet weak var textFieldWaterSaved: UITextField!
     @IBOutlet weak var switchRecycledMaterial: UISwitch!
     @IBOutlet weak var textFieldRecycledMaterial: UITextField!
+    @IBOutlet weak var imgphoto: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCategorySelection()
         setupEcoTags()
+    }
+
+    @IBAction func btnTakePhoto(_ sender: Any) {
+        showPhotoAlert(sender: sender)
     }
 
     // Setup category selection buttons programmatically
@@ -43,7 +49,7 @@ class AddProductController: UITableViewController {
             button.setTitleColor(.systemGreen, for: .normal)
             button.backgroundColor = .clear
             button.layer.cornerRadius = 5
-            button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+//            button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
             button.widthAnchor.constraint(equalToConstant: 120).isActive = true
             
             stackView.addArrangedSubview(button)
@@ -57,6 +63,50 @@ class AddProductController: UITableViewController {
 
     func setupEcoTags() {
         ecoTags = EcoTag.allCases.map { EcoTagModel(tag: $0, value: nil) }
+    }
+
+    func showPhotoAlert(sender: Any){
+        let alert = UIAlertController(title: "Take Photo From: ", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction (UIAlertAction(title: "Camera", style: .default, handler: { action in
+            self.getPhoto(type: .camera)
+        }))
+        
+        alert.addAction (UIAlertAction(title: "Photo Library", style: .default, handler: { action in
+            self.getPhoto(type: .photoLibrary)
+        }))
+        
+        alert.addAction (UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        // For iPad: Provide location information for the popover
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = (sender as! UIView).bounds
+            popoverController.permittedArrowDirections = .any
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
+
+    func getPhoto(type: UIImagePickerController.SourceType){
+        let picker = UIImagePickerController()
+        picker.sourceType = type
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        dismiss(animated: true, completion: nil)
+        guard let image = info[.editedImage] as? UIImage else {
+            print("Image not found")
+            return
+        }
+        imgphoto.image = image
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 
     @objc func categoryButtonTapped(_ sender: UIButton) {
@@ -95,7 +145,9 @@ class AddProductController: UITableViewController {
                 description: tDescription.text!,
                 ecoScore: Int(tEcoScore.text!) ?? 0,
                 categories: selectedCategories,
-                ecoTags: ecoTags
+                ecoTags: ecoTags,
+                image: imgphoto.image,  // Include the image
+                stock: Int(tStock.text!) ?? 0 // Include stock
             )
             
             if let navigationController = navigationController,
@@ -117,7 +169,9 @@ class AddProductController: UITableViewController {
                Double(tPrice.text!) != nil &&
                !(tDescription.text?.isEmpty ?? true) &&
                !(tEcoScore.text?.isEmpty ?? true) &&
-               Int(tEcoScore.text!) != nil
+               Int(tEcoScore.text!) != nil &&
+               !(tStock.text?.isEmpty ?? true) && // Validate stock
+               Int(tStock.text!) != nil
     }
 
     func showAlert(title: String, message: String) {

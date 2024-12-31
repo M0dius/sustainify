@@ -1,12 +1,18 @@
 import Foundation
 
-class DataManager: NSObject {
-    static let shared = DataManager()
+struct StoreItem {
+    let name: String
+    let price: String
+    let imageName: String
+    let category: String
     
-    let stores: [Store] = [
-        Store(name: "IKEA", detail: "Furniture", imageName: "IKEA", openingTime: "09:00 AM", closingTime: "09:00 PM", items: ["Product 1", "Product 2", "Product 3"]),
-        Store(name: "Walmart", detail: "Groceries", imageName: "Walmart", openingTime: "08:00 AM", closingTime: "10:00 PM", items: ["Product 4", "Product 5", "Product 6"])
-    ]
+    let co2Emissions: Double
+    let recyclability: Double
+    let plasticWaste: Double
+    
+    var sustainabilityScore: Double {
+        (co2Emissions * 0.4) + ((1.0 - recyclability) * 0.3) + (plasticWaste * 0.3)
+    }
 }
 
 class Store {
@@ -15,22 +21,414 @@ class Store {
     let imageName: String
     let openingTime: String
     let closingTime: String
-    let items: [String]
     
-    init(name: String, detail: String, imageName: String, openingTime: String, closingTime: String, items: [String]) {
+    let allStoreItems: [StoreItem]
+    
+    var mostSustainableItems: [StoreItem] {
+        allStoreItems
+            .sorted { $0.sustainabilityScore < $1.sustainabilityScore }
+            .prefix(5)
+            .map { $0 }
+    }
+    
+    init(
+        name: String,
+        detail: String,
+        imageName: String,
+        openingTime: String,
+        closingTime: String,
+        allStoreItems: [StoreItem]
+    ) {
         self.name = name
         self.detail = detail
         self.imageName = imageName
         self.openingTime = openingTime
         self.closingTime = closingTime
-        self.items = items
+        self.allStoreItems = allStoreItems
     }
+}
+
+class DataManager {
+    static let shared = DataManager()
     
-    var formattedOpeningTime: String {
-        return "Opens \(openingTime)"
-    }
-    
-    var formattedClosingTime: String {
-        return "Closes \(closingTime)"
-    }
+    let stores: [Store] = [
+        Store(
+            name: "AquaMart",
+            detail: "Sustainable products for every home.",
+            imageName: "AquaMart",
+            openingTime: "8:00 AM",
+            closingTime: "8:00 PM",
+            allStoreItems: [
+                // Food
+                StoreItem(name: "Organic Granola",
+                          price: "$7.00",
+                          imageName: "GranolaImage",
+                          category: "Food",
+                          co2Emissions: 0.1,
+                          recyclability: 0.9,
+                          plasticWaste: 0.05),
+                StoreItem(name: "Vegan Protein Bar",
+                          price: "$3.50",
+                          imageName: "ProteinBarImage",
+                          category: "Food",
+                          co2Emissions: 0.2,
+                          recyclability: 0.85,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Cold-Pressed Juice",
+                          price: "$5.00",
+                          imageName: "JuiceImage",
+                          category: "Food",
+                          co2Emissions: 0.1,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Eco Granola Mix",
+                          price: "$9.00",
+                          imageName: "GranolaMixImage",
+                          category: "Food",
+                          co2Emissions: 0.15,
+                          recyclability: 0.95,
+                          plasticWaste: 0.05),
+                
+                // Drinks
+                StoreItem(name: "Reusable Water Bottle",
+                          price: "$12.00",
+                          imageName: "WaterBottleImage",
+                          category: "Drinks",
+                          co2Emissions: 0.05,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Herbal Tea Bags",
+                          price: "$4.00",
+                          imageName: "HerbalTeaImage",
+                          category: "Drinks",
+                          co2Emissions: 0.1,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Organic Coffee Beans",
+                          price: "$15.00",
+                          imageName: "CoffeeBeansImage",
+                          category: "Drinks",
+                          co2Emissions: 0.2,
+                          recyclability: 0.95,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Eco-Friendly Cold Brew",
+                          price: "$8.00",
+                          imageName: "ColdBrewImage",
+                          category: "Drinks",
+                          co2Emissions: 0.1,
+                          recyclability: 0.9,
+                          plasticWaste: 0.0),
+                
+                // Makeup
+                StoreItem(name: "Vegan Lip Balm",
+                          price: "$5.00",
+                          imageName: "LipBalmImage",
+                          category: "Makeup",
+                          co2Emissions: 0.05,
+                          recyclability: 0.95,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Eco-Friendly Foundation",
+                          price: "$22.00",
+                          imageName: "FoundationImage",
+                          category: "Makeup",
+                          co2Emissions: 0.1,
+                          recyclability: 0.9,
+                          plasticWaste: 0.05),
+                StoreItem(name: "Sustainable Mascara",
+                          price: "$15.00",
+                          imageName: "MascaraImage",
+                          category: "Makeup",
+                          co2Emissions: 0.1,
+                          recyclability: 0.9,
+                          plasticWaste: 0.1),
+                StoreItem(name: "Organic Makeup Remover",
+                          price: "$10.00",
+                          imageName: "RemoverImage",
+                          category: "Makeup",
+                          co2Emissions: 0.08,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                
+                // Clothing
+                StoreItem(name: "Organic Cotton Hoodie",
+                          price: "$35.00",
+                          imageName: "HoodieImage",
+                          category: "Clothing",
+                          co2Emissions: 0.2,
+                          recyclability: 0.8,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Bamboo Socks",
+                          price: "$10.00",
+                          imageName: "SocksImage",
+                          category: "Clothing",
+                          co2Emissions: 0.1,
+                          recyclability: 0.95,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Eco Denim Jeans",
+                          price: "$50.00",
+                          imageName: "JeansImage",
+                          category: "Clothing",
+                          co2Emissions: 0.3,
+                          recyclability: 0.85,
+                          plasticWaste: 0.05),
+                StoreItem(name: "Recycled Cotton Shirt",
+                          price: "$25.00",
+                          imageName: "ShirtImage",
+                          category: "Clothing",
+                          co2Emissions: 0.15,
+                          recyclability: 0.9,
+                          plasticWaste: 0.0),
+                
+                // Toiletries
+                StoreItem(name: "Eco Toothbrush Set",
+                          price: "$8.00",
+                          imageName: "ToothbrushImage",
+                          category: "Toiletries",
+                          co2Emissions: 0.05,
+                          recyclability: 0.9,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Natural Soap Bars",
+                          price: "$5.00",
+                          imageName: "SoapBarsImage",
+                          category: "Toiletries",
+                          co2Emissions: 0.1,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Sustainable Shampoo",
+                          price: "$12.00",
+                          imageName: "ShampooImage",
+                          category: "Toiletries",
+                          co2Emissions: 0.15,
+                          recyclability: 0.9,
+                          plasticWaste: 0.1),
+                StoreItem(name: "Bamboo Bath Towel",
+                          price: "$15.00",
+                          imageName: "TowelImage",
+                          category: "Toiletries",
+                          co2Emissions: 0.05,
+                          recyclability: 0.95,
+                          plasticWaste: 0.0),
+                
+                // Electronics
+                StoreItem(name: "Solar-Powered Speaker",
+                          price: "$40.00",
+                          imageName: "SolarSpeakerImage",
+                          category: "Electronics",
+                          co2Emissions: 0.15,
+                          recyclability: 0.95,
+                          plasticWaste: 0.05),
+                StoreItem(name: "Eco Laptop Stand",
+                          price: "$18.00",
+                          imageName: "LaptopStandImage",
+                          category: "Electronics",
+                          co2Emissions: 0.05,
+                          recyclability: 0.9,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Bamboo Charging Cable",
+                          price: "$12.00",
+                          imageName: "ChargingCableImage",
+                          category: "Electronics",
+                          co2Emissions: 0.1,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Eco-Friendly Smartwatch",
+                          price: "$100.00",
+                          imageName: "SmartwatchImage",
+                          category: "Electronics",
+                          co2Emissions: 0.2,
+                          recyclability: 0.95,
+                          plasticWaste: 0.05)
+            ]
+        ),
+        
+        Store(
+            name: "BambooX",
+            detail: "Tech meets sustainability.",
+            imageName: "BambooX",
+            openingTime: "10:00 AM",
+            closingTime: "6:00 PM",
+            allStoreItems: [
+                
+                // Food
+                StoreItem(name: "Chia Seeds",
+                          price: "$5.00",
+                          imageName: "ChiaSeedsImage",
+                          category: "Food",
+                          co2Emissions: 0.1,
+                          recyclability: 0.95,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Almond Milk",
+                          price: "$4.00",
+                          imageName: "AlmondMilkImage",
+                          category: "Food",
+                          co2Emissions: 0.2,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Vegan Pasta",
+                          price: "$3.50",
+                          imageName: "VeganPastaImage",
+                          category: "Food",
+                          co2Emissions: 0.1,
+                          recyclability: 0.9,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Organic Oats",
+                          price: "$6.00",
+                          imageName: "OrganicOatsImage",
+                          category: "Food",
+                          co2Emissions: 0.05,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+
+                // Drinks
+                StoreItem(name: "Organic Green Tea",
+                          price: "$7.00",
+                          imageName: "GreenTeaImage",
+                          category: "Drinks",
+                          co2Emissions: 0.05,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Fruit Smoothie Pack",
+                          price: "$4.50",
+                          imageName: "SmoothiePackImage",
+                          category: "Drinks",
+                          co2Emissions: 0.15,
+                          recyclability: 0.95,
+                          plasticWaste: 0.05),
+                StoreItem(name: "Cold Brew Coffee",
+                          price: "$8.00",
+                          imageName: "ColdBrewCoffeeImage",
+                          category: "Drinks",
+                          co2Emissions: 0.2,
+                          recyclability: 0.9,
+                          plasticWaste: 0.1),
+                StoreItem(name: "Herbal Detox Drink",
+                          price: "$6.00",
+                          imageName: "DetoxDrinkImage",
+                          category: "Drinks",
+                          co2Emissions: 0.1,
+                          recyclability: 0.95,
+                          plasticWaste: 0.0),
+
+                // Makeup
+                StoreItem(name: "Sustainable Lip Gloss",
+                          price: "$9.00",
+                          imageName: "LipGlossImage",
+                          category: "Makeup",
+                          co2Emissions: 0.1,
+                          recyclability: 0.9,
+                          plasticWaste: 0.05),
+                StoreItem(name: "Plant-Based Foundation",
+                          price: "$25.00",
+                          imageName: "PlantFoundationImage",
+                          category: "Makeup",
+                          co2Emissions: 0.2,
+                          recyclability: 0.85,
+                          plasticWaste: 0.1),
+                StoreItem(name: "Eco-Friendly Blush",
+                          price: "$15.00",
+                          imageName: "BlushImage",
+                          category: "Makeup",
+                          co2Emissions: 0.1,
+                          recyclability: 0.95,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Natural Eyeshadow",
+                          price: "$12.00",
+                          imageName: "EyeshadowImage",
+                          category: "Makeup",
+                          co2Emissions: 0.1,
+                          recyclability: 0.9,
+                          plasticWaste: 0.05),
+
+                // Clothing
+                StoreItem(name: "Organic Cotton Hoodie",
+                          price: "$35.00",
+                          imageName: "HoodieImage",
+                          category: "Clothing",
+                          co2Emissions: 0.2,
+                          recyclability: 0.8,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Bamboo Socks",
+                          price: "$10.00",
+                          imageName: "SocksImage",
+                          category: "Clothing",
+                          co2Emissions: 0.1,
+                          recyclability: 0.95,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Eco Denim Jeans",
+                          price: "$50.00",
+                          imageName: "JeansImage",
+                          category: "Clothing",
+                          co2Emissions: 0.3,
+                          recyclability: 0.85,
+                          plasticWaste: 0.05),
+                StoreItem(name: "Recycled Cotton Shirt",
+                          price: "$25.00",
+                          imageName: "ShirtImage",
+                          category: "Clothing",
+                          co2Emissions: 0.15,
+                          recyclability: 0.9,
+                          plasticWaste: 0.0),
+
+                // Toiletries
+                StoreItem(name: "Eco Toothbrush Set",
+                          price: "$8.00",
+                          imageName: "ToothbrushImage",
+                          category: "Toiletries",
+                          co2Emissions: 0.05,
+                          recyclability: 0.9,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Natural Soap Bars",
+                          price: "$5.00",
+                          imageName: "SoapBarsImage",
+                          category: "Toiletries",
+                          co2Emissions: 0.1,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Sustainable Shampoo",
+                          price: "$12.00",
+                          imageName: "ShampooImage",
+                          category: "Toiletries",
+                          co2Emissions: 0.15,
+                          recyclability: 0.9,
+                          plasticWaste: 0.1),
+                StoreItem(name: "Bamboo Bath Towel",
+                          price: "$15.00",
+                          imageName: "TowelImage",
+                          category: "Toiletries",
+                          co2Emissions: 0.05,
+                          recyclability: 0.95,
+                          plasticWaste: 0.0),
+
+                // Electronics
+                StoreItem(name: "Solar-Powered Speaker",
+                          price: "$40.00",
+                          imageName: "SolarSpeakerImage",
+                          category: "Electronics",
+                          co2Emissions: 0.15,
+                          recyclability: 0.95,
+                          plasticWaste: 0.05),
+                StoreItem(name: "Eco Laptop Stand",
+                          price: "$18.00",
+                          imageName: "LaptopStandImage",
+                          category: "Electronics",
+                          co2Emissions: 0.05,
+                          recyclability: 0.9,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Bamboo Charging Cable",
+                          price: "$12.00",
+                          imageName: "ChargingCableImage",
+                          category: "Electronics",
+                          co2Emissions: 0.1,
+                          recyclability: 1.0,
+                          plasticWaste: 0.0),
+                StoreItem(name: "Eco-Friendly Smartwatch",
+                          price: "$100.00",
+                          imageName: "SmartwatchImage",
+                          category: "Electronics",
+                          co2Emissions: 0.2,
+                          recyclability: 0.95,
+                          plasticWaste: 0.05)
+            ]
+        )
+    ]
 }

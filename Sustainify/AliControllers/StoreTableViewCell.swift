@@ -45,7 +45,7 @@ class StoreTableViewCell: UITableViewCell {
         
         // Configure the timings labels
         openingTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        openingTimeLabel.font = UIFont.boldSystemFont(ofSize: 10)  // Adjusted font size and made bold
+        openingTimeLabel.font = UIFont.boldSystemFont(ofSize: 10)  
         openingTimeLabel.textColor = .white
         openingTimeLabel.textAlignment = .center
         openingTimeLabel.numberOfLines = 2
@@ -62,7 +62,7 @@ class StoreTableViewCell: UITableViewCell {
         
         // Configure the timings background view
         timingsBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        timingsBackgroundView.backgroundColor = .green
+        timingsBackgroundView.backgroundColor = UIColor(red: 43/255.0, green: 158/255.0, blue: 13/255.0, alpha: 1.0)
         timingsBackgroundView.layer.cornerRadius = 10
         timingsBackgroundView.layer.masksToBounds = true
         
@@ -72,7 +72,7 @@ class StoreTableViewCell: UITableViewCell {
             storeImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             storeImageView.widthAnchor.constraint(equalToConstant: 80),
             storeImageView.heightAnchor.constraint(equalToConstant: 80),
-            storeImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            storeImageView.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -10), // Changed to avoid conflict
             
             nameLabel.leadingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: 10),
             nameLabel.trailingAnchor.constraint(equalTo: timingsBackgroundView.leadingAnchor, constant: -10),
@@ -85,7 +85,7 @@ class StoreTableViewCell: UITableViewCell {
             timingsBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             timingsBackgroundView.centerYAnchor.constraint(equalTo: centerYAnchor),
             timingsBackgroundView.widthAnchor.constraint(equalToConstant: 80),
-            timingsBackgroundView.heightAnchor.constraint(equalTo: storeImageView.heightAnchor),
+            timingsBackgroundView.heightAnchor.constraint(lessThanOrEqualTo: storeImageView.heightAnchor), // Changed to avoid conflict
             
             openingTimeLabel.topAnchor.constraint(equalTo: timingsBackgroundView.topAnchor, constant: 10),
             openingTimeLabel.leadingAnchor.constraint(equalTo: timingsBackgroundView.leadingAnchor),
@@ -99,9 +99,10 @@ class StoreTableViewCell: UITableViewCell {
             closingTimeLabel.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 5),
             closingTimeLabel.leadingAnchor.constraint(equalTo: timingsBackgroundView.leadingAnchor),
             closingTimeLabel.trailingAnchor.constraint(equalTo: timingsBackgroundView.trailingAnchor),
-            closingTimeLabel.bottomAnchor.constraint(equalTo: timingsBackgroundView.bottomAnchor, constant: -10), // Match Opens padding
+            closingTimeLabel.bottomAnchor.constraint(lessThanOrEqualTo: timingsBackgroundView.bottomAnchor, constant: -10) // Adjusted to avoid conflicts
         ])
     }
+
     
     func configure(with store: Store) {
         storeImageView.image = UIImage(named: store.imageName)

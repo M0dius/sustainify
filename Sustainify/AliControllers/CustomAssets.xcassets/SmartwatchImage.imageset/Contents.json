@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "1 pièce Unicolore Bracelet De Montre En Silicone & 1 pièce Unicolore Bracelet De Montre.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

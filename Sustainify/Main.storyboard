@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0dQ-E6-j19">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0dQ-E6-j19">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,16 +44,6 @@
             <point key="canvasLocation" x="-1271" y="211"/>
         </scene>
         <!--Orders-->
-        <scene sceneID="3to-FM-I7u">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Ali" referencedIdentifier="Orders" id="R8d-vi-OaI" userLabel="Orders" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="XbC-tI-UOM"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uGf-qg-mE1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-412" y="644"/>
-        </scene>
-        <!--Orders-->
         <scene sceneID="Wam-ak-0Pf">
             <objects>
                 <navigationController id="lAH-T8-gH9" sceneMemberID="viewController">
@@ -65,9 +55,6 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="R8d-vi-OaI" kind="relationship" relationship="rootViewController" id="xXT-eK-IPM"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dU6-Gf-aOe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -118,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="1242" y="211"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--AdminNav-->
         <scene sceneID="r0f-AW-Aml">
             <objects>
-                <tabBarController id="z9E-ml-oxZ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="AdminNav" title="AdminNav" id="z9E-ml-oxZ" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0YL-Yk-DG3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -186,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="4135" y="211"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--SellerNav-->
         <scene sceneID="4NA-rV-DZR">
             <objects>
-                <tabBarController id="Cgm-ED-x4I" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="SellerNav" title="SellerNav" id="Cgm-ED-x4I" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Kb-G3-sCj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
