@@ -1,0 +1,14 @@
+{
+  "images" : [
+    {
+      "filename" : "3565750_green_nature_plant_planting_plants_icon.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
